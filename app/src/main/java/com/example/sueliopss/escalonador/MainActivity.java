@@ -54,6 +54,24 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.mipmap.ic_insert_chart_black_24dp);
         images.add(R.mipmap.ic_insert_chart_black_24dp);
         images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+        images.add(R.mipmap.ic_insert_chart_black_24dp);
+
+
+
+
 
         processadorAdapter.setImageList(images);
         gridProcessadores.setAdapter(processadorAdapter);
