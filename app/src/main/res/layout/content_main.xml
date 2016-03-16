@@ -24,15 +24,31 @@
 
     </LinearLayout>
 
-    <GridView
-
-        android:layout_width="wrap_content"
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gridProcessadores"
-        android:layout_below="@id/viewProcessadores"
-        android:numColumns="4"
-        ></GridView>
-    
+        android:scrollbars="none"
+        android:id="@+id/horizontalScrollView"
+        android:layout_margin="1dp"
+        android:fillViewport="false"
+        android:layout_below="@+id/viewProcessadores">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gridProcessadores"
+                android:gravity="center"
+                ></GridView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -40,7 +56,7 @@
         android:id="@+id/viewAptos"
         android:orientation="horizontal"
         android:background="@color/black"
-        android:layout_below="@+id/gridProcessadores">
+        android:layout_below="@+id/horizontalScrollView">
 
         <TextView
             android:layout_width="match_parent"
@@ -55,7 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_below="@+id/viewAptos"
-        android:id="@+id/gridAptos"></GridView>
+        android:id="@+id/gridAptos"
+        ></GridView>
 
     <LinearLayout
         android:layout_width="fill_parent"
