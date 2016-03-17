@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     @ViewById(R.id.gridProcessadores)
     GridView gridProcessadores;
 
+    @ViewById(R.id.gridAptos)
+    GridView gridAptos;
+
     @Bean
     ProcessadorAdapter processadorAdapter;
 
@@ -80,12 +83,13 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.mipmap.ic_insert_chart_black_24dp);
         images.add(R.mipmap.ic_insert_chart_black_24dp);
 
-        gridProcessadores.setNumColumns(images.size());
-        gridViewSetting(gridProcessadores, images.size());
+        gridAptos.setNumColumns(images.size());
+        gridViewSetting(gridAptos, images.size());
 
 
         processadorAdapter.setImageList(images);
         gridProcessadores.setAdapter(processadorAdapter);
+        gridAptos.setAdapter(processadorAdapter);
 
 
     }
