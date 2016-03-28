@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/editTextNumProcessador"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:hint="Nº de Processadores"/>
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/editTextNumProcesso"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:hint="Nº de Processos"/>
@@ -31,8 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Escalonar"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/buttonEscalonar"
+        android:layout_gravity="center_horizontal"/>
 
 
 </LinearLayout>

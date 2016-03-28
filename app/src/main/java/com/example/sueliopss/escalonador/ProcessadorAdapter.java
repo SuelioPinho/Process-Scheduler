@@ -20,6 +20,10 @@ public class ProcessadorAdapter extends BaseAdapter {
     Context context;
     private List<Integer> images;
 
+    public ProcessadorAdapter(Context context){
+        this.context = context;
+    }
+
     public void setImageList(List<Integer> images) {
         this.images = images;
     }

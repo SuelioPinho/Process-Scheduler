@@ -7,12 +7,10 @@ public class Processo {
     int prioridade;
     int tempoProcesso;
     String nomeProcesso;
-    int tempoProcessar;
+    int deadLine;
 
-    public Processo(int prioridade, int tempoProcesso, String nomeProcesso, int tempoProcessar) {
-        this.prioridade = prioridade;
+    public Processo(int tempoProcesso, String nomeProcesso) {
         this.tempoProcesso = tempoProcesso;
         this.nomeProcesso = nomeProcesso;
-        this.tempoProcessar = tempoProcessar;
     }
 }
