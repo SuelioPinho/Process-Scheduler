@@ -1,7 +1,7 @@
 package com.example.sueliopss.escalonador;
 
 import android.content.Context;
-import android.media.Image;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,24 +18,24 @@ import java.util.List;
 public class ProcessadorAdapter extends BaseAdapter {
     @RootContext
     Context context;
-    private List<Integer> images;
+    private List<Processador> processadores;
 
     public ProcessadorAdapter(Context context){
         this.context = context;
     }
 
-    public void setImageList(List<Integer> images) {
-        this.images = images;
+    public void setProcessadores(List<Processador> processadores) {
+        this.processadores = processadores;
     }
 
     @Override
     public int getCount() {
-        return images.size();
+        return processadores.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return images.get(position);
+        return processadores.get(position);
     }
 
     @Override
@@ -54,8 +54,10 @@ public class ProcessadorAdapter extends BaseAdapter {
             itemView = (ProcessadorItemView) convertView;
         }
 
-        itemView.bind(images.get(position),position+1);
+        itemView.bind(processadores.get(position));
+
         itemView.setPosition(position);
+
         return itemView;
     }
 }

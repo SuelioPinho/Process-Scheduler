@@ -6,7 +6,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollview_content_main"
+        android:fillViewport="true"
+        >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,8 +40,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/gridProcessadores"
+                android:nestedScrollingEnabled="false"
+                android:keepScreenOn="true"
                 android:layout_below="@+id/viewProcessadores"
-                android:numColumns="6"
+                android:numColumns="4"
+
                 ></GridView>
 
             <LinearLayout
@@ -62,12 +75,12 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="70dp"
                     android:orientation="horizontal">
 
                     <GridView
                         android:layout_width="wrap_content"
-                        android:layout_height="70dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/viewAptos"
                         android:id="@+id/gridAptos"
                         android:gravity="center"
@@ -92,13 +105,34 @@
                     android:layout_marginTop="8dp"/>
             </LinearLayout>
 
-            <GridView
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/viewCancelados"
-                android:id="@+id/gridCancelados"
-                android:numColumns="4"></GridView>
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollViewFinalizados"
+                android:layout_margin="1dp"
+                android:fillViewport="false"
+                android:layout_below="@+id/viewCancelados">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="70dp">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/viewAptos"
+                        android:id="@+id/gridCancelados"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </RelativeLayout>
+    </ScrollView>
 
 
 

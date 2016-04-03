@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/imageProcessador"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageProcessador"
+        android:scaleType="centerInside"
+        android:background="@mipmap/ic_processador"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="11dp"
+        android:layout_alignBottom="@+id/imageProcessador"
+        android:layout_alignParentStart="true"
+        android:background="@mipmap/ic_processo"
+        android:id="@+id/imagePcso"/>
 
     <TextView
-        android:id="@+id/position"
-        android:text="0"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="13dp"
+        android:text="Nome"
+        android:textSize="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/nomeProcesso"
+        android:layout_alignTop="@+id/imagePcso"
+        android:layout_alignStart="@+id/imagePcso" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="13dp"
+        android:text="T"
+        android:textSize="12dp"
+        android:layout_below="@+id/nomeProcesso"
+        android:layout_alignStart="@+id/nomeProcesso"
+        android:id="@+id/tempoProcesso"
+        />
+
+
+
+</RelativeLayout>

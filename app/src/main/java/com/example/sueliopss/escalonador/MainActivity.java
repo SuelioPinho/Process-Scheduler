@@ -1,29 +1,27 @@
 package com.example.sueliopss.escalonador;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.UiThread;
+
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Adapter;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.ListAdapter;
+import android.widget.ScrollView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -31,16 +29,14 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ItemClick;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Set;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
 @EActivity(R.layout.activity_main)
@@ -52,11 +48,26 @@ public class MainActivity extends AppCompatActivity {
     @ViewById(R.id.gridAptos)
     GridView gridAptos;
 
+    @ViewById
+    GridView gridCancelados;
+
     @Bean
     ProcessadorAdapter processadorAdapter;
 
+    @Bean
+    ProcessoAdapter processoAdapter;
+
+    @Bean
+    ProcessoAdapter finalizadoAdapter;
+
     @ViewById
     HorizontalScrollView horizontalScrollView;
+
+    @ViewById(R.id.scrollview_content_main)
+    ScrollView scrollView;
+
+    @ViewById(R.id.iniciar)
+    FloatingActionButton iniciar;
 
     EditText numProcessadores;
 
@@ -64,16 +75,15 @@ public class MainActivity extends AppCompatActivity {
 
     AlertDialog.Builder builder;
 
-    LinkedList<Integer> imagesProcessos;
+    LinkedList<Processo> processos;
 
-    LinkedList<Integer> imagesProcessadores;
+    LinkedList<Processador> processadores;
 
-    LinkedList<Integer> processadoresLivres;
+    LinkedList<Processo> finalizados;
 
     Button escalonar;
 
     Semaphore semaphore;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
 
         final AlertDialog dialog = createDialog(savedInstanceState);
         dialog.show();
+
+        processadores = new LinkedList<>();
+        processos = new LinkedList<>();
+        finalizados = new LinkedList<>();
 
         escalonar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,44 +109,138 @@ public class MainActivity extends AppCompatActivity {
     @AfterViews
     public void afterViews(){
 
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
     }
 
-    @Background
+    @Click(R.id.iniciar)
     public void iniciarEscalonamento(){
 
-        while(true){
+        iniciar.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+        iniciar.setClickable(false);
+        preencherProcessadores();
 
-            if (imagesProcessos.isEmpty()){
+        reloadDataGridViewProcessos(processos);
+        decrementarDeadLines();
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+
+            public void run() {
+
                 try {
-                    wait();
+                    semaphore.acquire();
+
+                    for (Processador processador : processadores) {
+                        if (!processador.is_processando) {
+                            if (!processos.isEmpty()) {
+                                processador.processo = processos.pop();
+                                processador.is_processando = true;
+                            }
+                        }
+                    }
+
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+
             }
-
-            try {
-                semaphore.acquire();
-                processar(imagesProcessos.pop());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }finally {
-                semaphore.release();
-            }
+        }, 0, 1000);
 
 
-        }
     }
 
-    @UiThread
-    public void processar(Integer integer){
+    synchronized void processar() {
 
-        View view = gridProcessadores.getAdapter().getView(integer, null, null);
-        view.setBackgroundColor(Color.GREEN);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+
+                for (int j = 0; j < processadores.size(); j++){
+                    Processador processador = processadores.get(j);
+                    if (processador.is_processando){
+                        if(processador.processo.tempoProcesso == 0){
+                            finalizados.add(processador.processo);
+                            processadores.get(j).processo = null;
+                            processadores.get(j).is_processando = false;
+                            reloadDataGridViewFinalizado(finalizados);
+                            semaphore.release();
+                        }else {
+                            processadores.get(j).processo.tempoProcesso--;
+                        }
+                    }
+                }
+
+                reloadDataGridViewProcessador(processadores);
+
+            }
+        }, 0, 1000);
+
+
+    }
+
+//    @Click
+//    public void adicionarProcesso(){
+//
+//        //Processo processo = new Processo("P"+, )
+//    }
+    synchronized void decrementarDeadLines(){
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (!processos.isEmpty()) {
+
+                    for (int i = 0; i < processos.size(); i++) {
+                        Processo processo = processos.get(i);
+                        if (processo.deadLine == 0) {
+                            finalizados.add(processo);
+                            processos.remove(i);
+                            reloadDataGridViewFinalizado(finalizados);
+
+                        } else {
+                            processos.get(i).deadLine--;
+
+                        }
+
+                    }
+
+                    reloadDataGridViewProcessos(processos);
+
+
+                }
+            }
+        }, 0, 1000);
+
+        //reloadDataGridViewFinalizado(finalizados);
+
+    }
+
+    public void preencherProcessadores(){
+
+        for (int i = 0; i < processadores.size(); i++){
+
+            if(!processos.isEmpty()){
+                processadores.get(i).processo = processos.pop();
+                processadores.get(i).is_processando = true;
+            }
         }
+
+        reloadDataGridViewProcessador(processadores);
+        processar();
     }
 
     @Override
@@ -157,12 +265,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @ItemClick(R.id.gridProcessadores)
-    public void alert(int position){
-        Toast.makeText(this,(position+1)+"",Toast.LENGTH_SHORT).show();
-    }
-
     public AlertDialog createDialog(Bundle savedInstanceState){
+
         builder = new AlertDialog.Builder(this);
 
         LayoutInflater layoutInflater = this.getLayoutInflater();
@@ -171,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
         builder.setView(dialog);
 
-        //builder.setCancelable(false);
+        builder.setCancelable(false);
 
         escalonar = (Button) dialog.findViewById(R.id.buttonEscalonar);
 
@@ -185,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
     private void gridViewSetting(GridView gridview, int size) {
 
         // Calculated single Item Layout Width for each grid element ....
-        int width = 50 ;
+        int width = 70 ;
 
         DisplayMetrics dm = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -205,39 +309,164 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void prepararEscalonamento(View view){
-        imagesProcessadores = new LinkedList<>();
-        imagesProcessos = new LinkedList<>();
-        processadoresLivres = new LinkedList<>();
-        int processadores = Integer.parseInt(numProcessadores.getText().toString());
-        int processos = Integer.parseInt(numProcesso.getText().toString());
 
-        semaphore = new Semaphore(processadores);
+        int qntProcessadores = Integer.parseInt(numProcessadores.getText().toString());
 
-        for (int i = 0; i < processadores; i++){
-            imagesProcessadores.add(R.mipmap.ic_insert_chart_black_24dp);
-            processadoresLivres.add(i);
-        }
+        int qntprocessos = Integer.parseInt(numProcesso.getText().toString());
 
-        contruirGridView(imagesProcessadores, gridProcessadores);
+        semaphore = new Semaphore(qntProcessadores);
 
-        processadorAdapter = new ProcessadorAdapter(this);
+        contruirGridViewProcessadores(qntProcessadores);
 
-        for (int i = 0; i < processos; i++){
-            imagesProcessos.add(R.mipmap.ic_insert_chart_black_24dp);
-        }
+        contruirGridViewProcessos(qntprocessos);
 
-        gridAptos.setNumColumns(imagesProcessos.size());
-        gridViewSetting(gridAptos, imagesProcessos.size());
-        contruirGridView(imagesProcessos, gridAptos);
+        contruirGridViewFinalizados();
 
+
+        setGridViewHeightBasedOnChildren(gridProcessadores, 4);
+
+        //setGridViewHeightBasedOnChildren(gridCancelados, 4);
 
     }
 
-    public void contruirGridView(List<Integer> images, GridView grid){
+    public void contruirGridViewProcessadores(int numProcessadores){
 
-        processadorAdapter.setImageList(images);
-        grid.setAdapter(processadorAdapter);
+        for (int i = 0; i < numProcessadores; i++){
+            processadores.add(new Processador());
+        }
 
+        processadorAdapter.setProcessadores(processadores);
+
+        gridProcessadores.setAdapter(processadorAdapter);
+
+    }
+
+    public void contruirGridViewProcessos(int numProcesso){
+
+        Random gerador = new Random();
+
+        int tempoProcesso;
+        int deadLine;
+
+        for (int i = 0; i < numProcesso; i++){
+            tempoProcesso = gerador.nextInt(20) + 4;
+            deadLine = gerador.nextInt(20) + 4;
+            processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, Color.YELLOW ));
+        }
+
+        gridAptos.setNumColumns(processos.size());
+
+        gridViewSetting(gridAptos, processos.size());
+
+        processoAdapter.setProcessos(processos);
+
+        gridAptos.setAdapter(processoAdapter);
+
+    }
+
+    public void contruirGridViewFinalizados(){
+
+        gridCancelados.setNumColumns(finalizados.size());
+
+        gridViewSetting(gridCancelados, finalizados.size());
+
+        finalizadoAdapter.setProcessos(finalizados);
+
+        gridCancelados.setAdapter(finalizadoAdapter);
+
+    }
+
+    public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
+
+        ListAdapter listAdapter = gridView.getAdapter();
+
+        if (listAdapter == null) {
+
+            // pre-condition
+
+            return;
+
+        }
+
+        int totalHeight = 0;
+
+        int items = listAdapter.getCount();
+
+        int rows = 0;
+
+
+        View listItem = listAdapter.getView(0, null, gridView);
+
+        listItem.measure(0, 0);
+
+        totalHeight = listItem.getMeasuredHeight();
+
+
+        float x = 1;
+
+        if( items > columns ){
+
+            if(items % columns == 0){
+
+                x = items/columns;
+
+                rows = (int) x;
+
+                totalHeight *= rows;
+
+            }else {
+
+                x = items/columns;
+
+                rows = (int) (x + 1);
+
+                totalHeight *= rows;
+            }
+
+
+
+        }
+
+
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+
+        params.height = totalHeight;
+
+        gridView.setLayoutParams(params);
+
+    }
+
+    @UiThread
+    public void reloadDataGridViewProcessos(LinkedList<Processo> processos){
+
+        synchronized (this){
+            gridAptos.setNumColumns(processos.size());
+
+            gridViewSetting(gridAptos, processos.size());
+
+            processoAdapter.setProcessos(processos);
+
+            gridAptos.setAdapter(processoAdapter);
+        }
+
+    }
+
+    @UiThread
+    public void reloadDataGridViewProcessador(LinkedList<Processador> processadores){
+
+        synchronized (getApplicationContext()){
+            processadorAdapter.setProcessadores(processadores);
+            processadorAdapter.notifyDataSetChanged();
+        }
+
+    }
+
+    @UiThread
+    public void reloadDataGridViewFinalizado(LinkedList<Processo> processos){
+
+        synchronized (getApplicationContext()) {
+            contruirGridViewFinalizados();
+        }
     }
 
 }
