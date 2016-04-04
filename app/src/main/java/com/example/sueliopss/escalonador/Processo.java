@@ -5,7 +5,7 @@ import android.graphics.Color;
 /**
  * Created by sueliopss on 09/03/16.
  */
-public class Processo {
+public class Processo implements Comparable<Processo> {
     int prioridade;
     int tempoProcesso;
     String nomeProcesso;
@@ -23,5 +23,18 @@ public class Processo {
         this.nomeProcesso = nomeProcesso;
         this.deadLine = deadLine;
         this.color = color;
+    }
+
+    public int compareTo(Processo processo) {
+
+        if(this.deadLine < processo.deadLine){
+            return -1;
+        }
+
+        if (this.deadLine > processo.deadLine){
+            return 1;
+        }
+
+        return 0;
     }
 }

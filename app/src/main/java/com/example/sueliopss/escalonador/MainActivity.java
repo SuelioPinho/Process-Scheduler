@@ -33,6 +33,7 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Timer;
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Click(R.id.iniciar)
-    public void iniciarEscalonamento(){
+    synchronized void iniciarEscalonamento(){
 
         iniciar.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
         iniciar.setClickable(false);
@@ -138,14 +139,16 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     semaphore.acquire();
 
-                    for (Processador processador : processadores) {
-                        if (!processador.is_processando) {
-                            if (!processos.isEmpty()) {
-                                processador.processo = processos.pop();
-                                processador.is_processando = true;
+                        for (Processador processador : processadores) {
+                            if (!processador.is_processando) {
+                                if (!processos.isEmpty()) {
+                                    processador.processo = processos.pop();
+                                    processador.is_processando = true;
+                                    reloadDataGridViewProcessos(processos);
+                                }
                             }
                         }
-                    }
+
 
 
                 } catch (InterruptedException e) {
@@ -195,32 +198,35 @@ public class MainActivity extends AppCompatActivity {
 //
 //        //Processo processo = new Processo("P"+, )
 //    }
-    synchronized void decrementarDeadLines(){
+    public void decrementarDeadLines(){
+
 
         Timer timer = new Timer();
 
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (!processos.isEmpty()) {
 
-                    for (int i = 0; i < processos.size(); i++) {
-                        Processo processo = processos.get(i);
-                        if (processo.deadLine == 0) {
-                            finalizados.add(processo);
-                            processos.remove(i);
-                            reloadDataGridViewFinalizado(finalizados);
+                synchronized (this) {
+                    if (!processos.isEmpty()) {
 
-                        } else {
-                            processos.get(i).deadLine--;
+                        for (int i = 0; i < processos.size(); i++) {
+                            Processo processo = processos.get(i);
+                            if (processo.deadLine == 0) {
+                                finalizados.add(processos.remove(i));
+                                reloadDataGridViewFinalizado(finalizados);
+
+                            } else {
+                                processos.get(i).deadLine--;
+
+                            }
 
                         }
 
+                        reloadDataGridViewProcessos(processos);
+
+
                     }
-
-                    reloadDataGridViewProcessos(processos);
-
-
                 }
             }
         }, 0, 1000);
@@ -354,6 +360,8 @@ public class MainActivity extends AppCompatActivity {
             processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, Color.YELLOW ));
         }
 
+        Collections.sort(processos);
+
         gridAptos.setNumColumns(processos.size());
 
         gridViewSetting(gridAptos, processos.size());
@@ -364,7 +372,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void contruirGridViewFinalizados(){
+
+
+    synchronized void contruirGridViewFinalizados(){
 
         gridCancelados.setNumColumns(finalizados.size());
 
@@ -375,6 +385,7 @@ public class MainActivity extends AppCompatActivity {
         gridCancelados.setAdapter(finalizadoAdapter);
 
     }
+
 
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
 
@@ -454,7 +465,7 @@ public class MainActivity extends AppCompatActivity {
     @UiThread
     public void reloadDataGridViewProcessador(LinkedList<Processador> processadores){
 
-        synchronized (getApplicationContext()){
+        synchronized (this){
             processadorAdapter.setProcessadores(processadores);
             processadorAdapter.notifyDataSetChanged();
         }
@@ -464,7 +475,7 @@ public class MainActivity extends AppCompatActivity {
     @UiThread
     public void reloadDataGridViewFinalizado(LinkedList<Processo> processos){
 
-        synchronized (getApplicationContext()) {
+        synchronized (this) {
             contruirGridViewFinalizados();
         }
     }

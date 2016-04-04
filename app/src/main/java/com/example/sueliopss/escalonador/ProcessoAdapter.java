@@ -1,6 +1,7 @@
 package com.example.sueliopss.escalonador;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -44,15 +45,22 @@ public class ProcessoAdapter extends BaseAdapter{
 
         ProcessoItemView itemView = null;
 
-        if (convertView == null){
-            itemView = ProcessoItemView_.build(context);
-        }else{
-            itemView = (ProcessoItemView) convertView;
+        try{
+            if (convertView == null){
+                itemView = ProcessoItemView_.build(context);
+            }else{
+                itemView = (ProcessoItemView) convertView;
+            }
+
+            itemView.bind(processos.get(position));
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            itemView.setPosition(position);
+
+            return itemView;
         }
 
-        itemView.bind(processos.get(position));
-        itemView.setPosition(position);
 
-        return itemView;
     }
 }
