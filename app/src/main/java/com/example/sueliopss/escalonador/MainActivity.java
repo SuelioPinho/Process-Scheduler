@@ -193,11 +193,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @Click
-//    public void adicionarProcesso(){
-//
-//        //Processo processo = new Processo("P"+, )
-//    }
+    //@Click
+    //public void adicionarProcesso(){
+
+    //    Processo processo = new Processo("P"+, )
+    //}
+
     public void decrementarDeadLines(){
 
 
@@ -236,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void preencherProcessadores(){
-
         for (int i = 0; i < processadores.size(); i++){
 
             if(!processos.isEmpty()){
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < numProcesso; i++){
             tempoProcesso = gerador.nextInt(20) + 4;
             deadLine = gerador.nextInt(20) + 4;
-            processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, Color.YELLOW ));
+            processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, tempoProcesso,Color.YELLOW ));
         }
 
         Collections.sort(processos);
@@ -371,8 +371,6 @@ public class MainActivity extends AppCompatActivity {
         gridAptos.setAdapter(processoAdapter);
 
     }
-
-
 
     synchronized void contruirGridViewFinalizados(){
 

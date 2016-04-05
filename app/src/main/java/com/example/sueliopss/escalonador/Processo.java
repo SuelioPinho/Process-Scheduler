@@ -11,17 +11,24 @@ public class Processo implements Comparable<Processo> {
     String nomeProcesso;
     int deadLine;
     int color;
+    int quantum;
+    int tempoTotal;
 
-    public Processo(String nomeProcesso, int tempoProcesso, int color) {
+    public Processo(String nomeProcesso, int tempoProcesso, int tempoTotal, int color, int prioridade, int quantum) {
         this.tempoProcesso = tempoProcesso;
         this.nomeProcesso = nomeProcesso;
+        this.tempoTotal = tempoTotal;
         this.color = color;
+        this.prioridade = prioridade;
+        this.quantum = quantum;
+        this.deadLine = 0;
     }
 
-    public Processo(String nomeProcesso, int tempoProcesso, int deadLine, int color) {
+    public Processo(String nomeProcesso, int tempoProcesso, int deadLine, int tempoTotal, int color) {
         this.tempoProcesso = tempoProcesso;
         this.nomeProcesso = nomeProcesso;
         this.deadLine = deadLine;
+        this.tempoTotal = tempoTotal;
         this.color = color;
     }
 

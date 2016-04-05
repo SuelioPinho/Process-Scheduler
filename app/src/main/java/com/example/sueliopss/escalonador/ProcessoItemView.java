@@ -37,14 +37,17 @@ public class ProcessoItemView extends RelativeLayout{
 
         imageProcesso.setColorFilter(processo.color);
         nomeProcesso.setText(processo.nomeProcesso);
-        tempoProcesso.setText("T " + processo.tempoProcesso);
-        deadLine.setText("D "+ processo.deadLine);
+        tempoProcesso.setText("T" + processo.tempoProcesso + "/" + processo.tempoTotal);
+        if(processo.deadLine == 0 || processo.deadLine == -256){
+            deadLine.setText("");
+        }else{
+            deadLine.setText("D "+ processo.deadLine);
+        }
+
     }
 
     public void setPosition(int position){
         this.position = position;
     }
-
-
 
 }

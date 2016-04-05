@@ -46,7 +46,7 @@ public class ProcessadorItemView extends RelativeLayout{
             imageProcesso.setVisibility(VISIBLE);
             imageProcesso.setColorFilter(processador.processo.color);
             nomeProcesso.setText(processador.processo.nomeProcesso);
-            tempoProcesso.setText("T " + processador.processo.tempoProcesso);
+            tempoProcesso.setText("T" + processador.processo.tempoProcesso + "/" + processador.processo.tempoTotal);
 
         } else {
 
