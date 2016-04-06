@@ -199,21 +199,27 @@ public class RoundRActivity extends AppCompatActivity {
                     Processador processador = processadores.get(j);
                     if (processador.is_processando) {
                         if (processador.processo.tempoProcesso == 0) {
+
                             finalizados.add(processador.processo);
                             processadores.get(j).processo = null;
                             processadores.get(j).is_processando = false;
                             reloadDataGridViewFinalizado(finalizados);
                             semaphore.release();
+
                         } else if (processador.processo.quantum == 0) {
+
                             processador.processo.quantum = Integer.parseInt(quantum.getText().toString());
                             processosList.get(processador.processo.prioridade).add(processador.processo);
                             reloadDataGridViewProcessos(processador.processo.prioridade);
                             processadores.get(j).processo = null;
                             processadores.get(j).is_processando = false;
                             semaphore.release();
+
                          }else {
+
                             processadores.get(j).processo.quantum--;
                             processadores.get(j).processo.tempoProcesso--;
+
                         }
                     }
                 }
