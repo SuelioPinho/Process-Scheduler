@@ -160,49 +160,18 @@ public class RoundRActivity extends AppCompatActivity {
                         if (!processador.is_processando) {
                             for (int i = 0; i < 4; i++) {
 
-                                if (count == 0) {
-                                    if (!processosList.get(count).isEmpty()) {
-                                        processador.processo = processosList.get(count).pop();
-                                        processador.is_processando = true;
-                                        reloadDataGridViewProcessos(processosList.get(count), gridAptos1, processoAdapter1);
-                                        count++;
-                                        break;
-                                    }
-                                    count++;
-                                }
-
-                                if (count == 1) {
-                                    if (!processosList.get(count).isEmpty()) {
-                                        processador.processo = processosList.get(count).pop();
-                                        processador.is_processando = true;
-                                        reloadDataGridViewProcessos(processosList.get(count), gridAptos2, processoAdapter2);
-                                        count++;
-                                        break;
-                                    }
-                                    count++;
-                                }
-
-                                if (count == 2) {
-                                    if (!processosList.get(count).isEmpty()) {
-                                        processador.processo = processosList.get(count).pop();
-                                        processador.is_processando = true;
-                                        reloadDataGridViewProcessos(processosList.get(count), gridAptos3, processoAdapter3);
-                                        count++;
-                                        break;
-                                    }
-                                    count++;
-                                }
-
-                                if (count == 3) {
-                                    if (!processosList.get(count).isEmpty()) {
-                                        processador.processo = processosList.get(count).pop();
-                                        processador.is_processando = true;
-                                        reloadDataGridViewProcessos(processosList.get(count), gridAptos4, processoAdapter4);
+                                if (!processosList.get(count).isEmpty()) {
+                                    processador.processo = processosList.get(count).pop();
+                                    processador.is_processando = true;
+                                    reloadDataGridViewProcessos(count);
+                                    if (count == 3) {
                                         count = 0;
-                                        break;
+                                    } else {
+                                        count++;
                                     }
-                                    count = 0;
+                                    break;
                                 }
+                                count++;
                             }
                         }
                     }
@@ -211,7 +180,6 @@ public class RoundRActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
 
             }
         }, 0, 1000);
@@ -237,9 +205,12 @@ public class RoundRActivity extends AppCompatActivity {
                             reloadDataGridViewFinalizado(finalizados);
                             semaphore.release();
                         } else if (processador.processo.quantum == 0) {
+                            processador.processo.quantum = Integer.parseInt(quantum.getText().toString());
                             processosList.get(processador.processo.prioridade).add(processador.processo);
+                            reloadDataGridViewProcessos(processador.processo.prioridade);
                             processadores.get(j).processo = null;
                             processadores.get(j).is_processando = false;
+                            semaphore.release();
                          }else {
                             processadores.get(j).processo.quantum--;
                             processadores.get(j).processo.tempoProcesso--;
@@ -272,10 +243,10 @@ public class RoundRActivity extends AppCompatActivity {
             }
         }
 
-        reloadDataGridViewProcessos(processosList.get(0), gridAptos1, processoAdapter1);
-        reloadDataGridViewProcessos(processosList.get(1), gridAptos2, processoAdapter2);
-        reloadDataGridViewProcessos(processosList.get(2), gridAptos3, processoAdapter3);
-        reloadDataGridViewProcessos(processosList.get(3), gridAptos4, processoAdapter4);
+        reloadDataGridViewProcessos(0);
+        reloadDataGridViewProcessos(1);
+        reloadDataGridViewProcessos(2);
+        reloadDataGridViewProcessos(3);
 
 
         reloadDataGridViewProcessador(processadores);
@@ -364,10 +335,12 @@ public class RoundRActivity extends AppCompatActivity {
 
         int tempoProcesso;
 
+        int quant = Integer.parseInt(quantum.getText().toString());
+
         for (int i = 0; i < numProcesso; i++) {
             tempoProcesso = gerador.nextInt(20) + 4;
 
-            processosList.get(count).add(new Processo("P" + (i + 1), tempoProcesso, Color.YELLOW, tempoProcesso, Integer.parseInt(quantum.getText().toString())));
+            processosList.get(count).add(new Processo("P" + (i + 1), tempoProcesso, tempoProcesso, Color.YELLOW, count, quant));
 
             if (count == 3){
                 count = 0;
@@ -471,16 +444,54 @@ public class RoundRActivity extends AppCompatActivity {
     }
 
     @UiThread
-    public void reloadDataGridViewProcessos(LinkedList<Processo> processos, GridView grid, ProcessoAdapter adapter){
+    public void reloadDataGridViewProcessos(int numFilaProcesso){
 
         synchronized (this){
-            grid.setNumColumns(processos.size());
 
-            gridViewSetting(grid, processos.size());
+            switch (numFilaProcesso){
+                case 0:
+                    gridAptos1.setNumColumns(processosList.get(0).size());
 
-            adapter.setProcessos(processos);
+                    gridViewSetting(gridAptos1, processosList.get(0).size());
 
-            grid.setAdapter(adapter);
+                    processoAdapter1.setProcessos(processosList.get(0));
+
+                    gridAptos1.setAdapter(processoAdapter1);
+
+                    break;
+                case 1:
+                    gridAptos2.setNumColumns(processosList.get(1).size());
+
+                    gridViewSetting(gridAptos2, processosList.get(1).size());
+
+                    processoAdapter2.setProcessos(processosList.get(1));
+
+                    gridAptos2.setAdapter(processoAdapter2);
+
+                    break;
+                case 2:
+                    gridAptos3.setNumColumns(processosList.get(2).size());
+
+                    gridViewSetting(gridAptos3, processosList.get(2).size());
+
+                    processoAdapter3.setProcessos(processosList.get(2));
+
+                    gridAptos3.setAdapter(processoAdapter3);
+
+                    break;
+                case 3:
+                    gridAptos4.setNumColumns(processosList.get(3).size());
+
+                    gridViewSetting(gridAptos4, processosList.get(3).size());
+
+                    processoAdapter4.setProcessos(processosList.get(3));
+
+                    gridAptos4.setAdapter(processoAdapter4);
+
+                    break;
+
+            }
+
         }
 
     }
