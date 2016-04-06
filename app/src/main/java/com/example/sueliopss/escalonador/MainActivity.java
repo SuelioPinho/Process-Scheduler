@@ -139,20 +139,21 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     semaphore.acquire();
 
-                        for (Processador processador : processadores) {
-                            if (!processador.is_processando) {
-                                if (!processos.isEmpty()) {
-                                    processador.processo = processos.pop();
-                                    processador.is_processando = true;
-                                    reloadDataGridViewProcessos(processos);
-                                }
+                    for (Processador processador : processadores) {
+                        if (!processador.is_processando) {
+                            if (!processos.isEmpty()) {
+                                processador.processo = processos.pop();
+                                processador.is_processando = true;
+                                reloadDataGridViewProcessos(processos);
                             }
                         }
-
+                    }
 
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }finally {
+                    semaphore.release();
                 }
 
 
@@ -193,12 +194,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //@Click
-    //public void adicionarProcesso(){
+    @Click(R.id.adicionar)
+    @UiThread
+    public void adicionarProcesso(){
 
-    //    Processo processo = new Processo("P"+, )
-    //}
+        synchronized (this){
+            Random gerador = new Random();
 
+            int tempoProcesso = gerador.nextInt(20) + 4;
+
+            int deadLine = gerador.nextInt(20) + 4;
+
+            int ultimoProcesso = Integer.parseInt(numProcesso.getText().toString());
+
+            Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.YELLOW);
+
+            processos.add(processo);
+
+            Collections.sort(processos);
+
+            numProcesso.setText(""+ultimoProcesso);
+
+            reloadDataGridViewProcessos(processos);
+        }
+
+
+    }
     public void decrementarDeadLines(){
 
 
@@ -237,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void preencherProcessadores(){
+
         for (int i = 0; i < processadores.size(); i++){
 
             if(!processos.isEmpty()){
@@ -357,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < numProcesso; i++){
             tempoProcesso = gerador.nextInt(20) + 4;
             deadLine = gerador.nextInt(20) + 4;
-            processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, tempoProcesso,Color.YELLOW ));
+            processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, tempoProcesso, Color.YELLOW ));
         }
 
         Collections.sort(processos);
@@ -371,6 +393,8 @@ public class MainActivity extends AppCompatActivity {
         gridAptos.setAdapter(processoAdapter);
 
     }
+
+
 
     synchronized void contruirGridViewFinalizados(){
 
