@@ -28,6 +28,7 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
@@ -70,9 +71,15 @@ public class MainActivity extends AppCompatActivity {
     @ViewById(R.id.iniciar)
     FloatingActionButton iniciar;
 
+    @Extra
+    int numProcessos;
+
+    @Extra
+    int numQtdProcessadores;
+
     EditText numProcessadores;
 
-    EditText numProcesso;
+  //  EditText numProcesso;
 
     AlertDialog.Builder builder;
 
@@ -90,20 +97,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final AlertDialog dialog = createDialog(savedInstanceState);
-        dialog.show();
+
 
         processadores = new LinkedList<>();
         processos = new LinkedList<>();
         finalizados = new LinkedList<>();
 
-        escalonar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prepararEscalonamento(v);
-                dialog.dismiss();
-            }
-        });
 
     }
 
@@ -118,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        prepararEscalonamento();
 
     }
 
@@ -205,7 +205,8 @@ public class MainActivity extends AppCompatActivity {
 
             int deadLine = gerador.nextInt(20) + 4;
 
-            int ultimoProcesso = Integer.parseInt(numProcesso.getText().toString());
+           // int ultimoProcesso = Integer.parseInt(numProcesso.getText().toString());
+            int ultimoProcesso = numProcessos;
 
             Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.YELLOW);
 
@@ -213,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
             Collections.sort(processos);
 
-            numProcesso.setText(""+ultimoProcesso);
+            numProcessos = ultimoProcesso;
 
             reloadDataGridViewProcessos(processos);
         }
@@ -293,26 +294,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public AlertDialog createDialog(Bundle savedInstanceState){
-
-        builder = new AlertDialog.Builder(this);
-
-        LayoutInflater layoutInflater = this.getLayoutInflater();
-
-        View dialog = layoutInflater.inflate(R.layout.dialog_main_escalonador, null);
-
-        builder.setView(dialog);
-
-        builder.setCancelable(false);
-
-        escalonar = (Button) dialog.findViewById(R.id.buttonEscalonar);
-
-        numProcessadores = (EditText) dialog.findViewById(R.id.editTextNumProcessador);
-
-        numProcesso = (EditText) dialog.findViewById(R.id.editTextNumProcesso);
-
-        return builder.create();
-    }
 
     private void gridViewSetting(GridView gridview, int size) {
 
@@ -336,11 +317,13 @@ public class MainActivity extends AppCompatActivity {
         gridview.setNumColumns(size);
     }
 
-    public void prepararEscalonamento(View view){
+    public void prepararEscalonamento(){
 
-        int qntProcessadores = Integer.parseInt(numProcessadores.getText().toString());
+       // int qntProcessadores = Integer.parseInt(numProcessadores.getText().toString());
+        int qntProcessadores = numQtdProcessadores;
 
-        int qntprocessos = Integer.parseInt(numProcesso.getText().toString());
+      //  int qntprocessos = Integer.parseInt(numProcesso.getText().toString());
+        int qntprocessos = numProcessos;
 
         semaphore = new Semaphore(qntProcessadores);
 

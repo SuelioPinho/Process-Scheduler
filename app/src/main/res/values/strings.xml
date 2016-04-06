@@ -2,4 +2,21 @@
     <string name="app_name">Escalonador</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_round_r">RoundRActivity</string>
+    <string name="selecionar">Selecionar...</string>
+    <string name="ltg">Least Time to Go</string>
+    <string name="round">Round Robin</string>
+    <string name="scheduling">Scheduling</string>
+
+
+    <string name="camposvazios">Por favor, preencha todos os campos</string>
+    <string name="SelecionarAlgoritimo">Por favor, seleione um algoritimo antes de iniciar.</string>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+    </string-array>
+
+
 </resources>

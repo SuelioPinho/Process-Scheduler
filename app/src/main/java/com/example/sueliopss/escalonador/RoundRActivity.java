@@ -25,6 +25,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -81,6 +82,15 @@ public class RoundRActivity extends AppCompatActivity {
     @ViewById(R.id.iniciar)
     FloatingActionButton iniciar;
 
+    @Extra
+    int numProcessos;
+
+    @Extra
+    int numQtdProcessadores;
+
+    @Extra
+    int numQuantum;
+
     EditText numProcessadores;
 
     EditText numProcesso;
@@ -105,8 +115,8 @@ public class RoundRActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final AlertDialog dialog = createDialog(savedInstanceState);
-        dialog.show();
+       /* final AlertDialog dialog = createDialog(savedInstanceState);
+        dialog.show();*/
 
         processadores = new LinkedList<>();
         processosList.add(new LinkedList<Processo>());
@@ -116,13 +126,14 @@ public class RoundRActivity extends AppCompatActivity {
 
         finalizados = new LinkedList<>();
 
-        escalonar.setOnClickListener(new View.OnClickListener() {
+
+        /*escalonar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prepararEscalonamento(v);
+
                 dialog.dismiss();
             }
-        });
+        });*/
 
     }
 
@@ -137,6 +148,8 @@ public class RoundRActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        prepararEscalonamento();
 
     }
 
@@ -212,7 +225,8 @@ public class RoundRActivity extends AppCompatActivity {
 
                         } else if (processador.processo.quantum == 0) {
 
-                            processador.processo.quantum = Integer.parseInt(quantum.getText().toString());
+//                            processador.processo.quantum = Integer.parseInt(quantum.getText().toString());
+                            processador.processo.quantum = numQuantum;
                             processosList.get(processador.processo.prioridade).add(processador.processo);
                             reloadDataGridViewProcessos(processador.processo.prioridade);
                             processadores.get(j).processo = null;
@@ -308,11 +322,13 @@ public class RoundRActivity extends AppCompatActivity {
         return builder.create();
     }
 
-    public void prepararEscalonamento(View view){
+    public void prepararEscalonamento(){
 
-        int qntProcessadores = Integer.parseInt(numProcessadores.getText().toString());
+       // int qntProcessadores = Integer.parseInt(numProcessadores.getText().toString());
+        int qntProcessadores = numQtdProcessadores;
 
-        int qntprocessos = Integer.parseInt(numProcesso.getText().toString());
+       // int qntprocessos = Integer.parseInt(numProcesso.getText().toString());
+        int qntprocessos = numProcessos;
 
         semaphore = new Semaphore(qntProcessadores);
 
@@ -345,7 +361,8 @@ public class RoundRActivity extends AppCompatActivity {
 
         int tempoProcesso;
 
-        int quant = Integer.parseInt(quantum.getText().toString());
+       // int quant = Integer.parseInt(quantum.getText().toString());
+        int quant = numQuantum;
 
         for (int i = 0; i < numProcesso; i++) {
             tempoProcesso = gerador.nextInt(20) + 4;
