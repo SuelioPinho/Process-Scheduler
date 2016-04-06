@@ -171,7 +171,11 @@ public class RoundRActivity extends AppCompatActivity {
                                     }
                                     break;
                                 }
-                                count++;
+                                if (count == 3) {
+                                    count = 0;
+                                } else {
+                                    count++;
+                                }
                             }
                         }
                     }
@@ -519,10 +523,5 @@ public class RoundRActivity extends AppCompatActivity {
             contruirGridViewFinalizados();
         }
     }
-
-
-
-
-
 
 }
