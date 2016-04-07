@@ -1,13 +1,10 @@
 package com.example.sueliopss.escalonador;
 
-
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -17,234 +14,109 @@ import android.widget.ScrollView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
-@EActivity(R.layout.activity_round_r)
-public class RoundRActivity extends AppCompatActivity {
+@EActivity(R.layout.activity_interval_base)
+public class IntervalBaseActivity extends AppCompatActivity{
+
+    @ViewById
+    LinearLayout linear1;
+    @ViewById
+    LinearLayout linear2;
+    @ViewById
+    LinearLayout linear3;
+    @ViewById
+    LinearLayout linear4;
+    @ViewById
+    LinearLayout linear5;
+    @ViewById
+    LinearLayout linear6;
+    @ViewById
+    LinearLayout linear7;
+    @ViewById
+    LinearLayout linear8;
+    @ViewById
+    LinearLayout linear9;
+    @ViewById
+    LinearLayout linear10;
 
     @ViewById(R.id.gridProcessadores)
     GridView gridProcessadores;
-
-    @ViewById(R.id.gridAptos1)
-    GridView gridAptos1;
-
-    @ViewById(R.id.gridAptos2)
-    GridView gridAptos2;
-
-    @ViewById(R.id.gridAptos3)
-    GridView gridAptos3;
-
-    @ViewById(R.id.gridAptos4)
-    GridView gridAptos4;
-
     @ViewById
-    GridView gridCancelados;
+    GridView gridAptos1;
+    @ViewById
+    GridView gridAptos2;
+    @ViewById
+    GridView gridAptos3;
+    @ViewById
+    GridView gridAptos4;
+    @ViewById
+    GridView gridAptos5;
+    @ViewById
+    GridView gridAptos6;
+    @ViewById
+    GridView gridAptos7;
+    @ViewById
+    GridView gridAptos8;
+    @ViewById
+    GridView gridAptos9;
+    @ViewById
+    GridView gridAptos10;
+
+    @Bean
+    ProcessadorIBAdapter processadorAdapter;
+    @Bean
+    ProcessoIBAdapter processoAdapter1;
+    @Bean
+    ProcessoIBAdapter processoAdapter2;
+    @Bean
+    ProcessoIBAdapter processoAdapter3;
+    @Bean
+    ProcessoIBAdapter processoAdapter4;
+    @Bean
+    ProcessoIBAdapter processoAdapter5;
+    @Bean
+    ProcessoIBAdapter processoAdapter6;
+    @Bean
+    ProcessoIBAdapter processoAdapter7;
+    @Bean
+    ProcessoIBAdapter processoAdapter8;
+    @Bean
+    ProcessoIBAdapter processoAdapter9;
+    @Bean
+    ProcessoIBAdapter processoAdapter10;
 
     @ViewById(R.id.scrollview_content_main)
     ScrollView scrollView;
 
-    @Bean
-    ProcessadorAdapter processadorAdapter;
-
-    @Bean
-    ProcessoAdapter processoAdapter1;
-
-    @Bean
-    ProcessoAdapter processoAdapter2;
-
-    @Bean
-    ProcessoAdapter processoAdapter3;
-
-    @Bean
-    ProcessoAdapter processoAdapter4;
-
-    @Bean
-    ProcessoAdapter finalizadoAdapter;
-
-    @ViewById(R.id.iniciar)
-    FloatingActionButton iniciar;
-
-    @Extra
     int numProcessos;
 
-    @Extra
     int numQtdProcessadores;
 
-    @Extra
-    int numQuantum;
+    LinkedList<ProcessadorIB> processadores;
 
-    LinkedList<Processador> processadores;
+    LinkedList<LinkedList<ProcessoIB>> processosList = new LinkedList<>();
 
-    LinkedList<LinkedList<Processo>> processosList = new LinkedList<>();
-
-    LinkedList<Processo> finalizados;
+    LinkedList<ProcessoIB> finalizados;
 
     Semaphore semaphore;
-
-    Integer count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        processadores = new LinkedList<>();
-        processosList.add(new LinkedList<Processo>());
-        processosList.add(new LinkedList<Processo>());
-        processosList.add(new LinkedList<Processo>());
-        processosList.add(new LinkedList<Processo>());
-
-        finalizados = new LinkedList<>();
     }
 
     @AfterViews
     public void afterViews(){
-
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-
-        prepararEscalonamento();
-
-    }
-
-    @Click(R.id.iniciar)
-    synchronized void iniciarEscalonamento(){
-
-        iniciar.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
-        iniciar.setClickable(false);
-
-        preencherProcessadores();
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-
-            public void run() {
-
-                try {
-                    semaphore.acquire();
-
-                    for (Processador processador : processadores) {
-                        if (!processador.is_processando) {
-                            for (int i = 0; i < 4; i++) {
-
-                                if (!processosList.get(count).isEmpty()) {
-                                    processador.processo = processosList.get(count).pop();
-                                    processador.is_processando = true;
-                                    reloadDataGridViewProcessos(count);
-                                    if (count == 3) {
-                                        count = 0;
-                                    } else {
-                                        count++;
-                                    }
-                                    break;
-                                }
-                                if (count == 3) {
-                                    count = 0;
-                                } else {
-                                    count++;
-                                }
-                            }
-                        }
-                    }
-
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, 0, 1000);
-
-
-    }
-
-    synchronized void processar() {
-
-        Timer timer = new Timer();
-
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-
-                for (int j = 0; j < processadores.size(); j++) {
-                    Processador processador = processadores.get(j);
-                    if (processador.is_processando) {
-                        if (processador.processo.tempoProcesso == 0) {
-
-                            finalizados.add(processador.processo);
-                            processadores.get(j).processo = null;
-                            processadores.get(j).is_processando = false;
-                            reloadDataGridViewFinalizado(finalizados);
-                            semaphore.release();
-
-                        } else if (processador.processo.quantum == 0) {
-
-                            processador.processo.quantum = numQuantum;
-                            processosList.get(processador.processo.prioridade).add(processador.processo);
-                            reloadDataGridViewProcessos(processador.processo.prioridade);
-                            processadores.get(j).processo = null;
-                            processadores.get(j).is_processando = false;
-                            semaphore.release();
-
-                         }else {
-
-                            processadores.get(j).processo.quantum--;
-                            processadores.get(j).processo.tempoProcesso--;
-
-                        }
-                    }
-                }
-
-                reloadDataGridViewProcessador(processadores);
-
-            }
-        }, 0, 1000);
-
-
-    }
-
-    public void preencherProcessadores(){
-
-        count = 0;
-
-        for (int i = 0; i < processadores.size(); i++){
-
-            if(!processosList.get(count).isEmpty()){
-                processadores.get(i).processo = processosList.get(count).pop();
-                processadores.get(i).is_processando = true;
-                if (count == 3){
-                    count = 0;
-                }else{
-                    count++;
-                }
-            }
-        }
-
-        reloadDataGridViewProcessos(0);
-        reloadDataGridViewProcessos(1);
-        reloadDataGridViewProcessos(2);
-        reloadDataGridViewProcessos(3);
-
-
-        reloadDataGridViewProcessador(processadores);
-        processar();
+        linear1.setVisibility(View.VISIBLE);
     }
 
     private void gridViewSetting(GridView gridview, int size) {
@@ -281,7 +153,7 @@ public class RoundRActivity extends AppCompatActivity {
 
         contruirGridViewProcessos(qntprocessos);
 
-        contruirGridViewFinalizados();
+        //contruirGridViewFinalizados();
 
         setGridViewHeightBasedOnChildren(gridProcessadores, 4);
 
@@ -290,7 +162,7 @@ public class RoundRActivity extends AppCompatActivity {
     public void contruirGridViewProcessadores(int numProcessadores){
 
         for (int i = 0; i < numProcessadores; i++){
-            processadores.add(new Processador());
+            processadores.add(new ProcessadorIB());
         }
 
         processadorAdapter.setProcessadores(processadores);
@@ -305,13 +177,12 @@ public class RoundRActivity extends AppCompatActivity {
         Random gerador = new Random();
 
         int tempoProcesso;
-
-        int quant = numQuantum;
+        int deadLine;
 
         for (int i = 0; i < numProcesso; i++) {
             tempoProcesso = gerador.nextInt(20) + 4;
-
-            processosList.get(count).add(new Processo("P" + (i + 1), tempoProcesso, tempoProcesso, Color.YELLOW, count, quant));
+            deadLine = gerador.nextInt(8) + 2;
+            processosList.get(count).add(new ProcessoIB("P" + (i + 1), tempoProcesso, deadLine, Color.YELLOW, tempoProcesso,count));
 
             if (count == 3){
                 count = 0;
@@ -344,13 +215,13 @@ public class RoundRActivity extends AppCompatActivity {
 
     public void contruirGridViewFinalizados(){
 
-        gridCancelados.setNumColumns(finalizados.size());
-
-        gridViewSetting(gridCancelados, finalizados.size());
-
-        finalizadoAdapter.setProcessos(finalizados);
-
-        gridCancelados.setAdapter(finalizadoAdapter);
+//        gridCancelados.setNumColumns(finalizados.size());
+//
+//        gridViewSetting(gridCancelados, finalizados.size());
+//
+//        finalizadoAdapter.setProcessos(finalizados);
+//
+//        gridCancelados.setAdapter(finalizadoAdapter);
 
     }
 
@@ -468,7 +339,7 @@ public class RoundRActivity extends AppCompatActivity {
     }
 
     @UiThread
-    public void reloadDataGridViewProcessador(LinkedList<Processador> processadores){
+    public void reloadDataGridViewProcessador(LinkedList<ProcessadorIB> processadores){
 
         synchronized (getApplicationContext()){
             processadorAdapter.setProcessadores(processadores);

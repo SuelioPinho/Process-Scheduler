@@ -11,19 +11,20 @@ import org.androidannotations.annotations.RootContext;
 import java.util.List;
 
 /**
- * Created by sueliopss on 14/03/16.
+ * Created by sueliopss on 07/04/16.
  */
 @EBean
-public class ProcessadorAdapter extends BaseAdapter {
+public class ProcessadorIBAdapter extends BaseAdapter {
+
     @RootContext
     Context context;
-    private List<Processador> processadores;
+    private List<ProcessadorIB> processadores;
 
-    public ProcessadorAdapter(Context context){
+    public ProcessadorIBAdapter(Context context){
         this.context = context;
     }
 
-    public void setProcessadores(List<Processador> processadores) {
+    public void setProcessadores(List<ProcessadorIB> processadores) {
         this.processadores = processadores;
     }
 
@@ -45,12 +46,12 @@ public class ProcessadorAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ProcessadorItemView itemView = null;
+        ProcessadorIBItemView itemView = null;
 
         if(convertView == null){
-            itemView = ProcessadorItemView_.build(context);
+            itemView = ProcessadorIBItemView_.build(context);
         }else{
-            itemView = (ProcessadorItemView) convertView;
+            itemView = (ProcessadorIBItemView) convertView;
         }
 
         itemView.bind(processadores.get(position));
