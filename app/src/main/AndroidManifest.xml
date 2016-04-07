@@ -17,19 +17,20 @@
             android:name=".RoundRActivity_"
             android:label="@string/title_activity_round_r"
             android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity android:name=".TelaInicial_" >
 
         </activity>
-        <activity
-            android:name=".IntervalBaseActivity_"
-            android:label="@string/title_activity_interval_base"
-            android:theme="@style/AppTheme.NoActionBar" >
+        <activity android:name=".TelaInicial_" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".IntervalBaseActivity_"
+            android:label="@string/title_activity_interval_base"
+            android:theme="@style/AppTheme.NoActionBar" >
+
         </activity>
     </application>
 
