@@ -324,10 +324,8 @@ public class RoundRActivity extends AppCompatActivity {
 
     public void prepararEscalonamento(){
 
-       // int qntProcessadores = Integer.parseInt(numProcessadores.getText().toString());
         int qntProcessadores = numQtdProcessadores;
 
-       // int qntprocessos = Integer.parseInt(numProcesso.getText().toString());
         int qntprocessos = numProcessos;
 
         semaphore = new Semaphore(qntProcessadores);
@@ -361,7 +359,6 @@ public class RoundRActivity extends AppCompatActivity {
 
         int tempoProcesso;
 
-       // int quant = Integer.parseInt(quantum.getText().toString());
         int quant = numQuantum;
 
         for (int i = 0; i < numProcesso; i++) {
