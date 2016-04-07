@@ -377,19 +377,19 @@ public class RoundRActivity extends AppCompatActivity {
         }
 
         gridAptos1.setNumColumns(processosList.get(0).size());
-        gridAptos2.setNumColumns(processosList.get(0).size());
-        gridAptos3.setNumColumns(processosList.get(0).size());
-        gridAptos4.setNumColumns(processosList.get(0).size());
+        gridAptos2.setNumColumns(processosList.get(1).size());
+        gridAptos3.setNumColumns(processosList.get(2).size());
+        gridAptos4.setNumColumns(processosList.get(3).size());
 
         gridViewSetting(gridAptos1, processosList.get(0).size());
-        gridViewSetting(gridAptos2, processosList.get(0).size());
-        gridViewSetting(gridAptos3, processosList.get(0).size());
-        gridViewSetting(gridAptos4, processosList.get(0).size());
+        gridViewSetting(gridAptos2, processosList.get(1).size());
+        gridViewSetting(gridAptos3, processosList.get(2).size());
+        gridViewSetting(gridAptos4, processosList.get(3).size());
 
         processoAdapter1.setProcessos(processosList.get(0));
-        processoAdapter2.setProcessos(processosList.get(0));
-        processoAdapter3.setProcessos(processosList.get(0));
-        processoAdapter4.setProcessos(processosList.get(0));
+        processoAdapter2.setProcessos(processosList.get(1));
+        processoAdapter3.setProcessos(processosList.get(2));
+        processoAdapter4.setProcessos(processosList.get(3));
 
         gridAptos1.setAdapter(processoAdapter1);
         gridAptos2.setAdapter(processoAdapter2);
