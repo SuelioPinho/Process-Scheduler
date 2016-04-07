@@ -97,12 +97,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         processadores = new LinkedList<>();
         processos = new LinkedList<>();
         finalizados = new LinkedList<>();
-
 
     }
 
@@ -223,7 +220,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void decrementarDeadLines(){
 
-
         Timer timer = new Timer();
 
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -248,13 +244,10 @@ public class MainActivity extends AppCompatActivity {
 
                         reloadDataGridViewProcessos(processos);
 
-
                     }
                 }
             }
         }, 0, 1000);
-
-        //reloadDataGridViewFinalizado(finalizados);
 
     }
 
@@ -319,10 +312,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void prepararEscalonamento(){
 
-       // int qntProcessadores = Integer.parseInt(numProcessadores.getText().toString());
         int qntProcessadores = numQtdProcessadores;
 
-      //  int qntprocessos = Integer.parseInt(numProcesso.getText().toString());
         int qntprocessos = numProcessos;
 
         semaphore = new Semaphore(qntProcessadores);
@@ -377,8 +368,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     synchronized void contruirGridViewFinalizados(){
 
         gridCancelados.setNumColumns(finalizados.size());
@@ -390,7 +379,6 @@ public class MainActivity extends AppCompatActivity {
         gridCancelados.setAdapter(finalizadoAdapter);
 
     }
-
 
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
 

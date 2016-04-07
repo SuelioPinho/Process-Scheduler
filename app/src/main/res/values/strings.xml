@@ -5,7 +5,7 @@
     <string name="selecionar">Selecionar...</string>
     <string name="ltg">Least Time to Go</string>
     <string name="round">Round Robin</string>
-    <string name="scheduling">Scheduling</string>
+    <string name="scheduling">Interval Base</string>
 
 
     <string name="camposvazios">Por favor, preencha todos os campos</string>

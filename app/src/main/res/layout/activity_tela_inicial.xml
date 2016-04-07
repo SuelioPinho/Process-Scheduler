@@ -51,7 +51,7 @@
         android:inputType="numberDecimal"
         android:hint="Processos"
         android:ems="10"
-        android:maxLength="2"
+        android:maxLength="3"
         android:id="@+id/editTextProcessos"
         android:layout_above="@+id/quantum"
         android:layout_alignStart="@+id/quantum" />

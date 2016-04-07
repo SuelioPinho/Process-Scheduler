@@ -58,7 +58,7 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
             case "Round Robin":
                 iniciarRoundRobin();
                 break;
-            case "Scheduling":
+            case "Interval Base":
              iniciarScheduling();
                 break;
             case "Least Time to Go":
@@ -172,6 +172,7 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     }
 
     private void irParaScheduling() {
+        IntervalBaseActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).start();
     }
 
 }

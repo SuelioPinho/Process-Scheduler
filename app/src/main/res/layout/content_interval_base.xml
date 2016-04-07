@@ -45,7 +45,6 @@
                 android:keepScreenOn="true"
                 android:layout_below="@+id/viewProcessadores"
                 android:numColumns="4"
-                android:visibility="gone"
 
                 ></GridView>
             //View Aptos
@@ -72,14 +71,14 @@
                 android:text="Processador 1"
                 android:id="@+id/processador1"
                 android:layout_below="@id/viewAptos"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador1">
 
@@ -107,7 +106,8 @@
                 android:text="Processador 2"
                 android:id="@+id/processador2"
                 android:layout_below="@id/horizontalScrollView"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -142,14 +142,14 @@
                 android:text="Processador 3"
                 android:id="@+id/processador3"
                 android:layout_below="@id/horizontalScrollView2"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView3"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador3">
 
@@ -177,14 +177,14 @@
                 android:text="Processador 4"
                 android:id="@+id/processador4"
                 android:layout_below="@id/horizontalScrollView3"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView4"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador4">
 
@@ -212,14 +212,14 @@
                 android:text="Processador 5"
                 android:id="@+id/processador5"
                 android:layout_below="@id/horizontalScrollView4"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView5"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador5">
 
@@ -247,14 +247,14 @@
                 android:text="Processador 6"
                 android:id="@+id/processador6"
                 android:layout_below="@id/horizontalScrollView5"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView6"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador6">
 
@@ -282,14 +282,14 @@
                 android:text="Processador 7"
                 android:id="@+id/processador7"
                 android:layout_below="@id/horizontalScrollView6"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView7"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador7">
 
@@ -317,14 +317,14 @@
                 android:text="Processador 8"
                 android:id="@+id/processador8"
                 android:layout_below="@id/horizontalScrollView7"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView8"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador8">
 
@@ -352,14 +352,14 @@
                 android:text="Processador 9"
                 android:id="@+id/processador9"
                 android:layout_below="@id/horizontalScrollView8"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView9"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador9">
 
@@ -387,14 +387,14 @@
                 android:text="Processador 10"
                 android:id="@+id/processador10"
                 android:layout_below="@id/horizontalScrollView9"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView10"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador10">
 
@@ -422,14 +422,14 @@
                 android:text="Processador 11"
                 android:id="@+id/processador11"
                 android:layout_below="@id/horizontalScrollView10"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView11"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador11">
 
@@ -438,7 +438,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner11">
+                    android:id="@+id/linear11">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -457,14 +457,14 @@
                 android:text="Processador 12"
                 android:id="@+id/processador12"
                 android:layout_below="@id/horizontalScrollView11"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView12"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador12">
 
@@ -473,7 +473,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner12">
+                    android:id="@+id/linear12">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -492,14 +492,14 @@
                 android:text="Processador 13"
                 android:id="@+id/processador13"
                 android:layout_below="@id/horizontalScrollView12"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView13"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador13">
 
@@ -508,7 +508,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner13">
+                    android:id="@+id/linear13">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -527,14 +527,14 @@
                 android:text="Processador 14"
                 android:id="@+id/processador14"
                 android:layout_below="@id/horizontalScrollView13"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView14"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador14">
 
@@ -543,7 +543,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner14">
+                    android:id="@+id/linear14">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -562,14 +562,14 @@
                 android:text="Processador 15"
                 android:id="@+id/processador15"
                 android:layout_below="@id/horizontalScrollView14"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView15"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador15">
 
@@ -578,7 +578,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner15">
+                    android:id="@+id/linear15">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -597,14 +597,14 @@
                 android:text="Processador 16"
                 android:id="@+id/processador16"
                 android:layout_below="@id/horizontalScrollView15"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView16"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador16">
 
@@ -613,7 +613,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner16">
+                    android:id="@+id/linear16">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -632,14 +632,14 @@
                 android:text="Processador 17"
                 android:id="@+id/processador17"
                 android:layout_below="@id/horizontalScrollView16"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView17"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador17">
 
@@ -648,7 +648,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner17">
+                    android:id="@+id/linear17">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -667,14 +667,14 @@
                 android:text="Processador 18"
                 android:id="@+id/processador18"
                 android:layout_below="@id/horizontalScrollView17"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView18"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador18">
 
@@ -683,7 +683,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner18">
+                    android:id="@+id/linear18">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -702,14 +702,14 @@
                 android:text="Processador 19"
                 android:id="@+id/processador19"
                 android:layout_below="@id/horizontalScrollView18"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView19"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador19">
 
@@ -718,7 +718,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner19">
+                    android:id="@+id/linear19">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -737,14 +737,14 @@
                 android:text="Processador 20"
                 android:id="@+id/processador20"
                 android:layout_below="@id/horizontalScrollView19"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView20"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador20">
 
@@ -753,7 +753,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner20">
+                    android:id="@+id/linear20">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -772,14 +772,14 @@
                 android:text="Processador 21"
                 android:id="@+id/processador21"
                 android:layout_below="@id/horizontalScrollView20"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView21"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador21">
 
@@ -788,7 +788,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner21">
+                    android:id="@+id/linear21">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -807,14 +807,14 @@
                 android:text="Processador 22"
                 android:id="@+id/processador22"
                 android:layout_below="@id/horizontalScrollView21"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView22"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador22">
 
@@ -823,7 +823,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner22">
+                    android:id="@+id/linear22">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -842,14 +842,14 @@
                 android:text="Processador 23"
                 android:id="@+id/processador23"
                 android:layout_below="@id/horizontalScrollView22"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView23"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador23">
 
@@ -858,7 +858,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner23">
+                    android:id="@+id/linear23">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -877,14 +877,14 @@
                 android:text="Processador 24"
                 android:id="@+id/processador24"
                 android:layout_below="@id/horizontalScrollView23"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView24"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador24">
 
@@ -893,7 +893,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner24">
+                    android:id="@+id/linear24">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -912,14 +912,14 @@
                 android:text="Processador 25"
                 android:id="@+id/processador25"
                 android:layout_below="@id/horizontalScrollView24"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView25"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador25">
 
@@ -928,7 +928,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner25">
+                    android:id="@+id/linear25">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -947,14 +947,14 @@
                 android:text="Processador 26"
                 android:id="@+id/processador26"
                 android:layout_below="@id/horizontalScrollView25"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView26"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador26">
 
@@ -963,7 +963,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner26">
+                    android:id="@+id/linear26">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -982,14 +982,14 @@
                 android:text="Processador 27"
                 android:id="@+id/processador27"
                 android:layout_below="@id/horizontalScrollView26"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView27"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador27">
 
@@ -998,7 +998,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner27">
+                    android:id="@+id/linear27">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1017,14 +1017,14 @@
                 android:text="Processador 28"
                 android:id="@+id/processador28"
                 android:layout_below="@id/horizontalScrollView27"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView28"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador28">
 
@@ -1033,7 +1033,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner28">
+                    android:id="@+id/linear28">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1052,14 +1052,14 @@
                 android:text="Processador 29"
                 android:id="@+id/processador29"
                 android:layout_below="@id/horizontalScrollView28"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView29"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador29">
 
@@ -1068,7 +1068,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner29">
+                    android:id="@+id/linear29">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1087,14 +1087,14 @@
                 android:text="Processador 30"
                 android:id="@+id/processador30"
                 android:layout_below="@id/horizontalScrollView29"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView30"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador30">
 
@@ -1103,7 +1103,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner30">
+                    android:id="@+id/linear30">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1122,14 +1122,14 @@
                 android:text="Processador 31"
                 android:id="@+id/processador31"
                 android:layout_below="@id/horizontalScrollView30"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView31"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador31">
 
@@ -1138,7 +1138,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner31">
+                    android:id="@+id/linear31">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1157,14 +1157,14 @@
                 android:text="Processador 32"
                 android:id="@+id/processador32"
                 android:layout_below="@id/horizontalScrollView31"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView32"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador32">
 
@@ -1173,7 +1173,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner32">
+                    android:id="@+id/linear32">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1192,14 +1192,14 @@
                 android:text="Processador 33"
                 android:id="@+id/processador33"
                 android:layout_below="@id/horizontalScrollView32"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView33"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador33">
 
@@ -1208,7 +1208,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner33">
+                    android:id="@+id/linear33">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1227,14 +1227,14 @@
                 android:text="Processador 34"
                 android:id="@+id/processador34"
                 android:layout_below="@id/horizontalScrollView33"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView34"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador34">
 
@@ -1243,7 +1243,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner34">
+                    android:id="@+id/linear34">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1262,14 +1262,14 @@
                 android:text="Processador 35"
                 android:id="@+id/processador35"
                 android:layout_below="@id/horizontalScrollView34"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView35"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador35">
 
@@ -1278,7 +1278,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner35">
+                    android:id="@+id/linear35">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1297,14 +1297,14 @@
                 android:text="Processador 36"
                 android:id="@+id/processador36"
                 android:layout_below="@id/horizontalScrollView35"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView36"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador36">
 
@@ -1313,7 +1313,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner36">
+                    android:id="@+id/linear36">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1332,14 +1332,14 @@
                 android:text="Processador 37"
                 android:id="@+id/processador37"
                 android:layout_below="@id/horizontalScrollView36"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView37"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador37">
 
@@ -1348,7 +1348,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner37">
+                    android:id="@+id/linear37">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1367,14 +1367,14 @@
                 android:text="Processador 38"
                 android:id="@+id/processador38"
                 android:layout_below="@id/horizontalScrollView37"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView38"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador38">
 
@@ -1383,7 +1383,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner38">
+                    android:id="@+id/linear38">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1402,14 +1402,14 @@
                 android:text="Processador 39"
                 android:id="@+id/processador39"
                 android:layout_below="@id/horizontalScrollView38"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView39"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador39">
 
@@ -1418,7 +1418,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner39">
+                    android:id="@+id/linear39">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1437,14 +1437,14 @@
                 android:text="Processador 40"
                 android:id="@+id/processador40"
                 android:layout_below="@id/horizontalScrollView39"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView40"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador40">
 
@@ -1453,7 +1453,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner40">
+                    android:id="@+id/linear40">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1472,14 +1472,14 @@
                 android:text="Processador 41"
                 android:id="@+id/processador41"
                 android:layout_below="@id/horizontalScrollView40"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:id="@+id/horizontalScrollView41"
-                android:layout_margin="1dp"
                 android:fillViewport="false"
                 android:layout_below="@+id/processador41">
 
@@ -1488,7 +1488,7 @@
                     android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:id="@+id/liner41">
+                    android:id="@+id/linear41">
 
                     <GridView
                         android:layout_width="wrap_content"
@@ -1500,49 +1500,887 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
-            <!--Finalizados-->
-            <!--<LinearLayout-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:id="@+id/viewCancelados"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:background="@color/black"-->
-                <!--android:layout_below="@+id/horizontalScrollView5">-->
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:text="Processos Cancelados"-->
-                    <!--android:textSize="20dp"-->
-                    <!--android:textColor="@color/white"-->
-                    <!--android:layout_marginTop="8dp"/>-->
-            <!--</LinearLayout>-->
+            //Fila 42
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 42"
+                android:id="@+id/processador42"
+                android:layout_below="@id/horizontalScrollView41"
+                android:textSize="15dp"
+                android:visibility="gone"/>
 
-            <!--<HorizontalScrollView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:scrollbars="none"-->
-                <!--android:id="@+id/horizontalScrollViewFinalizados"-->
-                <!--android:layout_margin="1dp"-->
-                <!--android:fillViewport="false"-->
-                <!--android:layout_below="@+id/viewCancelados">-->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView42"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador42">
 
-                <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="70dp"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_marginBottom="70dp">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear42">
 
-                    <!--<GridView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_below="@+id/viewAptos"-->
-                        <!--android:id="@+id/gridCancelados"-->
-                        <!--android:gravity="center"-->
-                        <!--></GridView>-->
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos42"
+                        android:gravity="center"
+                        ></GridView>
 
-                <!--</LinearLayout>-->
-            <!--</HorizontalScrollView>-->
-            <!-- -->
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 43
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 43"
+                android:id="@+id/processador43"
+                android:layout_below="@id/horizontalScrollView42"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView43"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador43">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear43">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos43"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 44
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 44"
+                android:id="@+id/processador44"
+                android:layout_below="@id/horizontalScrollView43"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView44"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador44">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear44">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos44"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 45
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 45"
+                android:id="@+id/processador45"
+                android:layout_below="@id/horizontalScrollView44"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView45"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador45">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear45">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos45"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 46
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 46"
+                android:id="@+id/processador46"
+                android:layout_below="@id/horizontalScrollView45"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView46"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador46">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear46">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos46"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 47
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 47"
+                android:id="@+id/processador47"
+                android:layout_below="@id/horizontalScrollView46"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView47"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador47">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear47">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos47"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 48
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 48"
+                android:id="@+id/processador48"
+                android:layout_below="@id/horizontalScrollView47"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView48"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador48">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear48">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos48"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 49
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 49"
+                android:id="@+id/processador49"
+                android:layout_below="@id/horizontalScrollView48"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView49"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador49">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear49">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos49"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 50
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 50"
+                android:id="@+id/processador50"
+                android:layout_below="@id/horizontalScrollView49"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView50"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear50">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos50"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 51
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 51"
+                android:id="@+id/processador51"
+                android:layout_below="@id/horizontalScrollView50"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView51"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador51">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear51">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos51"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 52
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 52"
+                android:id="@+id/processador52"
+                android:layout_below="@id/horizontalScrollView51"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView52"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador52">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear52">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos52"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 53
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 53"
+                android:id="@+id/processador53"
+                android:layout_below="@id/horizontalScrollView52"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView53"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador53">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear53">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos53"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 54
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 54"
+                android:id="@+id/processador54"
+                android:layout_below="@id/horizontalScrollView53"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView54"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador54">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear54">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos54"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 55
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 55"
+                android:id="@+id/processador55"
+                android:layout_below="@id/horizontalScrollView54"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView55"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador55">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear55">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos55"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 56
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 56"
+                android:id="@+id/processador56"
+                android:layout_below="@id/horizontalScrollView55"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView56"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador56">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear56">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos56"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 57
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 57"
+                android:id="@+id/processador57"
+                android:layout_below="@id/horizontalScrollView56"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView57"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador57">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear57">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos57"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 58
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 58"
+                android:id="@+id/processador58"
+                android:layout_below="@id/horizontalScrollView57"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView58"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador58">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear58">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos58"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 59
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 59"
+                android:id="@+id/processador59"
+                android:layout_below="@id/horizontalScrollView58"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView59"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador59">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear59">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos59"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 60
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 60"
+                android:id="@+id/processador60"
+                android:layout_below="@id/horizontalScrollView59"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView60"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador60">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear60">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos60"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 61
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 61"
+                android:id="@+id/processador61"
+                android:layout_below="@id/horizontalScrollView60"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView61"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador61">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear61">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos61"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 62
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 62"
+                android:id="@+id/processador62"
+                android:layout_below="@id/horizontalScrollView61"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView62"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador62">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear62">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos62"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 63
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 63"
+                android:id="@+id/processador63"
+                android:layout_below="@id/horizontalScrollView62"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView63"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador63">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear63">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos63"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila 64
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processador 64"
+                android:id="@+id/processador64"
+                android:layout_below="@id/horizontalScrollView63"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView64"
+                android:fillViewport="false"
+                android:layout_below="@+id/processador64">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linear64">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptos64"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Fila Remanecentes
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remanecentes"
+                android:id="@+id/remanecente"
+                android:layout_below="@id/horizontalScrollView64"
+                android:textSize="15dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollViewRem"
+                android:fillViewport="false"
+                android:layout_below="@+id/remanecente">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linearRem">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontalScrollView"
+                        android:id="@+id/gridAptosRem"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Finalizados
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:id="@+id/viewCancelados"
+                android:orientation="horizontal"
+                android:background="@color/black"
+                android:layout_below="@+id/horizontalScrollViewRem">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Processos Finalizados / Bloqueados"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"/>
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollViewFinalizados"
+                android:fillViewport="false"
+                android:layout_below="@+id/viewCancelados">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="70dp">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/viewAptos"
+                        android:id="@+id/gridCancelados"
+                        android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
