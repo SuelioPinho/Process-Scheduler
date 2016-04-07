@@ -336,7 +336,6 @@ public class RoundRActivity extends AppCompatActivity {
         gridAptos2.setAdapter(processoAdapter2);
         gridAptos3.setAdapter(processoAdapter3);
         gridAptos4.setAdapter(processoAdapter4);
-
     }
 
     public void contruirGridViewFinalizados(){
