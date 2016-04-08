@@ -77,19 +77,11 @@ public class MainActivity extends AppCompatActivity {
     @Extra
     int numQtdProcessadores;
 
-    EditText numProcessadores;
-
-  //  EditText numProcesso;
-
-    AlertDialog.Builder builder;
-
     LinkedList<Processo> processos;
 
     LinkedList<Processador> processadores;
 
     LinkedList<Processo> finalizados;
-
-    Button escalonar;
 
     Semaphore semaphore;
 
@@ -171,14 +163,14 @@ public class MainActivity extends AppCompatActivity {
                 for (int j = 0; j < processadores.size(); j++){
                     Processador processador = processadores.get(j);
                     if (processador.is_processando){
+                        processadores.get(j).processo.tempoProcesso--;
                         if(processador.processo.tempoProcesso == 0){
+                            processador.processo.color = Color.GRAY;
                             finalizados.add(processador.processo);
                             processadores.get(j).processo = null;
                             processadores.get(j).is_processando = false;
                             reloadDataGridViewFinalizado(finalizados);
                             semaphore.release();
-                        }else {
-                            processadores.get(j).processo.tempoProcesso--;
                         }
                     }
                 }
@@ -202,10 +194,9 @@ public class MainActivity extends AppCompatActivity {
 
             int deadLine = gerador.nextInt(20) + 4;
 
-           // int ultimoProcesso = Integer.parseInt(numProcesso.getText().toString());
             int ultimoProcesso = numProcessos;
 
-            Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.YELLOW);
+            Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE);
 
             processos.add(processo);
 
@@ -231,15 +222,13 @@ public class MainActivity extends AppCompatActivity {
 
                         for (int i = 0; i < processos.size(); i++) {
                             Processo processo = processos.get(i);
+                            processos.get(i).deadLine--;
                             if (processo.deadLine == 0) {
+                                processos.get(i).color = Color.RED;
                                 finalizados.add(processos.remove(i));
                                 reloadDataGridViewFinalizado(finalizados);
 
-                            } else {
-                                processos.get(i).deadLine--;
-
                             }
-
                         }
 
                         reloadDataGridViewProcessos(processos);
