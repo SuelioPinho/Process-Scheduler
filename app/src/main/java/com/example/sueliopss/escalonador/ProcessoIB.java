@@ -24,11 +24,11 @@ public class ProcessoIB implements Comparable<ProcessoIB> {
     @Override
     public int compareTo(ProcessoIB processoIB) {
 
-        if((this.deadLine + this.tempoProcesso) < (processoIB.deadLine + processoIB.tempoProcesso)){
+        if((this.deadLine) < (processoIB.deadLine)){
             return -1;
         }
 
-        if ((this.deadLine + this.tempoProcesso) > (processoIB.deadLine + processoIB.tempoProcesso)){
+        if ((this.deadLine) > (processoIB.deadLine)){
             return 1;
         }
 

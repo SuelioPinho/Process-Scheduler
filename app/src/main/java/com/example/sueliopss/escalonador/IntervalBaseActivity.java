@@ -577,8 +577,6 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     LinkedList<ProcessoIB> remanecentes;
 
-    LinkedList<ProcessoIB> iniciais;
-
     Semaphore semaphore;
 
     @Override
@@ -587,7 +585,6 @@ public class IntervalBaseActivity extends AppCompatActivity{
         processadores = new LinkedList<>();
         finalizados = new LinkedList<>();
         remanecentes = new LinkedList<>();
-        iniciais = new LinkedList<>();
     }
 
     @AfterViews
@@ -597,14 +594,14 @@ public class IntervalBaseActivity extends AppCompatActivity{
         prepararEscalonamento();
     }
 
-    public void gerarFilaExecucao(int fila){
+    public void gerarFilaExecucao(int fila, LinkedList<ProcessoIB> iniciais){
 
         Collections.sort(iniciais);
-        ProcessoIB processo = iniciais.get(fila);
+        ProcessoIB processo = iniciais.get(0);
         processosList.get(fila).add(iniciais.pop());
-        for(int i = 0; i < iniciais.size(); i++){
-            if((processo.tempoProcesso + processo.deadLine < iniciais.get(i).deadLine) || (processo.tempoProcesso + processo.deadLine == iniciais.get(i).deadLine)){
-              processo = iniciais.get(i);
+        while(!iniciais.isEmpty()){
+            if((processo.deadLine + processo.tempoProcesso < iniciais.get(0).deadLine) || (processo.deadLine + processo.tempoProcesso == iniciais.get(0).deadLine)){
+              processo = iniciais.get(0);
               processosList.get(fila).add(iniciais.pop());
             }else{
               remanecentes.add(iniciais.pop());
@@ -642,6 +639,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
         contruirGridViewProcessos();
 
+        construirGridViewRemanecente();
+
         contruirGridViewFinalizados();
 
         setGridViewHeightBasedOnChildren(gridProcessadores, 4);
@@ -665,6 +664,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
         int count = 0;
         Random gerador = new Random();
 
+        LinkedList<ProcessoIB> iniciais = new LinkedList<>();
+
         int tempoProcesso;
         int deadLine;
 
@@ -679,6 +680,18 @@ public class IntervalBaseActivity extends AppCompatActivity{
                 count ++;
             }
         }
+
+        gerarFilaExecucao(0, iniciais);
+
+
+            for(int i = 1; i < numQtdProcessadores; i++){
+                if(!remanecentes.isEmpty()) {
+                    iniciais = remanecentes;
+                    remanecentes = new LinkedList<>();
+                    gerarFilaExecucao(i, iniciais);
+                }
+            }
+
 
         setColumsGridView();
 
@@ -1600,6 +1613,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
                     processador64.setVisibility(View.VISIBLE);break;
 
             }
+
+            linearRem.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1673,6 +1688,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
                 case 63: gridAptos64.setNumColumns(processosList.get(63).size()); break;
 
             }
+
+            gridAptosRem.setNumColumns(remanecentes.size());
         }
     }
 
@@ -1745,6 +1762,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
                 case 62: gridViewSetting(gridAptos63, processosList.get(62).size()); break;
                 case 63: gridViewSetting(gridAptos64, processosList.get(63).size()); break;
             }
+
+            gridViewSetting(gridAptosRem, remanecentes.size());
         }
     }
 
@@ -1817,6 +1836,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
                 case 63: processoAdapter64.setProcessos(processosList.get(63)); break;
 
             }
+
+            remanecenteAdapter.setProcessos(remanecentes);
         }
     }
 
@@ -1888,6 +1909,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
                 case 62: gridAptos63.setAdapter(processoAdapter63); break;
                 case 63: gridAptos64.setAdapter(processoAdapter64); break;
             }
+
+            gridAptosRem.setAdapter(remanecenteAdapter);
         }
     }
 

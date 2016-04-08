@@ -184,6 +184,10 @@ public class RoundRActivity extends AppCompatActivity {
                 for (int j = 0; j < processadores.size(); j++) {
                     Processador processador = processadores.get(j);
                     if (processador.is_processando) {
+
+                        processadores.get(j).processo.quantum--;
+                        processadores.get(j).processo.tempoProcesso--;
+
                         if (processador.processo.tempoProcesso == 0) {
 
                             finalizados.add(processador.processo);
@@ -201,12 +205,7 @@ public class RoundRActivity extends AppCompatActivity {
                             processadores.get(j).is_processando = false;
                             semaphore.release();
 
-                         }else {
-
-                            processadores.get(j).processo.quantum--;
-                            processadores.get(j).processo.tempoProcesso--;
-
-                        }
+                         }
                     }
                 }
 
