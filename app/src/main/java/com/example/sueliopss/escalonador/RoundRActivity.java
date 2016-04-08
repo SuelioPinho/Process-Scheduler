@@ -170,6 +170,8 @@ public class RoundRActivity extends AppCompatActivity {
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }finally {
+                    semaphore.release();
                 }
 
             }

@@ -1,7 +1,9 @@
 package com.example.sueliopss.escalonador;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
@@ -569,6 +572,9 @@ public class IntervalBaseActivity extends AppCompatActivity{
     @Extra
     int numQtdProcessadores;
 
+    @ViewById(R.id.iniciar)
+    FloatingActionButton iniciar;
+
     LinkedList<ProcessadorIB> processadores;
 
     LinkedList<LinkedList<ProcessoIB>> processosList = new LinkedList<>();
@@ -592,6 +598,14 @@ public class IntervalBaseActivity extends AppCompatActivity{
         criarListas();
         ativarGridView();
         prepararEscalonamento();
+    }
+
+    @Click(R.id.iniciar)
+    synchronized void iniciarEscalonamento() {
+
+        iniciar.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+        iniciar.setClickable(false);
+
     }
 
     public void gerarFilaExecucao(int fila, LinkedList<ProcessoIB> iniciais){
