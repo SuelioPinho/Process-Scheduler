@@ -43,7 +43,7 @@ public class ProcessadorIBItemView extends RelativeLayout{
 
         } else {
 
-            imageProcesso.setVisibility(GONE);
+           imageProcesso.setVisibility(GONE);
             nomeProcesso.setText("");
             tempoProcesso.setText("");
         }

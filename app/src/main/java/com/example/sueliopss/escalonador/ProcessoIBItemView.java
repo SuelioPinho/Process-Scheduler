@@ -34,7 +34,7 @@ public class ProcessoIBItemView extends RelativeLayout {
 
     public void bind(ProcessoIB processo){
 
-        imageProcesso.setColorFilter(processo.color);
+        //imageProcesso.setColorFilter(processo.color);
         nomeProcesso.setText(processo.nomeProcesso);
         tempoProcesso.setText("T" + processo.tempoProcesso + "/" + processo.tempoTotal);
 
