@@ -8,9 +8,6 @@ import android.widget.TextView;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
-/**
- * Created by sueliopss on 07/04/16.
- */
 @EViewGroup(R.layout.processo_item_view)
 public class ProcessoIBItemView extends RelativeLayout {
 

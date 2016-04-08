@@ -18,9 +18,7 @@ import org.androidannotations.annotations.ViewById;
 
 import static android.graphics.Color.*;
 
-/**
- * Created by sueliopss on 31/03/16.
- */
+
 @EViewGroup(R.layout.processo_item_view)
 public class ProcessoItemView extends RelativeLayout{
 
