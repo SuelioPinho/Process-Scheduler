@@ -24,180 +24,186 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true">
+                    android:layout_gravity="center">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
-                        android:id="@+id/imageView2"
-                        android:layout_toStartOf="@+id/spinner"
-                        android:layout_alignBottom="@+id/spinner"
-                        android:background="@mipmap/ic_tela_inicio"
-                        android:layout_gravity="center_vertical"/>
-
-                    <Spinner
-                        android:layout_width="400dp"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinner"
-                        android:spinnerMode="dropdown" />
-                </LinearLayout>
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true">
 
-            </RelativeLayout>
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView2"
+                            android:layout_toStartOf="@+id/spinner"
+                            android:layout_alignBottom="@+id/spinner"
+                            android:background="@mipmap/ic_tela_inicio"
+                            android:layout_gravity="center_vertical"/>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp">
+                        <Spinner
+                            android:layout_width="400dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinner"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
 
-                     <ImageView
-                   android:layout_width="60dp"
-                   android:layout_height="40dp"
-                   android:id="@+id/imageView3"
-                   android:layout_toStartOf="@+id/editTextProcessadores"
-                   android:layout_alignBottom="@+id/editTextProcessadores"
-                         android:background="@mipmap/ic_tela_inicio"
-                         android:layout_gravity="center_vertical"/>
-
-               <EditText
-                   android:layout_width="400dp"
-                   android:layout_height="wrap_content"
-                   android:inputType="numberDecimal"
-                   android:hint="Processadores"
-                   android:ems="10"
-                   android:maxLength="2"
-                   android:id="@+id/editTextProcessadores" />
-
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
-                        android:id="@+id/imageView4"
-                        android:layout_toStartOf="@+id/editTextProcessos"
-                        android:layout_alignBottom="@+id/editTextProcessos"
-                        android:background="@mipmap/ic_tela_inicio"
-                        android:layout_gravity="center_vertical"/>
-
-                    <EditText
-                        android:layout_width="400dp"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:hint="Processos"
-                        android:ems="10"
-                        android:maxLength="3"
-                        android:id="@+id/editTextProcessos"
-                        android:layout_above="@+id/quantum"/>
-                </LinearLayout>
+                        android:layout_centerHorizontal="true">
 
-            </RelativeLayout>
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView3"
+                            android:layout_toStartOf="@+id/editTextProcessadores"
+                            android:layout_alignBottom="@+id/editTextProcessadores"
+                            android:background="@mipmap/ic_tela_inicio"
+                            android:layout_gravity="center_vertical"/>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp">
+                        <EditText
+                            android:layout_width="400dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:hint="Processadores"
+                            android:ems="10"
+                            android:maxLength="2"
+                            android:id="@+id/editTextProcessadores" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
-                        android:id="@+id/imageView5"
-                        android:layout_toStartOf="@+id/quantum"
-                        android:layout_alignBottom="@+id/quantum"
-                        android:background="@mipmap/ic_tela_inicio" />
-
-                    <EditText
-                        android:layout_width="400dp"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:hint="Quantum"
-                        android:maxLength="2"
-                        android:ems="10"
-                        android:enabled="false"
-                        android:id="@+id/quantum"
-                        android:layout_marginBottom="40dp"/>
+                        android:layout_centerHorizontal="true">
 
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView4"
+                            android:layout_toStartOf="@+id/editTextProcessos"
+                            android:layout_alignBottom="@+id/editTextProcessos"
+                            android:background="@mipmap/ic_tela_inicio"
+                            android:layout_gravity="center_vertical"/>
 
-                </LinearLayout>
+                        <EditText
+                            android:layout_width="400dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:hint="Processos"
+                            android:ems="10"
+                            android:maxLength="3"
+                            android:id="@+id/editTextProcessos"
+                            android:layout_above="@+id/quantum"/>
+                    </LinearLayout>
 
-            </RelativeLayout>
+                </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
 
-                    <Button
-                        android:layout_width="460dp"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Avançar"
-                        android:id="@+id/buttonIniciar"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignStart="@+id/quantum"
-                        android:layout_alignEnd="@+id/quantum" />
+                        android:layout_centerHorizontal="true">
 
-                </LinearLayout>
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView5"
+                            android:layout_toStartOf="@+id/quantum"
+                            android:layout_alignBottom="@+id/quantum"
+                            android:background="@mipmap/ic_tela_inicio" />
 
-            </RelativeLayout>
+                        <EditText
+                            android:layout_width="400dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:hint="Quantum"
+                            android:maxLength="2"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:id="@+id/quantum"
+                            android:layout_marginBottom="40dp"/>
 
-        </LinearLayout>
-    </RelativeLayout>
 
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+
+                        <Button
+                            android:layout_width="460dp"
+                            android:layout_height="wrap_content"
+                            android:text="Avançar"
+                            android:id="@+id/buttonIniciar"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignStart="@+id/quantum"
+                            android:layout_alignEnd="@+id/quantum" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
