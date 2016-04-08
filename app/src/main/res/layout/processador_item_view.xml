@@ -10,15 +10,25 @@
         android:scaleType="centerInside"
         android:background="@mipmap/ic_processador"/>
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/relativeItemProcessador"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_alignBottom="@+id/imageProcessador"
         android:layout_marginBottom="15dp"
         android:layout_marginStart="11dp"
-        android:layout_alignBottom="@+id/imageProcessador"
-        android:layout_alignParentStart="true"
-        android:background="@mipmap/ic_processo"
-        android:id="@+id/imagePcso"/>
+        android:layout_alignParentStart="true">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imagePcso"/>
+    </RelativeLayout>
+
+
+
+<!--
+    android:background="@mipmap/ic_processo"
+-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,8 +38,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:id="@+id/nomeProcesso"
-        android:layout_alignTop="@+id/imagePcso"
-        android:layout_alignStart="@+id/imagePcso" />
+        android:layout_alignTop="@+id/relativeItemProcessador"
+        android:layout_alignStart="@+id/relativeItemProcessador" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -70,7 +70,6 @@ public class ProcessoItemView extends RelativeLayout{
         shape.getPaint().setColor(color);
         shape.getPaint().setStyle(Paint.Style.STROKE);
         shape.getPaint().setStrokeWidth(35);
-
     }
 
 }
