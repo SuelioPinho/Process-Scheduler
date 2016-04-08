@@ -337,7 +337,6 @@ public class RoundRActivity extends AppCompatActivity {
         }
 
         processadorAdapter.setProcessadores(processadores);
-
         gridProcessadores.setAdapter(processadorAdapter);
 
     }

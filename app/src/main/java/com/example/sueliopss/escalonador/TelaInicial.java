@@ -169,7 +169,7 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     }
 
     private void irParaLTG() {
-        MainActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).start();
+        LTGActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).start();
     }
 
     private void irParaScheduling() {

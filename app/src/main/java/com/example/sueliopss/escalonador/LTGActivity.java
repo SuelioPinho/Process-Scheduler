@@ -42,7 +42,7 @@ import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity {
+public class LTGActivity extends AppCompatActivity {
 
     @ViewById(R.id.gridProcessadores)
     GridView gridProcessadores;
