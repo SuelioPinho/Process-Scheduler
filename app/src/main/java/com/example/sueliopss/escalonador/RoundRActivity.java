@@ -149,6 +149,7 @@ public class RoundRActivity extends AppCompatActivity {
 
                                 if (!processosList.get(count).isEmpty()) {
                                     processador.processo = processosList.get(count).pop();
+                                    processador.processo.color = getResources().getColor(R.color.verdeProcesso);
                                     processador.is_processando = true;
                                     reloadDataGridViewProcessos(count);
                                     if (count == 3) {
@@ -197,7 +198,9 @@ public class RoundRActivity extends AppCompatActivity {
 
                         if (processador.processo.tempoProcesso == 0) {
 
+                            processador.processo.color = Color.GRAY;
                             finalizados.add(processador.processo);
+
                             processadores.get(j).processo = null;
                             processadores.get(j).is_processando = false;
                             reloadDataGridViewFinalizado(finalizados);
@@ -205,11 +208,15 @@ public class RoundRActivity extends AppCompatActivity {
 
                         } else if (processador.processo.quantum == 0) {
 
+                            processador.processo.color = getResources().getColor(R.color.roxoProcesso);
                             processador.processo.quantum = numQuantum * (4 - processador.processo.prioridade);
                             processosList.get(processador.processo.prioridade).add(processador.processo);
                             reloadDataGridViewProcessos(processador.processo.prioridade);
+
                             processadores.get(j).processo = null;
+
                             processadores.get(j).is_processando = false;
+
                             semaphore.release();
 
                          }
@@ -263,6 +270,7 @@ public class RoundRActivity extends AppCompatActivity {
 
             if(!processosList.get(count).isEmpty()){
                 processadores.get(i).processo = processosList.get(count).pop();
+                processadores.get(i).processo.color = getResources().getColor(R.color.verdeProcesso);
                 processadores.get(i).is_processando = true;
                 if (count == 3){
                     count = 0;
@@ -346,7 +354,7 @@ public class RoundRActivity extends AppCompatActivity {
         for (int i = 0; i < numProcesso; i++) {
             tempoProcesso = gerador.nextInt(20) + 4;
 
-            processosList.get(count).add(new Processo("P" + (i + 1), tempoProcesso, tempoProcesso, Color.YELLOW, count, quant*(4 - count)));
+            processosList.get(count).add(new Processo("P" + (i + 1), tempoProcesso, tempoProcesso, getResources().getColor(R.color.amareloProcesso), count, quant*(4 - count)));
 
             if (count == 3){
                 count = 0;

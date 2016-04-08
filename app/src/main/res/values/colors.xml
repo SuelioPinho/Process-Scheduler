@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000</color>
     <color name="white">#FFF</color>
+    <color name="verdeProcesso">#006400</color>
+    <color name="roxoProcesso">#7B68EE</color>
+    <color name="amareloProcesso">#FFD700</color>
 </resources>

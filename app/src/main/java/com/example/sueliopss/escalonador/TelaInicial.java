@@ -123,10 +123,10 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void addCategorias(){
-        categorias.add(getString(R.string.scheduling));
         categorias.add(getString(R.string.selecionar));
         categorias.add(getString(R.string.ltg));
         categorias.add(getString(R.string.round));
+        categorias.add(getString(R.string.scheduling));
 
     }
 

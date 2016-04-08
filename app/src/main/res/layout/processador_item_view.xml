@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="13dp"
         android:text="T"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="12dp"
         android:layout_below="@+id/nomeProcesso"
         android:layout_alignStart="@+id/nomeProcesso"
