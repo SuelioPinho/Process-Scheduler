@@ -239,8 +239,6 @@ public class RoundRActivity extends AppCompatActivity {
 
             int tempoProcesso = gerador.nextInt(20) + 4;
 
-
-
             int ultimoProcesso = numProcessos;
 
             Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, tempoProcesso, Color.BLUE, countAdd, numQuantum);
@@ -256,10 +254,7 @@ public class RoundRActivity extends AppCompatActivity {
             }else{
                 countAdd++;
             }
-
         }
-
-
     }
 
     public void preencherProcessadores(){
@@ -284,7 +279,6 @@ public class RoundRActivity extends AppCompatActivity {
         reloadDataGridViewProcessos(1);
         reloadDataGridViewProcessos(2);
         reloadDataGridViewProcessos(3);
-
 
         reloadDataGridViewProcessador(processadores);
         processar();
@@ -315,15 +309,12 @@ public class RoundRActivity extends AppCompatActivity {
     public void prepararEscalonamento(){
 
         int qntProcessadores = numQtdProcessadores;
-
         int qntprocessos = numProcessos;
 
         semaphore = new Semaphore(qntProcessadores);
 
         contruirGridViewProcessadores(qntProcessadores);
-
         contruirGridViewProcessos(qntprocessos);
-
         contruirGridViewFinalizados();
 
         setGridViewHeightBasedOnChildren(gridProcessadores, 8);
@@ -347,7 +338,6 @@ public class RoundRActivity extends AppCompatActivity {
         Random gerador = new Random();
 
         int tempoProcesso;
-
         int quant = numQuantum;
 
         for (int i = 0; i < numProcesso; i++) {
@@ -361,22 +351,34 @@ public class RoundRActivity extends AppCompatActivity {
                 count ++;
             }
         }
+        setarNumColunas();
+        setarGridView();
+        setarProcessos();
+        setarAdapter();
+    }
 
+    public void setarNumColunas(){
         gridAptos1.setNumColumns(processosList.get(0).size());
         gridAptos2.setNumColumns(processosList.get(1).size());
         gridAptos3.setNumColumns(processosList.get(2).size());
         gridAptos4.setNumColumns(processosList.get(3).size());
+    }
 
+    public void setarGridView(){
         gridViewSetting(gridAptos1, processosList.get(0).size());
         gridViewSetting(gridAptos2, processosList.get(1).size());
         gridViewSetting(gridAptos3, processosList.get(2).size());
         gridViewSetting(gridAptos4, processosList.get(3).size());
+    }
 
+    public void setarProcessos(){
         processoAdapter1.setProcessos(processosList.get(0));
         processoAdapter2.setProcessos(processosList.get(1));
         processoAdapter3.setProcessos(processosList.get(2));
         processoAdapter4.setProcessos(processosList.get(3));
+    }
 
+    public void setarAdapter(){
         gridAptos1.setAdapter(processoAdapter1);
         gridAptos2.setAdapter(processoAdapter2);
         gridAptos3.setAdapter(processoAdapter3);
@@ -386,13 +388,9 @@ public class RoundRActivity extends AppCompatActivity {
     public void contruirGridViewFinalizados(){
 
         gridCancelados.setNumColumns(finalizados.size());
-
         gridViewSetting(gridCancelados, finalizados.size());
-
         finalizadoAdapter.setProcessos(finalizados);
-
         gridCancelados.setAdapter(finalizadoAdapter);
-
     }
 
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
@@ -400,59 +398,38 @@ public class RoundRActivity extends AppCompatActivity {
         ListAdapter listAdapter = gridView.getAdapter();
 
         if (listAdapter == null) {
-
             // pre-condition
-
             return;
-
         }
 
         int totalHeight = 0;
-
         int items = listAdapter.getCount();
-
         int rows = 0;
 
-
         View listItem = listAdapter.getView(0, null, gridView);
-
         listItem.measure(0, 0);
-
         totalHeight = listItem.getMeasuredHeight();
 
-
         float x = 1;
-
         if( items > columns ){
 
             if(items % columns == 0){
-
                 x = items/columns;
-
                 rows = (int) x;
-
                 totalHeight *= rows;
 
             }else {
 
                 x = items/columns;
-
                 rows = (int) (x + 1);
-
                 totalHeight *= rows;
             }
 
-
-
         }
 
-
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
-
         params.height = totalHeight;
-
         gridView.setLayoutParams(params);
-
     }
 
     @UiThread
@@ -501,11 +478,8 @@ public class RoundRActivity extends AppCompatActivity {
                     gridAptos4.setAdapter(processoAdapter4);
 
                     break;
-
             }
-
         }
-
     }
 
     @UiThread
@@ -515,7 +489,6 @@ public class RoundRActivity extends AppCompatActivity {
             processadorAdapter.setProcessadores(processadores);
             processadorAdapter.notifyDataSetChanged();
         }
-
     }
 
     @UiThread

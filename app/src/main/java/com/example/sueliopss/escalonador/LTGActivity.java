@@ -227,12 +227,9 @@ public class LTGActivity extends AppCompatActivity {
                                 processos.get(i).color = Color.RED;
                                 finalizados.add(processos.remove(i));
                                 reloadDataGridViewFinalizado(finalizados);
-
                             }
                         }
-
                         reloadDataGridViewProcessos(processos);
-
                     }
                 }
             }
@@ -243,14 +240,12 @@ public class LTGActivity extends AppCompatActivity {
     public void preencherProcessadores(){
 
         for (int i = 0; i < processadores.size(); i++){
-
             if(!processos.isEmpty()){
                 processadores.get(i).processo = processos.pop();
                 processadores.get(i).processo.color = getResources().getColor(R.color.verdeProcesso);
                 processadores.get(i).is_processando = true;
             }
         }
-
         reloadDataGridViewProcessador(processadores);
         processar();
     }
@@ -303,20 +298,15 @@ public class LTGActivity extends AppCompatActivity {
     public void prepararEscalonamento(){
 
         int qntProcessadores = numQtdProcessadores;
-
         int qntprocessos = numProcessos;
 
         semaphore = new Semaphore(qntProcessadores);
 
         contruirGridViewProcessadores(qntProcessadores);
-
         contruirGridViewProcessos(qntprocessos);
-
         contruirGridViewFinalizados();
 
-
         setGridViewHeightBasedOnChildren(gridProcessadores, 8);
-
     }
 
     public void contruirGridViewProcessadores(int numProcessadores){
@@ -324,11 +314,8 @@ public class LTGActivity extends AppCompatActivity {
         for (int i = 0; i < numProcessadores; i++){
             processadores.add(new Processador());
         }
-
         processadorAdapter.setProcessadores(processadores);
-
         gridProcessadores.setAdapter(processadorAdapter);
-
     }
 
     public void contruirGridViewProcessos(int numProcesso){
@@ -373,59 +360,36 @@ public class LTGActivity extends AppCompatActivity {
         ListAdapter listAdapter = gridView.getAdapter();
 
         if (listAdapter == null) {
-
             // pre-condition
-
             return;
 
         }
 
         int totalHeight = 0;
-
         int items = listAdapter.getCount();
-
         int rows = 0;
 
-
         View listItem = listAdapter.getView(0, null, gridView);
-
         listItem.measure(0, 0);
-
         totalHeight = listItem.getMeasuredHeight();
-
 
         float x = 1;
 
         if( items > columns ){
-
             if(items % columns == 0){
-
                 x = items/columns;
-
                 rows = (int) x;
-
                 totalHeight *= rows;
-
             }else {
-
                 x = items/columns;
-
                 rows = (int) (x + 1);
-
                 totalHeight *= rows;
             }
-
-
-
         }
 
-
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
-
         params.height = totalHeight;
-
         gridView.setLayoutParams(params);
-
     }
 
     @UiThread
@@ -460,5 +424,4 @@ public class LTGActivity extends AppCompatActivity {
             contruirGridViewFinalizados();
         }
     }
-
 }

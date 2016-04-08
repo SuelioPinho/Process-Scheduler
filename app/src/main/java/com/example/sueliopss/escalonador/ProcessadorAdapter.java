@@ -10,15 +10,11 @@ import org.androidannotations.annotations.RootContext;
 
 import java.util.List;
 
-/**
- * Created by sueliopss on 14/03/16.
- */
 @EBean
 public class ProcessadorAdapter extends BaseAdapter {
     @RootContext
     Context context;
     private List<Processador> processadores;
-
     public ProcessadorAdapter(Context context){
         this.context = context;
     }
@@ -54,9 +50,7 @@ public class ProcessadorAdapter extends BaseAdapter {
         }
 
         itemView.bind(processadores.get(position));
-
         itemView.setPosition(position);
-
         return itemView;
     }
 }

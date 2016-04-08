@@ -2,9 +2,7 @@ package com.example.sueliopss.escalonador;
 
 import android.graphics.Color;
 
-/**
- * Created by sueliopss on 09/03/16.
- */
+
 public class Processo implements Comparable<Processo> {
     int prioridade;
     int tempoProcesso;
