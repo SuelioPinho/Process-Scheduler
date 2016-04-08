@@ -20,6 +20,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
@@ -556,6 +557,8 @@ public class IntervalBaseActivity extends AppCompatActivity{
     ProcessoIBAdapter processoAdapterRem;
     @Bean
     ProcessoIBAdapter finalizadoAdapter;
+    @Bean
+    ProcessoIBAdapter remanecenteAdapter;
 
     @ViewById(R.id.scrollview_content_main)
     ScrollView scrollView;
@@ -594,8 +597,19 @@ public class IntervalBaseActivity extends AppCompatActivity{
         prepararEscalonamento();
     }
 
-    public void gerarFilaExecucao(){
+    public void gerarFilaExecucao(int fila){
 
+        Collections.sort(iniciais);
+        ProcessoIB processo = iniciais.get(fila);
+        processosList.get(fila).add(iniciais.pop());
+        for(int i = 0; i < iniciais.size(); i++){
+            if((processo.tempoProcesso + processo.deadLine < iniciais.get(i).deadLine) || (processo.tempoProcesso + processo.deadLine == iniciais.get(i).deadLine)){
+              processo = iniciais.get(i);
+              processosList.get(fila).add(iniciais.pop());
+            }else{
+              remanecentes.add(iniciais.pop());
+            }
+        }
     }
 
     private void gridViewSetting(GridView gridview, int size) {
@@ -685,6 +699,18 @@ public class IntervalBaseActivity extends AppCompatActivity{
         finalizadoAdapter.setProcessos(finalizados);
 
         gridCancelados.setAdapter(finalizadoAdapter);
+
+    }
+
+    public void construirGridViewRemanecente(){
+
+      gridAptosRem.setNumColumns(remanecentes.size());
+
+      gridViewSetting(gridAptosRem, remanecentes.size());
+
+      remanecenteAdapter.setProcessos(remanecentes);
+
+      gridAptosRem.setAdapter(remanecenteAdapter);
 
     }
 
@@ -1424,6 +1450,13 @@ public class IntervalBaseActivity extends AppCompatActivity{
         synchronized (getApplicationContext()) {
             contruirGridViewFinalizados();
         }
+    }
+
+    @UiThread
+    public void reloadDataGridViewRemanecente(){
+      synchronized (this){
+        construirGridViewRemanecente();
+      }
     }
 
     public void criarListas(){
