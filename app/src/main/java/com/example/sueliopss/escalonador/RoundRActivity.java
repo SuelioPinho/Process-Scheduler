@@ -17,6 +17,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -514,8 +515,6 @@ public class RoundRActivity extends AppCompatActivity {
     public void abrirDialog(){
         createDialog().show();
 
-
-
     }
 
     AlertDialog alertDialog;
@@ -534,8 +533,15 @@ public class RoundRActivity extends AppCompatActivity {
         buttonContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numQuantum = Integer.parseInt(quantumET.getText().toString());
-                alertDialog.dismiss();
+
+                if (quantumET.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Não pode colocar vazio no quantum", Toast.LENGTH_SHORT).show();
+                } else if (Integer.parseInt(quantumET.getText().toString()) == 0) {
+                    Toast.makeText(getApplicationContext(), "Não pode colocar zero no quantum", Toast.LENGTH_SHORT).show();
+                } else {
+                    numQuantum = Integer.parseInt(quantumET.getText().toString());
+                    alertDialog.dismiss();
+                }
             }
         });
 

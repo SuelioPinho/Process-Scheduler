@@ -209,6 +209,7 @@ public class LTGActivity extends AppCompatActivity {
 
 
     }
+
     public void decrementarDeadLines(){
 
         Timer timer = new Timer();

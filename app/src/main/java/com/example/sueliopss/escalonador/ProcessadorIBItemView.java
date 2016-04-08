@@ -1,6 +1,10 @@
 package com.example.sueliopss.escalonador;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +29,11 @@ public class ProcessadorIBItemView extends RelativeLayout{
     @ViewById(R.id.tempoProcesso)
     TextView tempoProcesso;
 
+    @ViewById
+    RelativeLayout relativeItemProcessador;
+
     int position;
+    ShapeDrawable shape = new ShapeDrawable(new RectShape());
 
     public ProcessadorIBItemView(Context context) {
         super(context);
@@ -33,8 +41,13 @@ public class ProcessadorIBItemView extends RelativeLayout{
 
 
     public void bind(ProcessadorIB processador){
+        
+
 
         if(processador.is_processando){
+
+            pintarShape(processador.processoIB.color);
+            relativeItemProcessador.setBackground(shape);
 
             imageProcesso.setVisibility(VISIBLE);
             imageProcesso.setColorFilter(processador.processoIB.color);
@@ -42,7 +55,8 @@ public class ProcessadorIBItemView extends RelativeLayout{
             tempoProcesso.setText("T" + processador.processoIB.tempoProcesso + "/" + processador.processoIB.tempoTotal);
 
         } else {
-
+            pintarShape(Color.TRANSPARENT);
+            relativeItemProcessador.setBackground(shape);
            imageProcesso.setVisibility(GONE);
             nomeProcesso.setText("");
             tempoProcesso.setText("");
@@ -52,5 +66,11 @@ public class ProcessadorIBItemView extends RelativeLayout{
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public void pintarShape(int color){
+        shape.getPaint().setColor(color);
+        shape.getPaint().setStyle(Paint.Style.STROKE);
+        shape.getPaint().setStrokeWidth(35);
     }
 }

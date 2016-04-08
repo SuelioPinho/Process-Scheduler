@@ -26,6 +26,8 @@ import org.androidannotations.annotations.ViewById;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
 @EActivity(R.layout.activity_interval_base)
@@ -605,22 +607,152 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
         iniciar.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
         iniciar.setClickable(false);
+        decrementarDeadLines();
+        processar();
+        decrementarRemanecente();
 
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+
+            public void run() {
+
+                try {
+                    semaphore.acquire();
+
+                    for (int i = 0; i < processadores.size(); i++) {
+                        ProcessadorIB processador = processadores.get(i);
+                        if (!processador.is_processando) {
+                            if (!processosList.get(i).isEmpty()) {
+                                if (processosList.get(i).get(0).deadLine == 0) {
+                                    processador.processoIB = processosList.get(i).pop();
+                                    processador.is_processando = true;
+                                    reloadDataGridViewProcessos(i);
+                                }
+                            }
+                        }
+                    }
+
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    semaphore.release();
+                }
+
+
+            }
+        }, 0, 1000);
+
+    }
+
+    synchronized void processar() {
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+
+                for (int j = 0; j < processadores.size(); j++) {
+                    ProcessadorIB processador = processadores.get(j);
+                    if (processador.is_processando) {
+                        processadores.get(j).processoIB.tempoProcesso--;
+                        if (processador.processoIB.tempoProcesso == 0) {
+                            processador.processoIB.color = Color.GRAY;
+                            finalizados.add(processador.processoIB);
+                            processadores.get(j).processoIB = null;
+                            processadores.get(j).is_processando = false;
+                            reloadDataGridViewFinalizado();
+                            semaphore.release();
+
+                        }
+                    }
+                }
+
+                reloadDataGridViewProcessador(processadores);
+
+            }
+        }, 0, 1000);
+
+
+    }
+
+    synchronized void decrementarDeadLines(){
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+
+
+                        for (int i = 0; i < processosList.size(); i++) {
+
+                            if(!processosList.get(i).isEmpty()){
+                                for(int j = 0; j < processosList.get(i).size(); j++){
+                                    if(processosList.get(i).get(j).deadLine > 0){
+                                        processosList.get(i).get(j).deadLine--;
+
+                                    }
+
+                                    reloadDataGridViewProcessos(i);
+
+                                }
+                            }
+
+                        }
+
+
+            }
+        }, 0, 1000);
+
+    }
+
+    synchronized void decrementarRemanecente(){
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+
+
+                    for (int i = 0; i < remanecentes.size(); i++) {
+
+                        if(!remanecentes.isEmpty()){
+                            remanecentes.get(i).deadLine--;
+                            if(remanecentes.get(i).deadLine == 0){
+                                remanecentes.get(i).color = Color.RED;
+                                finalizados.add(remanecentes.remove(i));
+                            }
+                        }
+
+                    }
+
+                    reloadDataGridViewRemanecente();
+
+                    reloadDataGridViewFinalizado();
+
+
+            }
+        }, 0, 1000);
     }
 
     public void gerarFilaExecucao(int fila, LinkedList<ProcessoIB> iniciais){
 
         Collections.sort(iniciais);
         ProcessoIB processo = iniciais.get(0);
+        LinkedList<ProcessoIB> aux = new LinkedList<>();
         processosList.get(fila).add(iniciais.pop());
         while(!iniciais.isEmpty()){
             if((processo.deadLine + processo.tempoProcesso < iniciais.get(0).deadLine) || (processo.deadLine + processo.tempoProcesso == iniciais.get(0).deadLine)){
               processo = iniciais.get(0);
               processosList.get(fila).add(iniciais.pop());
             }else{
-              remanecentes.add(iniciais.pop());
+              aux.add(iniciais.pop());
             }
         }
+
+        remanecentes = aux;
     }
 
     private void gridViewSetting(GridView gridview, int size) {
@@ -657,7 +789,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
         contruirGridViewFinalizados();
 
-        setGridViewHeightBasedOnChildren(gridProcessadores, 4);
+        setGridViewHeightBasedOnChildren(gridProcessadores, 8);
 
     }
 
@@ -686,7 +818,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
         for (int i = 0; i < numProcessos; i++) {
             tempoProcesso = gerador.nextInt(8) + 2;
             deadLine = gerador.nextInt(20) + 2;
-            iniciais.add(new ProcessoIB("P" + (i + 1), tempoProcesso, deadLine, Color.YELLOW, tempoProcesso,count));
+            iniciais.add(new ProcessoIB("P" + (i + 1), tempoProcesso, deadLine, tempoProcesso, getResources().getColor(R.color.amareloProcesso)));
 
             if (count == numQtdProcessadores - 1){
                 count = 0;
@@ -1472,7 +1604,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
     }
 
     @UiThread
-    public void reloadDataGridViewFinalizado(LinkedList<Processo> processos){
+    public void reloadDataGridViewFinalizado(){
 
         synchronized (getApplicationContext()) {
             contruirGridViewFinalizados();

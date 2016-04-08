@@ -2309,7 +2309,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Remanecentes"
+                android:text="Remanescente"
                 android:id="@+id/remanecente"
                 android:layout_below="@id/horizontalScrollView64"
                 android:textSize="15dp"/>

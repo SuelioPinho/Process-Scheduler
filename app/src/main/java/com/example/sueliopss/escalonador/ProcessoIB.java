@@ -12,13 +12,13 @@ public class ProcessoIB implements Comparable<ProcessoIB> {
     int tempoTotal;
     int processador_id;
 
-    public ProcessoIB(String nomeProcesso, int tempoProcesso, int deadLine, int color, int tempoTotal, int processador_id) {
+    public ProcessoIB(String nomeProcesso, int tempoProcesso, int deadLine, int tempoTotal, int color) {
         this.nomeProcesso = nomeProcesso;
         this.tempoProcesso = tempoProcesso;
         this.deadLine = deadLine;
         this.color = color;
         this.tempoTotal = tempoTotal;
-        this.processador_id = processador_id;
+
     }
 
     @Override
