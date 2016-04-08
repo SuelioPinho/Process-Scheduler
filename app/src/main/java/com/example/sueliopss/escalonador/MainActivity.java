@@ -314,9 +314,7 @@ public class MainActivity extends AppCompatActivity {
         contruirGridViewFinalizados();
 
 
-        setGridViewHeightBasedOnChildren(gridProcessadores, 4);
-
-        //setGridViewHeightBasedOnChildren(gridCancelados, 4);
+        setGridViewHeightBasedOnChildren(gridProcessadores, 8);
 
     }
 

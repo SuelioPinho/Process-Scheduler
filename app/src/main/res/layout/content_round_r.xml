@@ -43,7 +43,7 @@
                 android:nestedScrollingEnabled="false"
                 android:keepScreenOn="true"
                 android:layout_below="@+id/viewProcessadores"
-                android:numColumns="4"
+                android:numColumns="8"
 
                 ></GridView>
 

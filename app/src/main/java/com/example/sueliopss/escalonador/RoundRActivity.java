@@ -23,6 +23,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Timer;
@@ -93,6 +94,8 @@ public class RoundRActivity extends AppCompatActivity {
 
     Integer count;
 
+    Integer countAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +122,8 @@ public class RoundRActivity extends AppCompatActivity {
         });
 
         prepararEscalonamento();
+
+        countAdd = 0;
 
     }
 
@@ -216,6 +221,38 @@ public class RoundRActivity extends AppCompatActivity {
 
     }
 
+    @Click(R.id.adicionar)
+    @UiThread
+    public void adicionarProcesso(){
+
+        synchronized (this){
+            Random gerador = new Random();
+
+            int tempoProcesso = gerador.nextInt(20) + 4;
+
+
+
+            int ultimoProcesso = numProcessos;
+
+            Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, tempoProcesso, Color.BLUE, countAdd, numQuantum);
+
+            processosList.get(countAdd).add(processo);
+
+            numProcessos = ultimoProcesso;
+
+            reloadDataGridViewProcessos(countAdd);
+
+            if(countAdd == 3){
+                countAdd = 0;
+            }else{
+                countAdd++;
+            }
+
+        }
+
+
+    }
+
     public void preencherProcessadores(){
 
         count = 0;
@@ -279,7 +316,7 @@ public class RoundRActivity extends AppCompatActivity {
 
         contruirGridViewFinalizados();
 
-        setGridViewHeightBasedOnChildren(gridProcessadores, 4);
+        setGridViewHeightBasedOnChildren(gridProcessadores, 8);
 
     }
 
