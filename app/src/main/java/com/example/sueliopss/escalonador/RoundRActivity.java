@@ -1,15 +1,18 @@
 package com.example.sueliopss.escalonador;
 
-
+import android.app.AlertDialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -84,6 +87,10 @@ public class RoundRActivity extends AppCompatActivity {
     @Extra
     int numQuantum;
 
+    EditText quantumET;
+
+    Button buttonContinuar;
+
     LinkedList<Processador> processadores;
 
     LinkedList<LinkedList<Processo>> processosList = new LinkedList<>();
@@ -96,9 +103,12 @@ public class RoundRActivity extends AppCompatActivity {
 
     Integer countAdd;
 
+    android.app.AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         processadores = new LinkedList<>();
         processosList.add(new LinkedList<Processo>());
@@ -107,10 +117,11 @@ public class RoundRActivity extends AppCompatActivity {
         processosList.add(new LinkedList<Processo>());
 
         finalizados = new LinkedList<>();
+
     }
 
     @AfterViews
-    public void afterViews(){
+    public void afterViews() {
 
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -219,7 +230,7 @@ public class RoundRActivity extends AppCompatActivity {
 
                             semaphore.release();
 
-                         }
+                        }
                     }
                 }
 
@@ -364,7 +375,7 @@ public class RoundRActivity extends AppCompatActivity {
         gridAptos4.setNumColumns(processosList.get(3).size());
     }
 
-    public void setarGridView(){
+    public void setarGridView() {
         gridViewSetting(gridAptos1, processosList.get(0).size());
         gridViewSetting(gridAptos2, processosList.get(1).size());
         gridViewSetting(gridAptos3, processosList.get(2).size());
@@ -497,6 +508,39 @@ public class RoundRActivity extends AppCompatActivity {
         synchronized (getApplicationContext()) {
             contruirGridViewFinalizados();
         }
+    }
+
+    @Click(R.id.algoritmo)
+    public void abrirDialog(){
+        createDialog().show();
+
+
+
+    }
+
+    AlertDialog alertDialog;
+    public AlertDialog createDialog(){
+
+        builder = new AlertDialog.Builder(this);
+
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        View dialog = layoutInflater.inflate(R.layout.dialog_round_r, null);
+        builder.setView(dialog);
+        builder.setCancelable(false);
+        quantumET = (EditText) dialog.findViewById(R.id.editTextQuantum);
+        String j = String.valueOf(numQuantum);
+        quantumET.setText(j);
+        buttonContinuar = (Button) dialog.findViewById(R.id.buttonContinuar);
+        buttonContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numQuantum = Integer.parseInt(quantumET.getText().toString());
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = builder.create();
+        return alertDialog;
     }
 
 }

@@ -84,12 +84,17 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
        return quantum.getText().toString().equals("");
     }
 
+    public boolean isQuantumZero(){
+        return quantum.getText().toString().equals("0");
+    }
+
+
     public boolean verificadorDeDados(){
         return !(isProcessadorVazio() && isProcessoVazio());
     }
 
     public boolean verificadorDeDadosRR(){
-        return !(isProcessadorVazio() && isProcessoVazio() && isQuantumVazio());
+        return !(isProcessadorVazio() && isProcessoVazio() && isQuantumVazio() && isQuantumZero());
     }
 
     public void iniciarRoundRobin() {
@@ -161,7 +166,7 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void salvarQuantum(){
-       numQuantum = isQuantumVazio() ? 0 : Integer.parseInt(quantum.getText().toString());
+       numQuantum = isQuantumVazio() ? 1 : Integer.parseInt(quantum.getText().toString());
     }
 
     public void irParaRoundRActivity(){
