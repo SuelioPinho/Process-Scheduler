@@ -246,6 +246,7 @@ public class LTGActivity extends AppCompatActivity {
 
             if(!processos.isEmpty()){
                 processadores.get(i).processo = processos.pop();
+                processadores.get(i).processo.color = getResources().getColor(R.color.verdeProcesso);
                 processadores.get(i).is_processando = true;
             }
         }

@@ -99,7 +99,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Processos Cancelados"
+                    android:text="Processos Finalizados / Bloqueados"
                     android:textSize="20dp"
                     android:textColor="@color/white"
                     android:layout_marginTop="8dp"/>
