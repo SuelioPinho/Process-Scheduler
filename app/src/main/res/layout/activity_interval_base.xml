@@ -17,11 +17,11 @@
 
     <include layout="@layout/content_interval_base" />
 
-    <!--<android.support.design.widget.FloatingActionButton android:id="@+id/adicionar"
+    <android.support.design.widget.FloatingActionButton android:id="@+id/adicionar"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom" android:layout_marginBottom="12dp"
         android:src="@android:drawable/ic_input_add" android:layout_marginLeft="200dp"
-        app:backgroundTint="@color/black" android:tint="@color/white"/>-->
+        app:backgroundTint="@color/black" android:tint="@color/white"/>
 
     <android.support.design.widget.FloatingActionButton android:id="@+id/iniciar"
         android:layout_width="wrap_content" android:layout_height="wrap_content"

@@ -677,6 +677,35 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     }
 
+    @Click(R.id.adicionar)
+    @UiThread
+    public void adicionarProcesso(){
+
+      Random gerador = new Random();
+
+      int tempoProcesso = gerador.nextInt(8) + 2;
+
+      int deadLine = gerador.nextInt(20) + 2;
+
+      int ultimoProcesso = numProcessos;
+
+      ProcessoIB processo = new ProcessoIB("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE);
+
+      synchronized (this){
+        remanecentes.add(processo);
+
+        for(int i = 0; i < numQtdProcessadores; i++){
+          LinkedList<ProcessoIB> processos;
+          processos = processosList.get(i);
+          for(int j = 0; j < remanecentes.size(); j++){
+              processos.add(remanecentes.pop());
+          }
+          processosList.set(i, gerarFilaExecucao(processos));
+          reloadDataGridViewProcessos(i);
+        }
+      }
+    }
+
     synchronized void decrementarDeadLines(){
 
         Timer timer = new Timer();
@@ -737,22 +766,35 @@ public class IntervalBaseActivity extends AppCompatActivity{
         }, 0, 1000);
     }
 
-    public void gerarFilaExecucao(int fila, LinkedList<ProcessoIB> iniciais){
+    public LinkedList<ProcessoIB> gerarFilaExecucao(LinkedList<ProcessoIB> iniciais){
 
-        Collections.sort(iniciais);
-        ProcessoIB processo = iniciais.get(0);
-        LinkedList<ProcessoIB> aux = new LinkedList<>();
-        processosList.get(fila).add(iniciais.pop());
-        while(!iniciais.isEmpty()){
-            if((processo.deadLine + processo.tempoProcesso < iniciais.get(0).deadLine) || (processo.deadLine + processo.tempoProcesso == iniciais.get(0).deadLine)){
-              processo = iniciais.get(0);
-              processosList.get(fila).add(iniciais.pop());
-            }else{
-              aux.add(iniciais.pop());
+        ProcessoIB processo;
+        LinkedList<ProcessoIB> processos;
+        try{
+
+            Collections.sort(iniciais);
+            processo = iniciais.get(0);
+            LinkedList<ProcessoIB> auxRem = new LinkedList<>();
+            processos = new LinkedList<>();
+            processos.add(iniciais.pop());
+            while(!iniciais.isEmpty()){
+                if((processo.deadLine + processo.tempoProcesso < iniciais.get(0).deadLine) || (processo.deadLine + processo.tempoProcesso == iniciais.get(0).deadLine)){
+                    processo = iniciais.get(0);
+                    processos.add(iniciais.pop());
+                }else{
+                    auxRem.add(iniciais.pop());
+                }
             }
+
+            remanecentes = auxRem;
+
+        }catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            return iniciais;
         }
 
-        remanecentes = aux;
+
+        return processos;
     }
 
     private void gridViewSetting(GridView gridview, int size) {
@@ -827,17 +869,14 @@ public class IntervalBaseActivity extends AppCompatActivity{
             }
         }
 
-        gerarFilaExecucao(0, iniciais);
+        processosList.set(0, gerarFilaExecucao(iniciais));
 
-
-            for(int i = 1; i < numQtdProcessadores; i++){
-                if(!remanecentes.isEmpty()) {
-                    iniciais = remanecentes;
-                    remanecentes = new LinkedList<>();
-                    gerarFilaExecucao(i, iniciais);
-                }
+        for(int i = 1; i < numQtdProcessadores; i++){
+            if(!remanecentes.isEmpty()) {
+                iniciais = remanecentes;
+                processosList.set(i, gerarFilaExecucao(iniciais));
             }
-
+        }
 
         setColumsGridView();
 
