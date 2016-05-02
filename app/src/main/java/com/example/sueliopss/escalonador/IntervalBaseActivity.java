@@ -429,141 +429,141 @@ public class IntervalBaseActivity extends AppCompatActivity{
     GridView gridCancelados;
 
     @Bean
-    ProcessadorIBAdapter processadorAdapter;
+    ProcessadorAdapter processadorAdapter;
     @Bean
-    ProcessoIBAdapter processoAdapter1;
+    ProcessoAdapter processoAdapter1;
     @Bean
-    ProcessoIBAdapter processoAdapter2;
+    ProcessoAdapter processoAdapter2;
     @Bean
-    ProcessoIBAdapter processoAdapter3;
+    ProcessoAdapter processoAdapter3;
     @Bean
-    ProcessoIBAdapter processoAdapter4;
+    ProcessoAdapter processoAdapter4;
     @Bean
-    ProcessoIBAdapter processoAdapter5;
+    ProcessoAdapter processoAdapter5;
     @Bean
-    ProcessoIBAdapter processoAdapter6;
+    ProcessoAdapter processoAdapter6;
     @Bean
-    ProcessoIBAdapter processoAdapter7;
+    ProcessoAdapter processoAdapter7;
     @Bean
-    ProcessoIBAdapter processoAdapter8;
+    ProcessoAdapter processoAdapter8;
     @Bean
-    ProcessoIBAdapter processoAdapter9;
+    ProcessoAdapter processoAdapter9;
     @Bean
-    ProcessoIBAdapter processoAdapter10;
+    ProcessoAdapter processoAdapter10;
     @Bean
-    ProcessoIBAdapter processoAdapter11;
+    ProcessoAdapter processoAdapter11;
     @Bean
-    ProcessoIBAdapter processoAdapter12;
+    ProcessoAdapter processoAdapter12;
     @Bean
-    ProcessoIBAdapter processoAdapter13;
+    ProcessoAdapter processoAdapter13;
     @Bean
-    ProcessoIBAdapter processoAdapter14;
+    ProcessoAdapter processoAdapter14;
     @Bean
-    ProcessoIBAdapter processoAdapter15;
+    ProcessoAdapter processoAdapter15;
     @Bean
-    ProcessoIBAdapter processoAdapter16;
+    ProcessoAdapter processoAdapter16;
     @Bean
-    ProcessoIBAdapter processoAdapter17;
+    ProcessoAdapter processoAdapter17;
     @Bean
-    ProcessoIBAdapter processoAdapter18;
+    ProcessoAdapter processoAdapter18;
     @Bean
-    ProcessoIBAdapter processoAdapter19;
+    ProcessoAdapter processoAdapter19;
     @Bean
-    ProcessoIBAdapter processoAdapter20;
+    ProcessoAdapter processoAdapter20;
     @Bean
-    ProcessoIBAdapter processoAdapter21;
+    ProcessoAdapter processoAdapter21;
     @Bean
-    ProcessoIBAdapter processoAdapter22;
+    ProcessoAdapter processoAdapter22;
     @Bean
-    ProcessoIBAdapter processoAdapter23;
+    ProcessoAdapter processoAdapter23;
     @Bean
-    ProcessoIBAdapter processoAdapter24;
+    ProcessoAdapter processoAdapter24;
     @Bean
-    ProcessoIBAdapter processoAdapter25;
+    ProcessoAdapter processoAdapter25;
     @Bean
-    ProcessoIBAdapter processoAdapter26;
+    ProcessoAdapter processoAdapter26;
     @Bean
-    ProcessoIBAdapter processoAdapter27;
+    ProcessoAdapter processoAdapter27;
     @Bean
-    ProcessoIBAdapter processoAdapter28;
+    ProcessoAdapter processoAdapter28;
     @Bean
-    ProcessoIBAdapter processoAdapter29;
+    ProcessoAdapter processoAdapter29;
     @Bean
-    ProcessoIBAdapter processoAdapter30;
+    ProcessoAdapter processoAdapter30;
     @Bean
-    ProcessoIBAdapter processoAdapter31;
+    ProcessoAdapter processoAdapter31;
     @Bean
-    ProcessoIBAdapter processoAdapter32;
+    ProcessoAdapter processoAdapter32;
     @Bean
-    ProcessoIBAdapter processoAdapter33;
+    ProcessoAdapter processoAdapter33;
     @Bean
-    ProcessoIBAdapter processoAdapter34;
+    ProcessoAdapter processoAdapter34;
     @Bean
-    ProcessoIBAdapter processoAdapter35;
+    ProcessoAdapter processoAdapter35;
     @Bean
-    ProcessoIBAdapter processoAdapter36;
+    ProcessoAdapter processoAdapter36;
     @Bean
-    ProcessoIBAdapter processoAdapter37;
+    ProcessoAdapter processoAdapter37;
     @Bean
-    ProcessoIBAdapter processoAdapter38;
+    ProcessoAdapter processoAdapter38;
     @Bean
-    ProcessoIBAdapter processoAdapter39;
+    ProcessoAdapter processoAdapter39;
     @Bean
-    ProcessoIBAdapter processoAdapter40;
+    ProcessoAdapter processoAdapter40;
     @Bean
-    ProcessoIBAdapter processoAdapter41;
+    ProcessoAdapter processoAdapter41;
     @Bean
-    ProcessoIBAdapter processoAdapter42;
+    ProcessoAdapter processoAdapter42;
     @Bean
-    ProcessoIBAdapter processoAdapter43;
+    ProcessoAdapter processoAdapter43;
     @Bean
-    ProcessoIBAdapter processoAdapter44;
+    ProcessoAdapter processoAdapter44;
     @Bean
-    ProcessoIBAdapter processoAdapter45;
+    ProcessoAdapter processoAdapter45;
     @Bean
-    ProcessoIBAdapter processoAdapter46;
+    ProcessoAdapter processoAdapter46;
     @Bean
-    ProcessoIBAdapter processoAdapter47;
+    ProcessoAdapter processoAdapter47;
     @Bean
-    ProcessoIBAdapter processoAdapter48;
+    ProcessoAdapter processoAdapter48;
     @Bean
-    ProcessoIBAdapter processoAdapter49;
+    ProcessoAdapter processoAdapter49;
     @Bean
-    ProcessoIBAdapter processoAdapter50;
+    ProcessoAdapter processoAdapter50;
     @Bean
-    ProcessoIBAdapter processoAdapter51;
+    ProcessoAdapter processoAdapter51;
     @Bean
-    ProcessoIBAdapter processoAdapter52;
+    ProcessoAdapter processoAdapter52;
     @Bean
-    ProcessoIBAdapter processoAdapter53;
+    ProcessoAdapter processoAdapter53;
     @Bean
-    ProcessoIBAdapter processoAdapter54;
+    ProcessoAdapter processoAdapter54;
     @Bean
-    ProcessoIBAdapter processoAdapter55;
+    ProcessoAdapter processoAdapter55;
     @Bean
-    ProcessoIBAdapter processoAdapter56;
+    ProcessoAdapter processoAdapter56;
     @Bean
-    ProcessoIBAdapter processoAdapter57;
+    ProcessoAdapter processoAdapter57;
     @Bean
-    ProcessoIBAdapter processoAdapter58;
+    ProcessoAdapter processoAdapter58;
     @Bean
-    ProcessoIBAdapter processoAdapter59;
+    ProcessoAdapter processoAdapter59;
     @Bean
-    ProcessoIBAdapter processoAdapter60;
+    ProcessoAdapter processoAdapter60;
     @Bean
-    ProcessoIBAdapter processoAdapter61;
+    ProcessoAdapter processoAdapter61;
     @Bean
-    ProcessoIBAdapter processoAdapter62;
+    ProcessoAdapter processoAdapter62;
     @Bean
-    ProcessoIBAdapter processoAdapter63;
+    ProcessoAdapter processoAdapter63;
     @Bean
-    ProcessoIBAdapter processoAdapter64;
+    ProcessoAdapter processoAdapter64;
     @Bean
-    ProcessoIBAdapter processoAdapterRem;
+    ProcessoAdapter processoAdapterRem;
     @Bean
-    ProcessoIBAdapter finalizadoAdapter;
+    ProcessoAdapter finalizadoAdapter;
     @Bean
-    ProcessoIBAdapter remanecenteAdapter;
+    ProcessoAdapter remanecenteAdapter;
 
     @ViewById(R.id.scrollview_content_main)
     ScrollView scrollView;
@@ -577,13 +577,13 @@ public class IntervalBaseActivity extends AppCompatActivity{
     @ViewById(R.id.iniciar)
     FloatingActionButton iniciar;
 
-    LinkedList<ProcessadorIB> processadores;
+    LinkedList<Processador> processadores;
 
-    LinkedList<LinkedList<ProcessoIB>> processosList = new LinkedList<>();
+    LinkedList<LinkedList<Processo>> processosList = new LinkedList<>();
 
-    LinkedList<ProcessoIB> finalizados;
+    LinkedList<Processo> finalizados;
 
-    LinkedList<ProcessoIB> remanecentes;
+    LinkedList<Processo> remanecentes;
 
     Semaphore semaphore;
 
@@ -620,11 +620,11 @@ public class IntervalBaseActivity extends AppCompatActivity{
                     semaphore.acquire();
 
                     for (int i = 0; i < processadores.size(); i++) {
-                        ProcessadorIB processador = processadores.get(i);
+                        Processador processador = processadores.get(i);
                         if (!processador.is_processando) {
                             if (!processosList.get(i).isEmpty()) {
                                 if (processosList.get(i).get(0).deadLine == 0) {
-                                    processador.processoIB = processosList.get(i).pop();
+                                    processador.processo = processosList.get(i).pop();
                                     processador.is_processando = true;
                                     reloadDataGridViewProcessos(i);
                                 }
@@ -654,13 +654,13 @@ public class IntervalBaseActivity extends AppCompatActivity{
             public void run() {
 
                 for (int j = 0; j < processadores.size(); j++) {
-                    ProcessadorIB processador = processadores.get(j);
+                    Processador processador = processadores.get(j);
                     if (processador.is_processando) {
-                        processadores.get(j).processoIB.tempoProcesso--;
-                        if (processador.processoIB.tempoProcesso == 0) {
-                            processador.processoIB.color = Color.GRAY;
-                            finalizados.add(processador.processoIB);
-                            processadores.get(j).processoIB = null;
+                        processadores.get(j).processo.tempoProcesso--;
+                        if (processador.processo.tempoProcesso == 0) {
+                            processador.processo.color = Color.GRAY;
+                            finalizados.add(processador.processo);
+                            processadores.get(j).processo = null;
                             processadores.get(j).is_processando = false;
                             reloadDataGridViewFinalizado();
                             semaphore.release();
@@ -678,8 +678,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
     }
 
     @Click(R.id.adicionar)
-    @UiThread
-    public void adicionarProcesso(){
+    synchronized void adicionarProcesso(){
 
       Random gerador = new Random();
 
@@ -689,18 +688,17 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
       int ultimoProcesso = numProcessos;
 
-      ProcessoIB processo = new ProcessoIB("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE);
+      Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE);
 
       synchronized (this){
         remanecentes.add(processo);
 
         for(int i = 0; i < numQtdProcessadores; i++){
-          LinkedList<ProcessoIB> processos;
-          processos = processosList.get(i);
+
           for(int j = 0; j < remanecentes.size(); j++){
-              processos.add(remanecentes.pop());
+              processosList.get(i).add(remanecentes.pop());
           }
-          processosList.set(i, gerarFilaExecucao(processos));
+          processosList.set(i, gerarFilaExecucao(processosList.get(i)));
           reloadDataGridViewProcessos(i);
         }
       }
@@ -766,15 +764,15 @@ public class IntervalBaseActivity extends AppCompatActivity{
         }, 0, 1000);
     }
 
-    public LinkedList<ProcessoIB> gerarFilaExecucao(LinkedList<ProcessoIB> iniciais){
+    public LinkedList<Processo> gerarFilaExecucao(LinkedList<Processo> iniciais){
 
-        ProcessoIB processo;
-        LinkedList<ProcessoIB> processos;
+        Processo processo;
+        LinkedList<Processo> processos;
         try{
 
             Collections.sort(iniciais);
             processo = iniciais.get(0);
-            LinkedList<ProcessoIB> auxRem = new LinkedList<>();
+            LinkedList<Processo> auxRem = new LinkedList<>();
             processos = new LinkedList<>();
             processos.add(iniciais.pop());
             while(!iniciais.isEmpty()){
@@ -838,7 +836,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
     public void contruirGridViewProcessadores(){
 
         for (int i = 0; i < numQtdProcessadores; i++){
-            processadores.add(new ProcessadorIB());
+            processadores.add(new Processador());
         }
 
         processadorAdapter.setProcessadores(processadores);
@@ -852,7 +850,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
         int count = 0;
         Random gerador = new Random();
 
-        LinkedList<ProcessoIB> iniciais = new LinkedList<>();
+        LinkedList<Processo> iniciais = new LinkedList<>();
 
         int tempoProcesso;
         int deadLine;
@@ -860,7 +858,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
         for (int i = 0; i < numProcessos; i++) {
             tempoProcesso = gerador.nextInt(8) + 2;
             deadLine = gerador.nextInt(20) + 2;
-            iniciais.add(new ProcessoIB("P" + (i + 1), tempoProcesso, deadLine, tempoProcesso, getResources().getColor(R.color.amareloProcesso)));
+            iniciais.add(new Processo("P" + (i + 1), tempoProcesso, deadLine, tempoProcesso, getResources().getColor(R.color.amareloProcesso)));
 
             if (count == numQtdProcessadores - 1){
                 count = 0;
@@ -1633,7 +1631,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
     }
 
     @UiThread
-    public void reloadDataGridViewProcessador(LinkedList<ProcessadorIB> processadores){
+    public void reloadDataGridViewProcessador(LinkedList<Processador> processadores){
 
         synchronized (getApplicationContext()){
             processadorAdapter.setProcessadores(processadores);
@@ -1659,7 +1657,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     public void criarListas(){
         for (int i = 0; i < numQtdProcessadores; i++){
-            processosList.add(new LinkedList<ProcessoIB>());
+            processosList.add(new LinkedList<Processo>());
         }
     }
 

@@ -1,22 +1,17 @@
 package com.example.sueliopss.escalonador;
 
-import android.app.AlertDialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -24,15 +19,12 @@ import android.widget.ListAdapter;
 import android.widget.ScrollView;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
-
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -47,6 +39,9 @@ public class LTGActivity extends AppCompatActivity {
     @ViewById(R.id.gridProcessadores)
     GridView gridProcessadores;
 
+    @ViewById(R.id.gridMemoria)
+    GridView gridMemoria;
+
     @ViewById(R.id.gridAptos)
     GridView gridAptos;
 
@@ -55,6 +50,9 @@ public class LTGActivity extends AppCompatActivity {
 
     @Bean
     ProcessadorAdapter processadorAdapter;
+
+    @Bean
+    ProcessoAdapter memoriaAdapter;
 
     @Bean
     ProcessoAdapter processoAdapter;
@@ -273,7 +271,6 @@ public class LTGActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private void gridViewSetting(GridView gridview, int size) {
 
         // Calculated single Item Layout Width for each grid element ....
@@ -353,6 +350,10 @@ public class LTGActivity extends AppCompatActivity {
         finalizadoAdapter.setProcessos(finalizados);
 
         gridCancelados.setAdapter(finalizadoAdapter);
+
+    }
+
+    synchronized void construirGridViewMemoria(){
 
     }
 
