@@ -686,9 +686,11 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
       int deadLine = gerador.nextInt(20) + 2;
 
+      int memoria = gerador.nextInt(20) + 10;
+
       int ultimoProcesso = numProcessos;
 
-      Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE);
+      Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE, memoria);
 
       synchronized (this){
         remanecentes.add(processo);
@@ -854,11 +856,13 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
         int tempoProcesso;
         int deadLine;
+        int memoria;
 
         for (int i = 0; i < numProcessos; i++) {
             tempoProcesso = gerador.nextInt(8) + 2;
             deadLine = gerador.nextInt(20) + 2;
-            iniciais.add(new Processo("P" + (i + 1), tempoProcesso, deadLine, tempoProcesso, getResources().getColor(R.color.amareloProcesso)));
+            memoria = gerador.nextInt(20) + 10;
+            iniciais.add(new Processo("P" + (i + 1), tempoProcesso, deadLine, tempoProcesso, getResources().getColor(R.color.amareloProcesso), memoria));
 
             if (count == numQtdProcessadores - 1){
                 count = 0;

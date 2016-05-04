@@ -83,6 +83,8 @@ public class LTGActivity extends AppCompatActivity {
 
     Semaphore semaphore;
 
+    int qtdMemoria;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +92,7 @@ public class LTGActivity extends AppCompatActivity {
         processadores = new LinkedList<>();
         processos = new LinkedList<>();
         finalizados = new LinkedList<>();
+        qtdMemoria = 100;
 
     }
 
@@ -192,9 +195,11 @@ public class LTGActivity extends AppCompatActivity {
 
             int deadLine = gerador.nextInt(20) + 4;
 
+            int memoria = gerador.nextInt(20) + 10;
+
             int ultimoProcesso = numProcessos;
 
-            Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE);
+            Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE, memoria);
 
             processos.add(processo);
 
@@ -304,7 +309,7 @@ public class LTGActivity extends AppCompatActivity {
         contruirGridViewProcessos(qntprocessos);
         contruirGridViewFinalizados();
 
-        setGridViewHeightBasedOnChildren(gridProcessadores, 8);
+        setGridViewHeightBasedOnChildren(gridProcessadores, 4);
     }
 
     public void contruirGridViewProcessadores(int numProcessadores){
@@ -322,11 +327,13 @@ public class LTGActivity extends AppCompatActivity {
 
         int tempoProcesso;
         int deadLine;
+        int memoria;
 
         for (int i = 0; i < numProcesso; i++){
             tempoProcesso = gerador.nextInt(20) + 4;
             deadLine = gerador.nextInt(20) + 4;
-            processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, tempoProcesso, Color.YELLOW ));
+            memoria = gerador.nextInt(20) + 10;
+            processos.add(new Processo("P"+(i+1), tempoProcesso, deadLine, tempoProcesso, Color.YELLOW , memoria));
         }
 
         Collections.sort(processos);
