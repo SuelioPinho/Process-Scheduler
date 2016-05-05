@@ -52,7 +52,7 @@ public class LTGActivity extends AppCompatActivity {
     ProcessadorAdapter processadorAdapter;
 
     @Bean
-    ProcessoAdapter memoriaAdapter;
+    MemoriaAdapter memoriaAdapter;
 
     @Bean
     ProcessoAdapter processoAdapter;
@@ -81,6 +81,8 @@ public class LTGActivity extends AppCompatActivity {
 
     LinkedList<Processo> finalizados;
 
+    LinkedList<BlocoMemoria> memoria;
+
     Semaphore semaphore;
 
     int qtdMemoria;
@@ -92,6 +94,7 @@ public class LTGActivity extends AppCompatActivity {
         processadores = new LinkedList<>();
         processos = new LinkedList<>();
         finalizados = new LinkedList<>();
+        memoria = new LinkedList<>();
         qtdMemoria = 100;
 
     }
@@ -142,7 +145,7 @@ public class LTGActivity extends AppCompatActivity {
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }finally {
+                } finally {
                     semaphore.release();
                 }
 
@@ -209,7 +212,6 @@ public class LTGActivity extends AppCompatActivity {
 
             reloadDataGridViewProcessos(processos);
         }
-
 
     }
 

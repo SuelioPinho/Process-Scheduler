@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
@@ -28,26 +28,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="13dp"
-        android:text="Nome"
+        android:text="Mm"
         android:textSize="12dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="6dp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:id="@+id/nomeProcesso"
+        android:layout_marginTop="6dp"
+        android:id="@+id/tamanhoMemoria"
         android:layout_alignTop="@+id/relativeItemProcessador"
         android:layout_alignStart="@+id/relativeItemProcessador" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="13dp"
-        android:text="T"
-        android:layout_marginTop="5dp"
+        android:text="Nome"
+        android:layout_marginTop="3dp"
+        android:textSize="12dp"
+        android:layout_below="@+id/tamanhoMemoria"
+        android:layout_alignStart="@+id/tamanhoMemoria"
+        android:id="@+id/nomeProcesso" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="13dp"
+        android:text="Mp"
+        android:layout_marginTop="3dp"
         android:textSize="12dp"
         android:layout_below="@+id/nomeProcesso"
         android:layout_alignStart="@+id/nomeProcesso"
-        android:id="@+id/tempoProcesso"
-        />
-
-
+        android:id="@+id/tamanhoProcesso" />
 
 </RelativeLayout>
