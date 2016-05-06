@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
 import java.util.LinkedList;
@@ -12,12 +13,18 @@ import java.util.LinkedList;
 /**
  * Created by sueliopss on 04/05/16.
  */
+@EBean
 public class MemoriaAdapter extends BaseAdapter{
 
     @RootContext
     Context context;
 
     LinkedList<BlocoMemoria> memoria = new LinkedList<>();
+
+    public void setBlocos( LinkedList<BlocoMemoria> memoria){
+        this.memoria = memoria;
+    }
+
     @Override
     public int getCount() {
         return memoria.size();

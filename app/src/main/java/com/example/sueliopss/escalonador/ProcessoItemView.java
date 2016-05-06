@@ -55,7 +55,7 @@ public class ProcessoItemView extends RelativeLayout{
 
         nomeProcesso.setText(processo.nomeProcesso);
         tempoProcesso.setText("T" + processo.tempoProcesso + "/" + processo.tempoTotal);
-        memoria.setText("M" + processo.memoria + "kb");
+        memoria.setText("M" + processo.memoria + "B");
         if(processo.deadLine == -256){
             deadLine.setText("");
         }else{

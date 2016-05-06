@@ -21,14 +21,21 @@ public class MemoriaItemView extends RelativeLayout{
     @ViewById(R.id.imageProcessador)
     ImageView imageMemoria;
 
-    @ViewById(R.id.tamanhoMemoria)
-    TextView tamanhoMemoria;
+    @ViewById(R.id.idMemoria)
+    TextView idMemoria;
+
+    @ViewById(R.id.memoriaBloco)
+    TextView memoriaBloco;
 
     @ViewById(R.id.nomeProcesso)
     TextView nomeProcesso;
 
-    @ViewById(R.id.tamanhoProcesso)
-    TextView tamanhoProcesso;
+    @ViewById(R.id.memoriaProcesso)
+    TextView memoriaProcesso;
+
+    @ViewById(R.id.proximoBloco)
+    TextView proximoBloco;
+
 
     @ViewById
     RelativeLayout relativeItemProcessador;
@@ -43,16 +50,21 @@ public class MemoriaItemView extends RelativeLayout{
     public void bind(BlocoMemoria bloco){
 
         if(bloco.is_ocupado){
-            pintarShape(bloco.processo.color);
+            pintarShape(Color.RED);
             relativeItemProcessador.setBackground(shape);
+            idMemoria.setText("ID " + bloco.id);
+            memoriaBloco.setText("MB " + bloco.tamanho + "B");
             nomeProcesso.setText(bloco.processo.nomeProcesso);
-            tamanhoProcesso.setText("Mp" + bloco.processo.tempoProcesso + "/" + bloco.processo.tempoTotal);
+            memoriaProcesso.setText("MP " + bloco.processo.memoria + "B");
+            proximoBloco.setText("PROX-"+bloco.proximoBloco);
         }else{
-            pintarShape(Color.TRANSPARENT);
+            pintarShape(getResources().getColor(R.color.verdeProcesso));
             relativeItemProcessador.setBackground(shape);
-            tamanhoMemoria.setText("Mm"+bloco.tamanho);
+            idMemoria.setText("ID " + bloco.id);
+            memoriaBloco.setText("MB " + bloco.tamanho + "B");
             nomeProcesso.setText("");
-            tamanhoProcesso.setText("");
+            memoriaProcesso.setText("");
+            proximoBloco.setText("PROX-"+bloco.proximoBloco);
 
         }
     }

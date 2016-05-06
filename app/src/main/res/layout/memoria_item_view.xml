@@ -4,57 +4,71 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/imageProcessador"
         android:scaleType="centerInside"
         android:background="@mipmap/ic_processador"/>
 
     <RelativeLayout
         android:id="@+id/relativeItemProcessador"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_alignBottom="@+id/imageProcessador"
-        android:layout_marginBottom="22dp"
-        android:layout_marginStart="22dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="38dp"
         android:layout_alignParentStart="true"
         >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imagePcso"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:text="ID "
+            android:textSize="12dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/idMemoria"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="7dp"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:text="MB"
+            android:textSize="12dp"
+            android:id="@+id/memoriaBloco"
+            android:layout_below="@+id/idMemoria"
+            android:layout_marginLeft="7dp"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:text="Processo"
+            android:textSize="12dp"
+            android:id="@+id/nomeProcesso"
+            android:layout_below="@+id/memoriaBloco"
+            android:layout_marginLeft="7dp"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:text="MP"
+            android:textSize="12dp"
+            android:id="@+id/memoriaProcesso"
+            android:layout_below="@+id/nomeProcesso"
+            android:layout_marginLeft="7dp"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:text="Prox"
+            android:textSize="12dp"
+            android:id="@+id/proximoBloco"
+            android:layout_below="@+id/memoriaProcesso"
+            android:layout_marginLeft="7dp"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="13dp"
-        android:text="Mm"
-        android:textSize="12dp"
-        android:layout_marginStart="6dp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="6dp"
-        android:id="@+id/tamanhoMemoria"
-        android:layout_alignTop="@+id/relativeItemProcessador"
-        android:layout_alignStart="@+id/relativeItemProcessador" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="13dp"
-        android:text="Nome"
-        android:layout_marginTop="3dp"
-        android:textSize="12dp"
-        android:layout_below="@+id/tamanhoMemoria"
-        android:layout_alignStart="@+id/tamanhoMemoria"
-        android:id="@+id/nomeProcesso" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="13dp"
-        android:text="Mp"
-        android:layout_marginTop="3dp"
-        android:textSize="12dp"
-        android:layout_below="@+id/nomeProcesso"
-        android:layout_alignStart="@+id/nomeProcesso"
-        android:id="@+id/tamanhoProcesso" />
 
 </RelativeLayout>
