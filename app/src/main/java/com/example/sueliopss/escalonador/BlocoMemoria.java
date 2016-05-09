@@ -9,10 +9,10 @@ public class BlocoMemoria {
     int tamanho;
     boolean is_ocupado;
     Processo processo;
-    String proximoBloco;
+    Integer proximoBloco;
     int endereco;
 
-    public BlocoMemoria(int id, int tamanho, String proximoBloco) {
+    public BlocoMemoria(int id, int tamanho, Integer proximoBloco) {
         this.id = id;
         this.tamanho = tamanho;
         this.is_ocupado = false;
@@ -20,7 +20,7 @@ public class BlocoMemoria {
         this.proximoBloco = proximoBloco;
     }
 
-    public BlocoMemoria(int id, int tamanho, Processo processo, String proximoBloco) {
+    public BlocoMemoria(int id, int tamanho, Processo processo, Integer proximoBloco) {
         this.id = id;
         this.tamanho = tamanho;
         this.is_ocupado = true;
@@ -28,7 +28,7 @@ public class BlocoMemoria {
         this.proximoBloco = proximoBloco;
     }
 
-    public BlocoMemoria(int id, int tamanho, String proximoBloco, int endereco) {
+    public BlocoMemoria(int id, int tamanho, Integer proximoBloco, int endereco) {
         this.id = id;
         this.tamanho = tamanho;
         this.is_ocupado = false;

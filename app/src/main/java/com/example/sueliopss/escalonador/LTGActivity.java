@@ -33,6 +33,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
+import dalvik.system.BaseDexClassLoader;
+
 @EActivity(R.layout.activity_main)
 public class LTGActivity extends AppCompatActivity {
 
@@ -120,8 +122,8 @@ public class LTGActivity extends AppCompatActivity {
             }
         });
 
-        memoria.add(new BlocoMemoria(1, qtdMemoria, "Null"));
-        memoriaLivre.add(new BlocoMemoria(1, qtdMemoria, "Null", 0));
+        memoria.add(new BlocoMemoria(1, qtdMemoria, null));
+        memoriaLivre.add(new BlocoMemoria(1, qtdMemoria, null, 0));
         prepararEscalonamento();
 
     }
@@ -262,7 +264,13 @@ public class LTGActivity extends AppCompatActivity {
 
             Processo processo = processos.pop();
             memoria.get(0).tamanho-= processo.memoria;
-            memoria.add(new BlocoMemoria(idMemoria + 2, processo.memoria, processo, "null"));
+            BlocoMemoria bloco = new BlocoMemoria(idMemoria + 2, processo.memoria, processo, null);
+            if(idMemoria > 1){
+                memoria.get(idMemoria - 1).proximoBloco = idMemoria;
+            }
+            memoria.add(bloco);
+            bloco.endereco = idMemoria + 1;
+            memoriaOcupada.add();
             processadores.get(idMemoria).processo = processo;
             processadores.get(idMemoria).processo.color = getResources().getColor(R.color.verdeProcesso);
             processadores.get(idMemoria).is_processando = true;
