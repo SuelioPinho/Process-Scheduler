@@ -3,7 +3,7 @@ package com.example.sueliopss.escalonador;
 /**
  * Created by sueliopss on 04/05/16.
  */
-public class BlocoMemoria {
+public class BlocoMemoria implements Comparable<BlocoMemoria>{
 
     int id;
     int tamanho;
@@ -38,4 +38,17 @@ public class BlocoMemoria {
     }
 
 
+    @Override
+    public int compareTo(BlocoMemoria another) {
+
+        if(this.id < another.id){
+            return -1;
+        }
+
+        if (this.id > another.id){
+            return 1;
+        }
+
+        return 0;
+    }
 }

@@ -36,7 +36,6 @@ public class MemoriaItemView extends RelativeLayout{
     @ViewById(R.id.proximoBloco)
     TextView proximoBloco;
 
-
     @ViewById
     RelativeLayout relativeItemProcessador;
 
