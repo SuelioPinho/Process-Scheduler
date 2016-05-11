@@ -145,30 +145,14 @@ public class LTGActivity extends AppCompatActivity {
                 try {
 
                     semaphoreProcessador.acquire();
+                    buscarProcessador();
 
-                        for (BlocoMemoria bloco : memoria) {
-                            if (!bloco.is_ocupado) {
-                                for (Processador processador : processadores) {
-                                    if (!processador.is_processando) {
-                                        if (!processos.isEmpty()) {
-                                            Processo processo = processos.pop();
-                                            bloco.processo = processo;
-                                            bloco.is_ocupado = true;
-                                            processador.processo = processo;
-                                            processador.is_processando = true;
-                                            mudarEstadoMemoria(bloco.id, LIVRE);
-                                            reloadDataGridViewProcessos(processos);
-                                            reloadDataGridViewMemoria(memoria);
-                                        }
-                                    }
-                                }
-                            }
-                        }
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
                     semaphoreProcessador.release();
+
                 }
 
 
@@ -176,6 +160,70 @@ public class LTGActivity extends AppCompatActivity {
         }, 0, 1000);
 
 
+    }
+
+    public BlocoMemoria bestFit(){
+
+        BlocoMemoria melhorBloco = null;
+
+        if(!processos.isEmpty()) {
+            Processo processo = processos.pop();
+
+            for (BlocoMemoria bloco : memoria) {
+
+                if (!bloco.is_ocupado) {
+
+                    if (bloco.tamanho >= processo.memoria) {
+
+                        if (melhorBloco != null) {
+
+                            if (bloco.tamanho < melhorBloco.tamanho) {
+
+                                melhorBloco.is_ocupado = false;
+                                melhorBloco = bloco;
+                                melhorBloco.is_ocupado = true;
+                                melhorBloco.processo = processo;
+                            }
+
+                        } else {
+
+                            melhorBloco = bloco;
+                            melhorBloco.is_ocupado = true;
+                            melhorBloco.processo = processo;
+
+                        }
+                    }
+
+                }
+
+            }
+
+            if (melhorBloco == null){
+                processos.addFirst(processo);
+            }
+        }
+
+
+        return melhorBloco;
+    }
+
+    public void buscarProcessador(){
+
+        for (Processador processador : processadores) {
+            if (!processador.is_processando) {
+                BlocoMemoria bloco = bestFit();
+                if(bloco != null){
+                    processador.processo = bloco.processo;
+                    processador.is_processando = true;
+                    processador.enderecoBloco = bloco.id;
+                    mudarEstadoMemoria(bloco.id, LIVRE);
+                    reloadDataGridViewProcessos(processos);
+                    reloadDataGridViewMemoria(memoria);
+                    break;
+                }
+
+            }
+        }
     }
 
     synchronized void processar() {
@@ -202,21 +250,20 @@ public class LTGActivity extends AppCompatActivity {
 
                             finalizados.add(processador.processo);
 
-                            processadores.get(j).processo = null;
-
                             processadores.get(j).is_processando = false;
 
                             bloco.is_ocupado = false;
 
-                            mudarEstadoMemoria(bloco.id, OCUPADO);
+                            mudarEstadoMemoria(processador.enderecoBloco, OCUPADO);
 
                             reloadDataGridViewFinalizado(finalizados);
 
                             semaphoreProcessador.release();
+
                         }
                     }
                 }
-                reloadDataGridViewMemoria(memoria);
+
                 reloadDataGridViewProcessador(processadores);
 
             }
@@ -308,7 +355,7 @@ public class LTGActivity extends AppCompatActivity {
         processar();
     }
 
-    public void mudarEstadoMemoria(int idBloco, int estadoAtual){
+    synchronized void mudarEstadoMemoria(int idBloco, int estadoAtual){
 
         switch (estadoAtual){
             case OCUPADO:
@@ -317,6 +364,7 @@ public class LTGActivity extends AppCompatActivity {
                     if(memoriaOcupada.get(i).endereco == idBloco){
 
                         memoriaLivre.add(memoriaOcupada.remove(i));
+
                     }
                 } break;
             case LIVRE:
@@ -325,13 +373,13 @@ public class LTGActivity extends AppCompatActivity {
                     if(memoriaLivre.get(i).endereco == idBloco){
 
                         memoriaOcupada.add(memoriaLivre.remove(i));
+
                     }
                 }
         }
 
         ordenarMemoria(memoriaLivre);
         ordenarMemoria(memoriaOcupada);
-
         reloadDataGridViewMemoria(memoria);
     }
 
@@ -349,10 +397,6 @@ public class LTGActivity extends AppCompatActivity {
                 BlocoMemoria anterior = memoriaAuxiliar.get(i - 1);
 
                 BlocoMemoria atual = memoriaAuxiliar.get(i);
-
-                anterior.proximoBloco = atual.id;
-
-                atual.proximoBloco = null;
 
                 memoria.get(anterior.endereco).proximoBloco = memoria.get(atual.endereco).id;
 
