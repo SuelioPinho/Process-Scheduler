@@ -48,24 +48,25 @@ public class MemoriaItemView extends RelativeLayout{
 
     public void bind(BlocoMemoria bloco){
 
-        if(bloco.is_ocupado){
+        idMemoria.setText("ID " + (bloco.id + 1));
+        memoriaBloco.setText("MB " + bloco.tamanho + "B");
+        if(bloco.proximoBloco == null){
+            proximoBloco.setText("PROX-" + null);
+        }else{
+            proximoBloco.setText("PROX-" + (bloco.proximoBloco + 1));
+        }
+
+        if (bloco.is_ocupado){
             pintarShape(Color.RED);
-            relativeItemProcessador.setBackground(shape);
-            idMemoria.setText("ID " + bloco.id);
-            memoriaBloco.setText("MB " + bloco.tamanho + "B");
             nomeProcesso.setText(bloco.processo.nomeProcesso);
             memoriaProcesso.setText("MP " + bloco.processo.memoria + "B");
-            proximoBloco.setText("PROX-"+bloco.proximoBloco);
         }else{
             pintarShape(getResources().getColor(R.color.verdeProcesso));
-            relativeItemProcessador.setBackground(shape);
-            idMemoria.setText("ID " + bloco.id);
-            memoriaBloco.setText("MB " + bloco.tamanho + "B");
             nomeProcesso.setText("");
             memoriaProcesso.setText("");
-            proximoBloco.setText("PROX-"+bloco.proximoBloco);
-
         }
+
+        relativeItemProcessador.setBackground(shape);
     }
 
     public void setPosition(int position) {

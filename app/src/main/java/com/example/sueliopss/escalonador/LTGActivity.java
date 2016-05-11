@@ -90,8 +90,6 @@ public class LTGActivity extends AppCompatActivity {
 
     Semaphore semaphoreProcessador;
 
-    Semaphore semaphoreMemoria;
-
     int qtdMemoria;
 
     static final int OCUPADO = 1;
@@ -123,8 +121,8 @@ public class LTGActivity extends AppCompatActivity {
             }
         });
 
-        memoria.add(new BlocoMemoria(1, qtdMemoria, null));
-        memoriaLivre.add(new BlocoMemoria(1, qtdMemoria, null, 0));
+        memoria.add(new BlocoMemoria(0, qtdMemoria, null));
+        memoriaLivre.add(new BlocoMemoria(0, qtdMemoria, null, 0));
         prepararEscalonamento();
 
     }
@@ -145,24 +143,32 @@ public class LTGActivity extends AppCompatActivity {
             public void run() {
 
                 try {
-                    semaphoreMemoria.acquire();
-                    //semaphoreProcessador.acquire();
-                    for (Processador processador : processadores) {
-                        if (!processador.is_processando) {
-                            if (!processos.isEmpty()) {
-                                processador.processo = processos.pop();
-                                processador.is_processando = true;
-                                reloadDataGridViewProcessos(processos);
+
+                    semaphoreProcessador.acquire();
+
+                        for (BlocoMemoria bloco : memoria) {
+                            if (!bloco.is_ocupado) {
+                                for (Processador processador : processadores) {
+                                    if (!processador.is_processando) {
+                                        if (!processos.isEmpty()) {
+                                            Processo processo = processos.pop();
+                                            bloco.processo = processo;
+                                            bloco.is_ocupado = true;
+                                            processador.processo = processo;
+                                            processador.is_processando = true;
+                                            mudarEstadoMemoria(bloco.id, LIVRE);
+                                            reloadDataGridViewProcessos(processos);
+                                            reloadDataGridViewMemoria(memoria);
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
-
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    //semaphoreProcessador.release();
-                    //semaphoreMemoria.release();
+                    semaphoreProcessador.release();
                 }
 
 
@@ -204,15 +210,13 @@ public class LTGActivity extends AppCompatActivity {
 
                             mudarEstadoMemoria(bloco.id, OCUPADO);
 
-                            reloadDataGridViewMemoria(memoria);
-
                             reloadDataGridViewFinalizado(finalizados);
 
-                            //semaphoreProcessador.release();
+                            semaphoreProcessador.release();
                         }
                     }
                 }
-
+                reloadDataGridViewMemoria(memoria);
                 reloadDataGridViewProcessador(processadores);
 
             }
@@ -279,8 +283,8 @@ public class LTGActivity extends AppCompatActivity {
 
     public void preencherProcessadores(){
 
-        int idMemoria = 1;
-        while(!processos.isEmpty() && processos.get(0).memoria < memoria.get(0).tamanho && idMemoria <= processadores.size()){
+        int idMemoria = 0;
+        while(!processos.isEmpty() && processos.get(0).memoria < memoria.get(0).tamanho && idMemoria < processadores.size()){
 
             Processo processo = processos.pop();
 
@@ -290,35 +294,27 @@ public class LTGActivity extends AppCompatActivity {
 
             memoria.add(bloco);
 
-            memoriaOcupada.add(new BlocoMemoria(idMemoria + 1, processo.memoria, processo, null));
+            memoriaOcupada.add(new BlocoMemoria(idMemoria + 1, processo.memoria, null, idMemoria + 1));
 
-            if(idMemoria > 1 && idMemoria < processadores.size() + 1){
-                memoria.get(idMemoria - 1).proximoBloco = idMemoria + 1;
-                memoriaOcupada.get(idMemoria - 2).proximoBloco = idMemoria;
-            }
-
-            bloco.endereco = idMemoria - 1;
-
-            processadores.get(idMemoria - 1 ).processo = processo;
-            processadores.get(idMemoria - 1).processo.color = getResources().getColor(R.color.verdeProcesso);
-            processadores.get(idMemoria - 1).is_processando = true;
-            processadores.get(idMemoria - 1).enderecoBloco = idMemoria;
+            processadores.get(idMemoria).processo = processo;
+            processadores.get(idMemoria).processo.color = getResources().getColor(R.color.verdeProcesso);
+            processadores.get(idMemoria).is_processando = true;
+            processadores.get(idMemoria).enderecoBloco = idMemoria + 1;
             idMemoria++;
         }
-
-        semaphoreMemoria = new Semaphore(memoria.size());
+        ordenarMemoria(memoriaOcupada);
         construirGridViewMemoria();
         reloadDataGridViewProcessador(processadores);
         processar();
     }
 
-    synchronized void mudarEstadoMemoria(int idBloco, int estadoAtual){
+    public void mudarEstadoMemoria(int idBloco, int estadoAtual){
 
         switch (estadoAtual){
             case OCUPADO:
                 for(int i = 0; i < memoriaOcupada.size(); i++){
 
-                    if(memoriaOcupada.get(i).endereco == idBloco - 1){
+                    if(memoriaOcupada.get(i).endereco == idBloco){
 
                         memoriaLivre.add(memoriaOcupada.remove(i));
                     }
@@ -326,7 +322,7 @@ public class LTGActivity extends AppCompatActivity {
             case LIVRE:
                 for (int i = 0; i < memoriaLivre.size(); i++){
 
-                    if(memoriaLivre.get(i).endereco == idBloco - 1){
+                    if(memoriaLivre.get(i).endereco == idBloco){
 
                         memoriaOcupada.add(memoriaLivre.remove(i));
                     }
@@ -343,24 +339,27 @@ public class LTGActivity extends AppCompatActivity {
 
         Collections.sort(memoriaAuxiliar);
 
-        memoriaAuxiliar.get(0).proximoBloco = null;
+        if (memoriaAuxiliar.size() > 0){
+            memoriaAuxiliar.get(0).proximoBloco = null;
 
-        memoria.get(memoriaAuxiliar.get(0).endereco).proximoBloco = null;
+            memoria.get(memoriaAuxiliar.get(0).endereco).proximoBloco = null;
 
-        for(int i = 1; i < memoriaAuxiliar.size(); i++){
+            for(int i = 1; i < memoriaAuxiliar.size(); i++){
 
-            BlocoMemoria anterior = memoriaAuxiliar.get(i - 1);
+                BlocoMemoria anterior = memoriaAuxiliar.get(i - 1);
 
-            BlocoMemoria atual = memoriaAuxiliar.get(i);
+                BlocoMemoria atual = memoriaAuxiliar.get(i);
 
-            anterior.proximoBloco = atual.id;
+                anterior.proximoBloco = atual.id;
 
-            atual.proximoBloco = null;
+                atual.proximoBloco = null;
 
-            memoria.get(anterior.endereco).proximoBloco = memoria.get(atual.endereco).id;
+                memoria.get(anterior.endereco).proximoBloco = memoria.get(atual.endereco).id;
 
-            memoria.get(atual.endereco).proximoBloco = null;
+                memoria.get(atual.endereco).proximoBloco = null;
+            }
         }
+
     }
 
     @Override
