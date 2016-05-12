@@ -26,6 +26,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
@@ -95,6 +96,11 @@ public class LTGActivity extends AppCompatActivity {
     static final int OCUPADO = 1;
     static final int LIVRE = 0;
 
+    static final int BESTFIT = 0;
+    static final int MERGEFIT = 1;
+    static final int QUICKFIT = 2;
+    static final int algoritmo = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,6 +168,22 @@ public class LTGActivity extends AppCompatActivity {
 
     }
 
+    public BlocoMemoria pedirMemoria(Processo processo){
+
+        BlocoMemoria bloco = null;
+
+        switch (algoritmo){
+            case BESTFIT:
+                bloco = bestFit(processo); break;
+            case QUICKFIT:
+                bloco = quickFit(processo); break;
+            case MERGEFIT:
+                bloco = mergeFit(processo); break;
+        }
+        return bloco;
+
+    }
+
     public BlocoMemoria bestFit(Processo processo){
 
         BlocoMemoria melhorBloco = null;
@@ -193,13 +215,41 @@ public class LTGActivity extends AppCompatActivity {
         return melhorBloco;
     }
 
+    public BlocoMemoria mergeFit(Processo processo){
+
+        BlocoMemoria blocoMemoria = null;
+
+        for(BlocoMemoria bloco : memoriaLivre){
+
+            if (bloco.tamanho == processo.memoria){
+                blocoMemoria = bloco;
+                blocoMemoria.is_ocupado = true;
+                blocoMemoria.processo = processo;
+                break;
+            }
+
+            if (bloco.tamanho > processo.memoria){
+                blocoMemoria = new BlocoMemoria(bloco.id, processo.memoria, processo, null);
+                blocoMemoria.is_ocupado = true;
+                blocoMemoria.processo = processo;
+                break;
+            }
+        }
+
+        return blocoMemoria;
+    }
+
+    public BlocoMemoria quickFit(Processo processo){
+        return null;
+    }
+
     public void buscarProcessador(){
 
         for (Processador processador : processadores) {
             if (!processador.is_processando) {
                 if(!processos.isEmpty()) {
                     Processo processo = processos.pop();
-                    BlocoMemoria bloco = bestFit(processo);
+                    BlocoMemoria bloco = pedirMemoria(processo);
 
                     if (bloco != null) {
                         memoria.set(bloco.id, bloco);
@@ -240,7 +290,7 @@ public class LTGActivity extends AppCompatActivity {
                                 Processo outroProcesso = new Processo();
                                 outroProcesso.nomeProcesso = processo.nomeProcesso;
                                 outroProcesso.memoria = processo.memoriaAdicional;
-                                BlocoMemoria bloco = bestFit(outroProcesso);
+                                BlocoMemoria bloco = pedirMemoria(outroProcesso);
 
                                 if (bloco == null){
                                     processador.is_processando = false;
@@ -375,6 +425,7 @@ public class LTGActivity extends AppCompatActivity {
             processadores.get(idMemoria).enderecoBlocos.add(idMemoria + 1);
             idMemoria++;
         }
+        memoriaLivre.get(0).tamanho = memoria.get(0).tamanho;
         ordenarMemoria(memoriaOcupada);
         construirGridViewMemoria();
         reloadDataGridViewProcessador(processadores);
@@ -433,6 +484,16 @@ public class LTGActivity extends AppCompatActivity {
 
     }
 
+    public void ordenarIdBlocos(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
+        for(int i = idInicial; i < memoriaAuxiliar.size(); i++){
+            memoriaAuxiliar.get(i).id++;
+        }
+    }
+
+    public void mesclarBlocos(){
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -482,15 +543,15 @@ public class LTGActivity extends AppCompatActivity {
 
         semaphoreProcessador = new Semaphore(qntProcessadores);
 
-        contruirGridViewProcessadores(qntProcessadores);
-        contruirGridViewProcessos(qntprocessos);
-        contruirGridViewFinalizados();
+        construirGridViewProcessadores(qntProcessadores);
+        construirGridViewProcessos(qntprocessos);
+        construirGridViewFinalizados();
         construirGridViewMemoria();
 
         setGridViewHeightBasedOnChildren(gridProcessadores, 4);
     }
 
-    public void contruirGridViewProcessadores(int numProcessadores){
+    public void construirGridViewProcessadores(int numProcessadores){
 
         for (int i = 0; i < numProcessadores; i++){
             processadores.add(new Processador());
@@ -499,7 +560,7 @@ public class LTGActivity extends AppCompatActivity {
         gridProcessadores.setAdapter(processadorAdapter);
     }
 
-    public void contruirGridViewProcessos(int numProcesso){
+    public void construirGridViewProcessos(int numProcesso){
 
         Random gerador = new Random();
 
@@ -533,7 +594,7 @@ public class LTGActivity extends AppCompatActivity {
 
     }
 
-    synchronized void contruirGridViewFinalizados(){
+    synchronized void construirGridViewFinalizados(){
 
         gridCancelados.setNumColumns(finalizados.size());
 
@@ -629,7 +690,7 @@ public class LTGActivity extends AppCompatActivity {
     public void reloadDataGridViewFinalizado(LinkedList<Processo> processos){
 
         synchronized (this) {
-            contruirGridViewFinalizados();
+            construirGridViewFinalizados();
         }
     }
 }
