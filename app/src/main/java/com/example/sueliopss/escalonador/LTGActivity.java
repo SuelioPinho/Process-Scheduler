@@ -26,7 +26,6 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
@@ -229,9 +228,14 @@ public class LTGActivity extends AppCompatActivity {
             }
 
             if (bloco.tamanho > processo.memoria){
-                blocoMemoria = new BlocoMemoria(bloco.id, processo.memoria, processo, null);
+                blocoMemoria = new BlocoMemoria(bloco.id + 1, processo.memoria, processo, bloco.id + 1);
                 blocoMemoria.is_ocupado = true;
                 blocoMemoria.processo = processo;
+                memoria.add(blocoMemoria.id, blocoMemoria);
+                mudarIdBlocos(blocoMemoria.id + 1, memoria);
+                incrementarIdBlocos(blocoMemoria.id, memoriaLivre);
+                incrementarIdBlocos(blocoMemoria.id, memoriaOcupada);
+
                 break;
             }
         }
@@ -484,9 +488,27 @@ public class LTGActivity extends AppCompatActivity {
 
     }
 
-    public void ordenarIdBlocos(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
+    public void mudarIdBlocos(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
         for(int i = idInicial; i < memoriaAuxiliar.size(); i++){
             memoriaAuxiliar.get(i).id++;
+        }
+    }
+
+    public void incrementarIdBlocos(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
+
+        for(BlocoMemoria bloco : memoriaAuxiliar){
+            if(bloco.id >= idInicial){
+                bloco.id++;
+            }
+        }
+
+    }
+
+    public void decrementarIdBlocos(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
+        for(BlocoMemoria bloco : memoriaAuxiliar){
+            if(bloco.id >= idInicial){
+                bloco.id--;
+            }
         }
     }
 
