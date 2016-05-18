@@ -221,37 +221,49 @@ public class LTGActivity extends AppCompatActivity {
 
     public BlocoMemoria mergeFit(Processo processo){
 
-        BlocoMemoria blocoMemoria = null;
+        BlocoMemoria novoBloco = null;
 
         for(BlocoMemoria bloco : memoriaLivre){
 
             if (bloco.tamanho == processo.memoria){
-                blocoMemoria = bloco;
-                blocoMemoria.is_ocupado = true;
-                blocoMemoria.processo = processo;
+
+                novoBloco = bloco;
+                novoBloco.is_ocupado = true;
+                novoBloco.processo = processo;
                 break;
             }
 
             if (bloco.tamanho > processo.memoria){
-                bloco.tamanho-=processo.memoria;
-                memoria.get(bloco.id).tamanho-=processo.memoria;
-                blocoMemoria = new BlocoMemoria(bloco.id + 1, processo.memoria, processo, bloco.id + 1);
-                blocoMemoria.is_ocupado = true;
-                blocoMemoria.processo = processo;
-                memoria.add(blocoMemoria.id, blocoMemoria);
-                mudarIdBlocos(blocoMemoria.id + 1, memoria);
-                incrementarIdBlocos(blocoMemoria.id, memoriaLivre);
-                incrementarIdBlocos(blocoMemoria.id, memoriaOcupada);
+
+                novoBloco = dividirBloco(bloco, processo);
+                memoria.add(novoBloco.id, novoBloco);
+                incrementarIdBlocosAPartir(novoBloco.id + 1, memoria);
+                incrementarIdBlocos(novoBloco.id, memoriaLivre);
+                incrementarIdBlocos(novoBloco.id, memoriaOcupada);
 
                 break;
             }
         }
 
-        return blocoMemoria;
+        return novoBloco;
     }
 
     public BlocoMemoria quickFit(Processo processo){
         return null;
+    }
+
+    public BlocoMemoria firstFit(Processo processo){
+        return null;
+    }
+
+    public BlocoMemoria dividirBloco(BlocoMemoria bloco, Processo processo){
+
+        bloco.tamanho-=processo.memoria;
+        memoria.get(bloco.id).tamanho-=processo.memoria;
+        BlocoMemoria novoBloco = new BlocoMemoria(bloco.id + 1, processo.memoria, processo, bloco.id + 1);
+        novoBloco.is_ocupado = true;
+        novoBloco.processo = processo;
+        return novoBloco;
     }
 
     public BlocoMemoria memoriaNaoUsada(Processo processo){
@@ -319,7 +331,7 @@ public class LTGActivity extends AppCompatActivity {
                                 if (bloco == null){
                                     processador.is_processando = false;
                                     abortarProcesso(processo);
-                                    desalocarMemoria(processador.enderecoBlocos);
+                                    desalocarMemoria(processo);
                                 }else{
                                     memoria.set(bloco.id, bloco);
                                     processador.enderecoBlocos.add(bloco.id);
@@ -336,7 +348,7 @@ public class LTGActivity extends AppCompatActivity {
                         }
                     }
                 }
-
+                mesclarBlocos();
                 reloadDataGridViewProcessador(processadores);
 
             }
@@ -373,18 +385,24 @@ public class LTGActivity extends AppCompatActivity {
 
     }
 
-    public void desalocarMemoria(LinkedList<Integer> enderecos){
+    public void desalocarMemoria(Processo processo){
 
-        for(int endereco : enderecos){
-            memoria.get(endereco).is_ocupado = false;
-            mudarEstadoMemoria(endereco, OCUPADO);
+        for(BlocoMemoria blocoMemoria : memoria){
+            if (blocoMemoria.processo.nomeProcesso.equals(processo.nomeProcesso)){
+                memoria.get(blocoMemoria.id).is_ocupado = false;
+                mudarEstadoMemoria(blocoMemoria.id, OCUPADO);
+            }
         }
+//        for(int endereco : enderecos){
+//            memoria.get(endereco).is_ocupado = false;
+//            mudarEstadoMemoria(endereco, OCUPADO);
+//        }
     }
 
     public void abortarProcesso(Processo processo){
 
         processo.color = Color.RED;
-        finalizados.add(processo);
+        finalizados.addFirst(processo);
         reloadDataGridViewFinalizado(finalizados);
 
     }
@@ -393,9 +411,9 @@ public class LTGActivity extends AppCompatActivity {
 
         processador.processo.color = Color.GRAY;
 
-        finalizados.add(processador.processo);
+        finalizados.addFirst(processador.processo);
 
-        desalocarMemoria(processador.enderecoBlocos);
+        desalocarMemoria(processador.processo);
 
         processador.enderecoBlocos = new LinkedList<Integer>();
 
@@ -435,25 +453,19 @@ public class LTGActivity extends AppCompatActivity {
     public void preencherProcessadores(){
 
         int idMemoria = 0;
-        while(!processos.isEmpty() && processos.get(0).memoria < memoria.get(0).tamanho && idMemoria < processadores.size()){
+        while(!processos.isEmpty() && idMemoria < processadores.size() && processos.get(0).memoria < qtdMemoria){
 
             Processo processo = processos.pop();
 
-            memoria.get(0).tamanho-= processo.memoria;
-
-            BlocoMemoria bloco = new BlocoMemoria(idMemoria + 1, processo.memoria, processo, null);
-
-            memoria.add(bloco);
-
-            memoriaOcupada.add(new BlocoMemoria(idMemoria + 1, processo.memoria, null, idMemoria + 1));
+            memoriaNaoUsada(processo);
 
             processadores.get(idMemoria).processo = processo;
             processadores.get(idMemoria).processo.color = getResources().getColor(R.color.verdeProcesso);
             processadores.get(idMemoria).is_processando = true;
-            processadores.get(idMemoria).enderecoBlocos.add(idMemoria + 1);
+            processadores.get(idMemoria).enderecoBlocos.add(idMemoria);
             idMemoria++;
         }
-        memoriaLivre.get(0).tamanho = memoria.get(0).tamanho;
+
         ordenarMemoria(memoriaOcupada);
         construirGridViewMemoria();
         reloadDataGridViewProcessador(processadores);
@@ -466,7 +478,7 @@ public class LTGActivity extends AppCompatActivity {
             case OCUPADO:
                 for(int i = 0; i < memoriaOcupada.size(); i++){
 
-                    if(memoriaOcupada.get(i).endereco == idBloco){
+                    if(memoriaOcupada.get(i).id == idBloco){
 
                         memoria.get(idBloco).is_ocupado = false;
                         memoriaLivre.add(memoriaOcupada.remove(i));
@@ -476,7 +488,7 @@ public class LTGActivity extends AppCompatActivity {
             case LIVRE:
                 for (int i = 0; i < memoriaLivre.size(); i++){
 
-                    if(memoriaLivre.get(i).endereco == idBloco){
+                    if(memoriaLivre.get(i).id == idBloco){
                         memoria.get(idBloco).is_ocupado = true;
                         memoriaOcupada.add(memoriaLivre.remove(i));
 
@@ -496,7 +508,7 @@ public class LTGActivity extends AppCompatActivity {
         if (memoriaAuxiliar.size() > 0){
             memoriaAuxiliar.get(0).proximoBloco = null;
 
-            memoria.get(memoriaAuxiliar.get(0).endereco).proximoBloco = null;
+            memoria.get(memoriaAuxiliar.get(0).id).proximoBloco = null;
 
             for(int i = 1; i < memoriaAuxiliar.size(); i++){
 
@@ -504,15 +516,15 @@ public class LTGActivity extends AppCompatActivity {
 
                 BlocoMemoria atual = memoriaAuxiliar.get(i);
 
-                memoria.get(anterior.endereco).proximoBloco = memoria.get(atual.endereco).id;
+                memoria.get(anterior.id).proximoBloco = memoria.get(atual.id).id;
 
-                memoria.get(atual.endereco).proximoBloco = null;
+                memoria.get(atual.id).proximoBloco = null;
             }
         }
 
     }
 
-    public void mudarIdBlocos(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
+    public void incrementarIdBlocosAPartir(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
         for(int i = idInicial; i < memoriaAuxiliar.size(); i++){
             memoriaAuxiliar.get(i).id++;
         }
@@ -530,14 +542,27 @@ public class LTGActivity extends AppCompatActivity {
 
     public void decrementarIdBlocos(int idInicial, LinkedList<BlocoMemoria> memoriaAuxiliar){
         for(BlocoMemoria bloco : memoriaAuxiliar){
-            if(bloco.id >= idInicial){
+            if(bloco.id > idInicial){
                 bloco.id--;
             }
         }
     }
 
     public void mesclarBlocos(){
+        for (int i = 1; i < memoriaLivre.size(); i++){
+            BlocoMemoria anterior = memoriaLivre.get(i-1);
+            BlocoMemoria atual = memoriaLivre.get(i);
 
+            if ((anterior.id + 1) == atual.id){
+                anterior.tamanho+=atual.tamanho;
+                memoria.get(anterior.id).tamanho+=memoria.get(atual.id).tamanho;
+                memoriaLivre.remove(i);
+                memoria.remove(atual.id);
+                decrementarIdBlocos(atual.id, memoriaLivre);
+                decrementarIdBlocos(atual.id, memoria);
+            }
+        }
+        reloadDataGridViewMemoria(memoria);
     }
 
     @Override
