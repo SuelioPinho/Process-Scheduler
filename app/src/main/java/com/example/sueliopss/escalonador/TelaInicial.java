@@ -20,25 +20,43 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
 
     private String algoritimo;
     List <String> categorias = new ArrayList<>();
+    List <String> categoriasMemoria = new ArrayList<>();
     EditText quantum;
     Button iniciar;
     Spinner spinner;
+    Spinner spinnerMemoria;
     EditText processos;
     EditText processadores;
+    EditText tamanhoMemoria;
+
     int numProcessos;
     int numQtdProcessadores;
     int numQuantum = 0;
+    int algortimoId;
+    int memoria;
 
     @AfterViews
     public void afterViews(){
         iniciarComponentes();
         iniciar.setOnClickListener(this);
         popularSpinner();
+        popularSpinnerMemoria();
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        final String item = parent.getItemAtPosition(position).toString();
+        String item = null;
+
+
+        switch (parent.getId()){
+
+            case R.id.spinner:
+                item = parent.getItemAtPosition(position).toString();
+                break;
+            case R.id.spinnerMemoria1:
+                algortimoId = parent.getSelectedItemPosition();
+                break;
+        }
         quantum.setEnabled(parent.getItemAtPosition(position).toString().equals(getString(R.string.round)));
         algoritimo = item;
     }
@@ -127,11 +145,27 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
         spinner.setAdapter(dataAdapter);
     }
 
+    public void popularSpinnerMemoria(){
+        spinnerMemoria.setOnItemSelectedListener(this);
+        addCategoriasMemoria();
+        ArrayAdapter<String> dataAdapterMemoria = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categoriasMemoria);
+        spinnerMemoria
+                .setAdapter(dataAdapterMemoria);
+    }
+
     public void addCategorias(){
         categorias.add(getString(R.string.selecionar));
         categorias.add(getString(R.string.ltg));
         categorias.add(getString(R.string.round));
         categorias.add(getString(R.string.scheduling));
+
+    }
+
+    public void addCategoriasMemoria(){
+        categoriasMemoria.add(getString(R.string.selecionar));
+        categoriasMemoria.add(getString(R.string.bestfit));
+        categoriasMemoria.add(getString(R.string.mergefit));
+        categoriasMemoria.add(getString(R.string.quickfit));
 
     }
 
@@ -142,6 +176,7 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
 
     public void componetesAleatorios(){
         spinner = (Spinner) findViewById(R.id.spinner);
+        spinnerMemoria = (Spinner) findViewById(R.id.spinnerMemoria1);
         iniciar = (Button) findViewById(R.id.buttonIniciar);
     }
 
@@ -149,12 +184,19 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
         quantum = (EditText) findViewById(R.id.quantum);
         processos = (EditText) findViewById(R.id.editTextProcessos);
         processadores = (EditText) findViewById(R.id.editTextProcessadores);
+        tamanhoMemoria = (EditText) findViewById(R.id.EditTextTamanhoMemoria);
+
     }
 
     public void salvarDados(){
         salvarProcessos();
         salvarProcessador();
         salvarQuantum();
+        salvarMemoria();
+    }
+
+    public void salvarMemoria(){
+        memoria = isProcessoVazio() ? 0 : Integer.parseInt(tamanhoMemoria.getText().toString());
     }
 
     public void salvarProcessos(){
@@ -174,7 +216,7 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     }
 
     private void irParaLTG() {
-        LTGActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).start();
+        LTGActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memoria).start();
     }
 
     private void irParaScheduling() {

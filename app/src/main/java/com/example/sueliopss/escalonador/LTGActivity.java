@@ -75,6 +75,13 @@ public class LTGActivity extends AppCompatActivity {
     @Extra
     int numQtdProcessadores;
 
+    @Extra
+    int algoritmo;
+
+    @Extra
+    int qtdMemoria;
+
+
     LinkedList<Processo> processos;
 
     LinkedList<Processador> processadores;
@@ -83,24 +90,19 @@ public class LTGActivity extends AppCompatActivity {
 
     LinkedList<BlocoMemoria> memoria;
 
-    LinkedList<LinkedList<BlocoMemoria>> maisRequisitados;
+    LinkedList<BlocoMemoria> memoriaLivre;
 
-    LinkedList<Requisicao> requisicoes;
+    LinkedList<BlocoMemoria> memoriaOcupada;
 
 
     Semaphore semaphoreProcessador;
 
-    int qtdMemoria;
-    int requisicao;
-    int primeiro;
-    int segundo;
-    int terceiro;
-    int quarto;
+
+    int requisiçao;
 
     static final int BESTFIT = 0;
     static final int MERGEFIT = 1;
     static final int QUICKFIT = 2;
-    static final int algoritmo = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,8 @@ public class LTGActivity extends AppCompatActivity {
         processos = new LinkedList<>();
         finalizados = new LinkedList<>();
         memoria = new LinkedList<>();
-        requisicoes = new LinkedList<>();
+        memoriaLivre = new LinkedList<>();
+        memoriaOcupada = new LinkedList<>();
         qtdMemoria = 10000;
 
     }
@@ -171,8 +174,7 @@ public class LTGActivity extends AppCompatActivity {
 
     public BlocoMemoria pedirMemoria(Processo processo){
 
-        requisicao++;
-
+        requisiçao++;
 
         BlocoMemoria bloco = memoriaNaoUsada(processo);
 
@@ -248,129 +250,17 @@ public class LTGActivity extends AppCompatActivity {
     }
 
     public BlocoMemoria quickFit(Processo processo){
-
-        BlocoMemoria blocoMemoria = null;
-
-        if(requisicao <= 100){
-            blocoMemoria = firstFit(processo);
-        }
-
-        if(requisicao % 100==0){
-            gerarMaisRequisitados();
-        }
-
-        if(requisicao > 100){
-            blocoMemoria = verificarMaisRequisitados(processo);
-            if (blocoMemoria == null){
-                firstFit(processo);
-            }
-        }
-
-        return blocoMemoria;
-    }
-
-    public BlocoMemoria verificarMaisRequisitados(Processo processo){
-
-        BlocoMemoria bloco = null;
-
-        if(primeiro == processo.memoria){
-
-            bloco = buscarBlocoLivre(maisRequisitados.get(0), processo);
-        }
-
-        if(segundo == processo.memoria){
-
-            bloco = buscarBlocoLivre(maisRequisitados.get(1), processo);
-        }
-
-        if(terceiro == processo.memoria){
-
-            bloco = buscarBlocoLivre(maisRequisitados.get(2), processo);
-        }
-
-        if(quarto == processo.memoria){
-
-            bloco = buscarBlocoLivre(maisRequisitados.get(3), processo);
-        }
-
-        return bloco;
-    }
-
-    public BlocoMemoria buscarBlocoLivre(LinkedList<BlocoMemoria> memoriaAuxiliar, Processo processo){
-
-        BlocoMemoria bloco = null;
-
-        for(BlocoMemoria blocoMemoria : memoriaAuxiliar){
-
-            if(!blocoMemoria.is_ocupado){
-                blocoMemoria.is_ocupado = true;
-                memoria.get(bloco.id).is_ocupado = true;
-                blocoMemoria.processo = processo;
-                bloco = blocoMemoria;
-
-            }
-        }
-         return bloco;
-    }
-
-    public void gerarMaisRequisitados(){
-
-        maisRequisitados = new LinkedList<>();
-
-        primeiro = requisicoes.get(0).tamanho;
-        segundo = requisicoes.get(1).tamanho;
-        terceiro = requisicoes.get(2).tamanho;
-        quarto = requisicoes.get(3).tamanho;
-
-        for(BlocoMemoria bloco : memoria) {
-
-            if (bloco.tamanho == primeiro) {
-                maisRequisitados.get(0).add(bloco);
-            }
-
-            if (bloco.tamanho == segundo) {
-                maisRequisitados.get(1).add(bloco);
-            }
-
-            if (bloco.tamanho == terceiro) {
-                maisRequisitados.get(2).add(bloco);
-            }
-
-            if (bloco.tamanho == quarto) {
-                maisRequisitados.get(3).add(bloco);
-            }
-        }
-    }
-
-    public void adicionarRequisicao(int tamanho){
-
-        boolean encontrou = false;
-
-        for(Requisicao requisicao : requisicoes){
-
-            if (requisicao.tamanho == tamanho){
-                requisicao.vezesRequisitadas++;
-                encontrou = true;
-                break;
-            }
-        }
-
-        if (!encontrou){
-            requisicoes.add(new Requisicao(tamanho));
-        }
-
+        return null;
     }
 
     public BlocoMemoria firstFit(Processo processo){
-
         BlocoMemoria bloco = null;
-
-        for(BlocoMemoria blocoMemoria : memoria){
-
+        for(BlocoMemoria blocoMemoria : memoriaLivre){
             if(blocoMemoria.tamanho > processo.memoria){
-
                 blocoMemoria.is_ocupado = true;
                 blocoMemoria.processo = processo;
+                memoria.get(blocoMemoria.id).is_ocupado = true;
+                memoria.get(blocoMemoria.id).processo = processo;
                 bloco = blocoMemoria;
             }
         }
@@ -429,15 +319,15 @@ public class LTGActivity extends AppCompatActivity {
                     if (processador.is_processando) {
 
                         processadores.get(j).processo.tempoProcesso--;
-                        Processo processo = processador.processo;
-                        if (processador.processo.instanteMemoria > 0) {
-                            if (processo.instanteMemoria == processo.tempoProcesso) {
+                        Processo processo  = processador.processo;
+                        if(processador.processo.instanteMemoria > 0){
+                            if(processo.instanteMemoria == processo.tempoProcesso){
                                 Processo outroProcesso = new Processo();
                                 outroProcesso.nomeProcesso = processo.nomeProcesso;
                                 outroProcesso.memoria = processo.memoriaAdicional;
                                 BlocoMemoria bloco = pedirMemoria(outroProcesso);
 
-                                if (bloco == null) {
+                                if (bloco == null){
                                     processador.is_processando = false;
                                     abortarProcesso(processo);
                                     desalocarMemoria(processo);
@@ -606,6 +496,22 @@ public class LTGActivity extends AppCompatActivity {
             }
         }, 0, 1000);
 
+//        for (int i = 1; i < memoriaLivre.size(); i++){
+//            BlocoMemoria anterior = memoriaLivre.get(i-1);
+//            BlocoMemoria atual = memoriaLivre.get(i);
+//
+//            if (anterior.id+1 == atual.id){
+//                anterior.tamanho+=atual.tamanho;
+//                memoria.get(anterior.id).tamanho+=memoria.get(atual.id).tamanho;
+//                memoriaLivre.remove(i);
+//                memoria.remove(atual.id);
+//                reinumerarMemoria();
+//                //decrementarIdBlocos(atual.id, memoria);
+//                decrementarIdBlocos(atual.id, memoriaLivre);
+//                decrementarIdBlocos(atual.id, memoriaOcupada);
+//            }
+//        }
+//        reloadDataGridViewMemoria(memoria);
     }
 
     @Override
