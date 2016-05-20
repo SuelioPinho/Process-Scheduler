@@ -225,7 +225,7 @@ public class LTGActivity extends AppCompatActivity {
 
         return melhorBloco;
     }
-
+//
     public BlocoMemoria mergeFit(Processo processo){
 
         BlocoMemoria novoBloco = null;
