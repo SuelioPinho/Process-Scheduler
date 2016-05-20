@@ -354,10 +354,14 @@ public class LTGActivity extends AppCompatActivity {
 
         Collections.sort(requisicoes);
 
-        primeiro = requisicoes.get(0).tamanho;
-        segundo = requisicoes.get(1).tamanho;
-        terceiro = requisicoes.get(2).tamanho;
-        quarto = requisicoes.get(3).tamanho;
+        for(int i = 0; i < requisicoes.size(); i++){
+            switch (i){
+                case 1: primeiro = requisicoes.get(0).tamanho; break;
+                case 2: segundo = requisicoes.get(1).tamanho; break;
+                case 3: terceiro = requisicoes.get(2).tamanho; break;
+                case 4: quarto = requisicoes.get(3).tamanho; break;
+            }
+        }
 
         for(BlocoMemoria bloco : memoria) {
 
