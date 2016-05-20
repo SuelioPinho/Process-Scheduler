@@ -63,7 +63,7 @@
                     android:textSize="20dp"
                     android:layout_marginTop="8dp"/>
             </LinearLayout>
-
+            //Grid Memoria
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,39 +84,117 @@
                         android:layout_below="@+id/viewAptos"
                         android:id="@+id/gridMemoria"
                         android:gravity="center"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            //Grid Memoria Mais Usada 1
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollMaisUsada1"
+                android:layout_margin="1dp"
+                android:fillViewport="false"
+                android:layout_below="@+id/horizontalScrollViewMemoria">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/viewAptos"
+                        android:id="@+id/gridMaisUsada1"
+                        android:gravity="center"
                         android:visibility="gone"
                         ></GridView>
 
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
+            //Grid Memoria Mais Usada 2
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/memoriaMaisUsada1"
-                android:layout_below="@id/horizontalScrollViewMemoria"
-                android:text="Memoria Mais Usada 1"/>
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollMaisUsada2"
+                android:layout_margin="1dp"
+                android:fillViewport="false"
+                android:layout_below="@+id/horizontalScrollMaisUsada1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/memoriaMaisUsada2"
-                android:layout_below="@id/memoriaMaisUsada1"
-                android:text="Memoria Mais Usada 2"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/memoriaMaisUsada3"
-                android:layout_below="@id/memoriaMaisUsada2"
-                android:text="Memoria Mais Usada 3"/>
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/viewAptos"
+                        android:id="@+id/gridMaisUsada2"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        ></GridView>
 
-            <TextView
-                android:layout_width="wrap_content"
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            //Grid Memoria Mais Usada 3
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/memoriaMaisUsada4"
-                android:layout_below="@id/memoriaMaisUsada3"
-                android:text="Memoria Mais Usada 4"/>
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollMaisUsada3"
+                android:layout_margin="1dp"
+                android:fillViewport="false"
+                android:layout_below="@+id/horizontalScrollMaisUsada2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/viewAptos"
+                        android:id="@+id/gridMaisUsada3"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            //Grid Memoria Mais Usada 4
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollMaisUsada4"
+                android:layout_margin="1dp"
+                android:fillViewport="false"
+                android:layout_below="@+id/horizontalScrollMaisUsada3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <GridView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/viewAptos"
+                        android:id="@+id/gridMaisUsada4"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        ></GridView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -124,7 +202,7 @@
                 android:id="@+id/viewAptos"
                 android:orientation="horizontal"
                 android:background="@color/black"
-                android:layout_below="@+id/memoriaMaisUsada4">
+                android:layout_below="@+id/horizontalScrollMaisUsada4">
 
                 <TextView
                     android:layout_width="match_parent"
