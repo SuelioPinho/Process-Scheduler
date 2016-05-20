@@ -128,9 +128,9 @@ public class LTGActivity extends AppCompatActivity {
     int terceiro;
     int quarto;
 
-    static final int BESTFIT = 0;
-    static final int MERGEFIT = 1;
-    static final int QUICKFIT = 2;
+    static final int BESTFIT = 1;
+    static final int MERGEFIT = 2;
+    static final int QUICKFIT = 3;
 
 
     @Override
@@ -142,15 +142,6 @@ public class LTGActivity extends AppCompatActivity {
         finalizados = new LinkedList<>();
         memoria = new LinkedList<>();
         requisicoes = new LinkedList<>();
-        algoritmo = 2;
-
-
-        int teste = algoritmo;
-
-
-
-        Log.d("variavel" + Integer.toString(teste), "hahahaha");
-
     }
 
     @AfterViews
@@ -247,7 +238,7 @@ public class LTGActivity extends AppCompatActivity {
                     melhorBloco.is_ocupado = false;
                     melhorBloco = bloco;
                     bloco.processo = processo;
-                } else  {
+                } else  if(bloco.tamanho < melhorBloco.tamanho){
                     bloco.is_ocupado = true;
                     melhorBloco = bloco;
                     melhorBloco.processo = processo;
@@ -290,26 +281,13 @@ public class LTGActivity extends AppCompatActivity {
 
         BlocoMemoria blocoMemoria = null;
 
-        if(requisicao <= 100){
-            blocoMemoria = firstFit(processo);
-        }
+        blocoMemoria = firstFit(processo);
+
 
         if(requisicao % 100 == 0){
             gerarMaisRequisitados();
         }
 
-        if(requisicao > 100){
-            blocoMemoria = firstFit(processo);
-        }
-
-
-
-//        if(requisicao > 100){
-//            blocoMemoria = verificarMaisRequisitados(processo);
-//            if (blocoMemoria == null){
-//                firstFit(processo);
-//            }
-//        }
 
         return blocoMemoria;
     }
@@ -443,7 +421,7 @@ public class LTGActivity extends AppCompatActivity {
             qtdMemoria = qtdMemoria - processo.memoria;
             bloco = new BlocoMemoria(memoria.size(), processo.memoria, processo, null);
             memoria.add(bloco);
-            //memoriaOcupada.add(bloco);
+
         }
         return bloco;
     }
