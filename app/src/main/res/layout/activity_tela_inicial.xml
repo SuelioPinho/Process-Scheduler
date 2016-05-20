@@ -225,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:hint="Memoria"
-                            android:maxLength="2"
+                            android:maxLength="9"
                             android:ems="10"
                             android:id="@+id/EditTextTamanhoMemoria"
                             android:layout_marginBottom="40dp"/>

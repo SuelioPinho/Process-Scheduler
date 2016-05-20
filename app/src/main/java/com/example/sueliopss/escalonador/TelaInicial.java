@@ -6,6 +6,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -39,26 +41,24 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     public void afterViews(){
         iniciarComponentes();
         iniciar.setOnClickListener(this);
-        popularSpinner();
-        popularSpinnerMemoria();
+        popularTodosSpinner();
     }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item = null;
-
-
         switch (parent.getId()){
-
             case R.id.spinner:
-                item = parent.getItemAtPosition(position).toString();
+                String  item = parent.getItemAtPosition(position).toString();
+                algoritimo = item;
                 break;
             case R.id.spinnerMemoria1:
-                algortimoId = parent.getSelectedItemPosition();
+                memoria = parent.getSelectedItemPosition();
                 break;
         }
+
         quantum.setEnabled(parent.getItemAtPosition(position).toString().equals(getString(R.string.round)));
-        algoritimo = item;
+
     }
 
     @Override
@@ -89,6 +89,8 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
         Toast.makeText(getBaseContext(),mensagem,
                 Toast.LENGTH_LONG).show();
     }
+
+
 
     public boolean isProcessoVazio(){
         return processos.getText().toString().equals("");
@@ -138,6 +140,11 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
         }
     }
 
+    public void popularTodosSpinner(){
+        popularSpinnerMemoria();
+        popularSpinner();
+    }
+
     public void popularSpinner(){
         spinner.setOnItemSelectedListener(this);
         addCategorias();
@@ -149,9 +156,9 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
         spinnerMemoria.setOnItemSelectedListener(this);
         addCategoriasMemoria();
         ArrayAdapter<String> dataAdapterMemoria = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categoriasMemoria);
-        spinnerMemoria
-                .setAdapter(dataAdapterMemoria);
+        spinnerMemoria.setAdapter(dataAdapterMemoria);
     }
+
 
     public void addCategorias(){
         categorias.add(getString(R.string.selecionar));
@@ -212,15 +219,15 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void irParaRoundRActivity(){
-        RoundRActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).numQuantum(numQuantum).start();
+        RoundRActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).numQuantum(numQuantum).algoritmo(algortimoId).qtdMemoria(memoria).start();
     }
 
     private void irParaLTG() {
-        LTGActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memoria).start();
+        LTGActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memoria).algoritmo(algortimoId).qtdMemoria(memoria).start();
     }
 
     private void irParaScheduling() {
-        IntervalBaseActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).start();
+        IntervalBaseActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memoria).start();
     }
 
 }

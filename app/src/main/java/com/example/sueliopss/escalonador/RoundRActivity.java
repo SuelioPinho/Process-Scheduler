@@ -88,6 +88,12 @@ public class RoundRActivity extends AppCompatActivity {
     @Extra
     int numQuantum;
 
+    @Extra
+    int algoritmo;
+
+    @Extra
+    int qtdMemoria;
+
     EditText quantumET;
 
     Button buttonContinuar;

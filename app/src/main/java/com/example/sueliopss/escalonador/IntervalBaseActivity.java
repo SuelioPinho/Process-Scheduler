@@ -574,6 +574,12 @@ public class IntervalBaseActivity extends AppCompatActivity{
     @Extra
     int numQtdProcessadores;
 
+    @Extra
+    int algoritmo;
+
+    @Extra
+    int qtdMemoria;
+
     @ViewById(R.id.iniciar)
     FloatingActionButton iniciar;
 
