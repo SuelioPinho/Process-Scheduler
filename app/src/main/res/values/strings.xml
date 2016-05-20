@@ -7,6 +7,10 @@
     <string name="round">Round Robin</string>
     <string name="scheduling">Interval Base</string>
 
+    <string name="mergefit">Mergefit</string>
+    <string name="quickfit">Quickfit</string>
+    <string name="bestfit">Bestfit</string>
+
 
     <string name="camposvazios">Por favor, preencha todos os campos</string>
     <string name="SelecionarAlgoritimo">Por favor, seleione um algoritimo antes de iniciar.</string>

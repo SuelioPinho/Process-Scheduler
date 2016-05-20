@@ -15,22 +15,15 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="250dp"
-        android:id="@+id/imageView"
-        android:background="@mipmap/schedule"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView">
+        android:layout_below="@+id/textView">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:layout_below="@+id/imageView"
             android:layout_centerHorizontal="true">
 
@@ -57,7 +50,7 @@
                             android:id="@+id/imageView2"
                             android:layout_toStartOf="@+id/spinner"
                             android:layout_alignBottom="@+id/spinner"
-                            android:background="@mipmap/ic_tela_inicio"
+                            android:background="@mipmap/algorit"
                             android:layout_gravity="center_vertical"/>
 
                         <Spinner
@@ -87,7 +80,7 @@
                             android:id="@+id/imageView3"
                             android:layout_toStartOf="@+id/editTextProcessadores"
                             android:layout_alignBottom="@+id/editTextProcessadores"
-                            android:background="@mipmap/ic_tela_inicio"
+                            android:background="@mipmap/ic_processadorr"
                             android:layout_gravity="center_vertical"/>
 
                         <EditText
@@ -123,7 +116,7 @@
                             android:id="@+id/imageView4"
                             android:layout_toStartOf="@+id/editTextProcessos"
                             android:layout_alignBottom="@+id/editTextProcessos"
-                            android:background="@mipmap/ic_tela_inicio"
+                            android:background="@mipmap/processo"
                             android:layout_gravity="center_vertical"/>
 
                         <EditText
@@ -157,7 +150,7 @@
                             android:id="@+id/imageView5"
                             android:layout_toStartOf="@+id/quantum"
                             android:layout_alignBottom="@+id/quantum"
-                            android:background="@mipmap/ic_tela_inicio" />
+                            android:background="@mipmap/quantum" />
 
                         <EditText
                             android:layout_width="400dp"
@@ -174,6 +167,75 @@
                     </LinearLayout>
 
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageViewMemoria1"
+                            android:layout_toStartOf="@+id/spinnerMemoria1"
+                            android:layout_alignBottom="@+id/spinnerMemoria1"
+                            android:background="@mipmap/algorit"
+                            android:layout_gravity="center_vertical"/>
+
+                        <Spinner
+                            android:layout_width="400dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinnerMemoria1"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageViewMemoria2"
+                            android:layout_toStartOf="@+id/memmoria"
+                            android:layout_alignBottom="@+id/memmoria"
+                            android:background="@mipmap/memoria" />
+
+                        <EditText
+                            android:layout_width="400dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:hint="Memoria"
+                            android:maxLength="9"
+                            android:ems="10"
+                            android:id="@+id/EditTextTamanhoMemoria"
+                            android:layout_marginBottom="40dp"/>
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
 
                 <RelativeLayout
                     android:layout_width="wrap_content"

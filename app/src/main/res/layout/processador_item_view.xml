@@ -8,7 +8,7 @@
         android:layout_height="100dp"
         android:id="@+id/imageProcessador"
         android:scaleType="centerInside"
-        android:background="@mipmap/ic_processador"/>
+        android:background="@mipmap/ic_processadorr"/>
 
     <RelativeLayout
         android:id="@+id/relativeItemProcessador"
