@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -118,6 +119,12 @@ public class LTGActivity extends AppCompatActivity {
         memoria = new LinkedList<>();
         requisicoes = new LinkedList<>();
         qtdMemoria = 10000;
+
+        int teste = algoritmo;
+
+
+
+        Log.d("variavel" + Integer.toString(teste), "hahahaha");
 
     }
 

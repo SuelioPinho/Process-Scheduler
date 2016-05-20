@@ -53,7 +53,7 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
                 algoritimo = item;
                 break;
             case R.id.spinnerMemoria1:
-                memoria = parent.getSelectedItemPosition();
+                algortimoId = parent.getSelectedItemPosition();
                 break;
         }
 
