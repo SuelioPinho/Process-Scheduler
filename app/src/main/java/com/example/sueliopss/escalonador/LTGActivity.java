@@ -49,6 +49,30 @@ public class LTGActivity extends AppCompatActivity {
     @ViewById
     GridView gridCancelados;
 
+    @ViewById(R.id.gridMaisUsada1)
+    GridView gridMaisUsada1;
+
+    @ViewById(R.id.gridMaisUsada2)
+    GridView gridMaisUsada2;
+
+    @ViewById(R.id.gridMaisUsada3)
+    GridView gridMaisUsada3;
+
+    @ViewById(R.id.gridMaisUsada4)
+    GridView gridMaisUsada4;
+
+    @Bean
+    MemoriaAdapter maisUsada1;
+
+    @Bean
+    MemoriaAdapter maisUsada2;
+
+    @Bean
+    MemoriaAdapter maisUsada3;
+
+    @Bean
+    MemoriaAdapter maisUsada4;
+
     @Bean
     ProcessadorAdapter processadorAdapter;
 
@@ -104,9 +128,9 @@ public class LTGActivity extends AppCompatActivity {
     int terceiro;
     int quarto;
 
-    static final int BESTFIT = 1;
-    static final int MERGEFIT = 2;
-    static final int QUICKFIT = 3;
+    static final int BESTFIT = 0;
+    static final int MERGEFIT = 1;
+    static final int QUICKFIT = 2;
 
 
     @Override
@@ -118,7 +142,8 @@ public class LTGActivity extends AppCompatActivity {
         finalizados = new LinkedList<>();
         memoria = new LinkedList<>();
         requisicoes = new LinkedList<>();
-        qtdMemoria = 10000;
+        algoritmo = 2;
+
 
         int teste = algoritmo;
 
@@ -186,6 +211,7 @@ public class LTGActivity extends AppCompatActivity {
 
         requisicao++;
 
+        adicionarRequisicao(processo.memoria);
 
         BlocoMemoria bloco = memoriaNaoUsada(processo);
 
@@ -214,7 +240,7 @@ public class LTGActivity extends AppCompatActivity {
 
         for(BlocoMemoria bloco : memoria){
 
-            if(bloco.tamanho > processo.memoria) {
+            if(!bloco.is_ocupado && bloco.tamanho > processo.memoria) {
 
                 if (melhorBloco != null && bloco.tamanho < melhorBloco.tamanho) {
                     bloco.is_ocupado = true;
@@ -232,19 +258,19 @@ public class LTGActivity extends AppCompatActivity {
 
         return melhorBloco;
     }
-//
+
     public BlocoMemoria mergeFit(Processo processo){
 
         BlocoMemoria novoBloco = null;
 
         for(BlocoMemoria bloco : memoria){
-            if(bloco.tamanho == processo.memoria){
+            if(!bloco.is_ocupado && bloco.tamanho == processo.memoria){
                 bloco.is_ocupado = true;
                 bloco.processo = processo;
                 break;
             }
 
-            if(bloco.tamanho > processo.memoria){
+            if(!bloco.is_ocupado && bloco.tamanho > processo.memoria){
                 bloco.is_ocupado = true;
                 bloco.tamanho-=processo.memoria;
                 novoBloco = new BlocoMemoria(bloco.id + 1, processo.memoria, processo, bloco.id + 1);
@@ -268,7 +294,7 @@ public class LTGActivity extends AppCompatActivity {
             blocoMemoria = firstFit(processo);
         }
 
-        if(requisicao == 100){
+        if(requisicao % 100 == 0){
             gerarMaisRequisitados();
         }
 
@@ -369,6 +395,8 @@ public class LTGActivity extends AppCompatActivity {
                 maisRequisitados.get(3).add(bloco);
             }
         }
+
+        construirGridMaisRequisitado();
     }
 
     public void adicionarRequisicao(int tamanho){
@@ -396,11 +424,12 @@ public class LTGActivity extends AppCompatActivity {
 
         for(BlocoMemoria blocoMemoria : memoria){
 
-            if(blocoMemoria.tamanho > processo.memoria){
+            if(!blocoMemoria.is_ocupado && blocoMemoria.tamanho > processo.memoria){
 
                 blocoMemoria.is_ocupado = true;
                 blocoMemoria.processo = processo;
                 bloco = blocoMemoria;
+                break;
             }
         }
         return bloco;
@@ -446,7 +475,7 @@ public class LTGActivity extends AppCompatActivity {
     synchronized void processar() {
 
         Timer timer = new Timer();
-//mudarEstadoMemoria(blocoMemoria.id, OCUPADO);
+
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -486,7 +515,7 @@ public class LTGActivity extends AppCompatActivity {
 
 
                 reloadDataGridViewProcessador(processadores);
-                //mesclarBlocos();
+
 
             }
         }, 0, 1000);
@@ -505,11 +534,19 @@ public class LTGActivity extends AppCompatActivity {
 
             int deadLine = gerador.nextInt(20) + 4;
 
-            int memoria = gerador.nextInt(992) + 32;
+            int memoria = gerador.nextInt(20) + 50;
 
             int ultimoProcesso = numProcessos;
 
+            int probabilidadeMemoria;
+
             Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE, memoria);
+
+            probabilidadeMemoria = gerador.nextInt(100);
+            if(probabilidadeMemoria < 30){
+                processo.instanteMemoria = tempoProcesso/2;
+                processo.memoriaAdicional = gerador.nextInt(100) + 50;
+            }
 
             processos.add(processo);
 
@@ -618,13 +655,13 @@ public class LTGActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                for (int i = 1; i < memoria.size();i++){
-                    BlocoMemoria anterior = memoria.get(i-1);
+                for (int i = 1; i < memoria.size(); i++) {
+                    BlocoMemoria anterior = memoria.get(i - 1);
                     BlocoMemoria atual = memoria.get(i);
 
-                    if(!anterior.is_ocupado && !atual.is_ocupado){
+                    if (!anterior.is_ocupado && !atual.is_ocupado) {
                         memoria.remove(i);
-                        anterior.tamanho+=atual.tamanho;
+                        anterior.tamanho += atual.tamanho;
                         reinumerarMemoria();
 
                     }
@@ -715,13 +752,13 @@ public class LTGActivity extends AppCompatActivity {
         for (int i = 0; i < numProcesso; i++){
             tempoProcesso = gerador.nextInt(20) + 10;
             deadLine = gerador.nextInt(20) + 4;
-            memoria = gerador.nextInt(992) + 32;
+            memoria = gerador.nextInt(20) + 50;
             Processo processo = new Processo("P"+(i+1), tempoProcesso, deadLine, tempoProcesso, Color.YELLOW , memoria);
             probabilidadeMemoria = gerador.nextInt(100);
-            //if(probabilidadeMemoria < 30){
-            processo.instanteMemoria = tempoProcesso/2;
-            processo.memoriaAdicional = 100;
-            //}
+            if(probabilidadeMemoria < 30){
+                processo.instanteMemoria = tempoProcesso/2;
+                processo.memoriaAdicional = gerador.nextInt(100) + 50;
+            }
             processos.add(processo);
         }
 
@@ -835,5 +872,50 @@ public class LTGActivity extends AppCompatActivity {
         synchronized (this) {
             construirGridViewFinalizados();
         }
+    }
+    @UiThread
+    public void construirGridMaisRequisitado(){
+
+        for(int i = 0; i < maisRequisitados.size(); i++){
+
+            switch (i){
+                case 0 :
+                    gridMaisUsada1.setVisibility(View.VISIBLE);
+                    gridMaisUsada1.setNumColumns(maisRequisitados.get(i).size());
+                    gridViewSetting(gridMaisUsada1, processos.size(), 150);
+                    maisUsada1.setBlocos(maisRequisitados.get(i));
+                    gridMaisUsada1.setAdapter(maisUsada1);
+
+                case 1 :
+                    gridMaisUsada2.setVisibility(View.VISIBLE);
+                    gridMaisUsada2.setNumColumns(maisRequisitados.get(i).size());
+                    gridViewSetting(gridMaisUsada2, processos.size(), 150);
+                    maisUsada2.setBlocos(maisRequisitados.get(i));
+                    gridMaisUsada2.setAdapter(maisUsada2);
+
+                case 2 :
+                    gridMaisUsada3.setVisibility(View.VISIBLE);
+                    gridMaisUsada3.setNumColumns(maisRequisitados.get(i).size());
+                    gridViewSetting(gridMaisUsada3, processos.size(), 150);
+                    maisUsada3.setBlocos(maisRequisitados.get(i));
+                    gridMaisUsada3.setAdapter(maisUsada3);
+
+                case 3 :
+                    gridMaisUsada4.setVisibility(View.VISIBLE);
+                    gridMaisUsada4.setNumColumns(maisRequisitados.get(i).size());
+                    gridViewSetting(gridMaisUsada4, processos.size(), 150);
+                    maisUsada4.setBlocos(maisRequisitados.get(i));
+                    gridMaisUsada4.setAdapter(maisUsada4);
+
+            }
+        }
+
+
+
+
+
+
+
+
     }
 }

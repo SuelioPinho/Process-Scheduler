@@ -71,4 +71,5 @@ public class ProcessadorItemView extends RelativeLayout{
         shape.getPaint().setStyle(Paint.Style.STROKE);
         shape.getPaint().setStrokeWidth(35);
     }
+
 }
