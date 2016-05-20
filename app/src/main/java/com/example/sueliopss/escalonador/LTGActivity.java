@@ -218,7 +218,7 @@ public class LTGActivity extends AppCompatActivity {
         return bloco;
 
     }
-
+//
     synchronized BlocoMemoria bestFit(Processo processo){
 
         BlocoMemoria melhorBloco = null;
