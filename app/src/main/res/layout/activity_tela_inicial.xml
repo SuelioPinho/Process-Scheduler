@@ -50,7 +50,7 @@
                             android:id="@+id/imageView2"
                             android:layout_toStartOf="@+id/spinner"
                             android:layout_alignBottom="@+id/spinner"
-                            android:background="@mipmap/ic_tela_inicio"
+                            android:background="@mipmap/algorit"
                             android:layout_gravity="center_vertical"/>
 
                         <Spinner
@@ -80,7 +80,7 @@
                             android:id="@+id/imageView3"
                             android:layout_toStartOf="@+id/editTextProcessadores"
                             android:layout_alignBottom="@+id/editTextProcessadores"
-                            android:background="@mipmap/ic_tela_inicio"
+                            android:background="@mipmap/ic_processadorr"
                             android:layout_gravity="center_vertical"/>
 
                         <EditText
@@ -116,7 +116,7 @@
                             android:id="@+id/imageView4"
                             android:layout_toStartOf="@+id/editTextProcessos"
                             android:layout_alignBottom="@+id/editTextProcessos"
-                            android:background="@mipmap/ic_tela_inicio"
+                            android:background="@mipmap/processo"
                             android:layout_gravity="center_vertical"/>
 
                         <EditText
@@ -150,7 +150,7 @@
                             android:id="@+id/imageView5"
                             android:layout_toStartOf="@+id/quantum"
                             android:layout_alignBottom="@+id/quantum"
-                            android:background="@mipmap/ic_tela_inicio" />
+                            android:background="@mipmap/quantum" />
 
                         <EditText
                             android:layout_width="400dp"
@@ -186,7 +186,7 @@
                             android:id="@+id/imageViewMemoria1"
                             android:layout_toStartOf="@+id/spinnerMemoria1"
                             android:layout_alignBottom="@+id/spinnerMemoria1"
-                            android:background="@mipmap/ic_tela_inicio"
+                            android:background="@mipmap/algorit"
                             android:layout_gravity="center_vertical"/>
 
                         <Spinner
@@ -218,7 +218,7 @@
                             android:id="@+id/imageViewMemoria2"
                             android:layout_toStartOf="@+id/memmoria"
                             android:layout_alignBottom="@+id/memmoria"
-                            android:background="@mipmap/ic_tela_inicio" />
+                            android:background="@mipmap/memoria" />
 
                         <EditText
                             android:layout_width="400dp"
