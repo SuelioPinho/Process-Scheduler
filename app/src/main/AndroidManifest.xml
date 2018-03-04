@@ -33,6 +33,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
 
         </activity>
+        <activity android:name=".ui.IntervalBaseActivity" />
     </application>
 
 </manifest>

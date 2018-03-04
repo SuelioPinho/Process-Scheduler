@@ -1,38 +1,34 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.RootContext;
+import com.example.sueliopss.escalonador.data.model.Process;
 
 import java.util.List;
 
 /**
  * Created by sueliopss on 30/03/16.
  */
-@EBean
 public class ProcessoAdapter extends BaseAdapter{
-    @RootContext
     Context context;
 
-    List<Processo> processos;
+    List<Process> processes;
 
-    public void setProcessos(List<Processo> processos){
-        this.processos = processos;
+    public void setProcesses(List<Process> processes){
+        this.processes = processes;
     }
 
     @Override
     public int getCount() {
-        return processos.size();
+        return processes.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return processos.get(position);
+        return processes.get(position);
     }
 
     @Override
@@ -47,12 +43,12 @@ public class ProcessoAdapter extends BaseAdapter{
 
         try{
             if (convertView == null){
-                itemView = ProcessoItemView_.build(context);
+//                itemView = ProcessoItemView_.build(context);
             }else{
                 itemView = (ProcessoItemView) convertView;
             }
 
-            itemView.bind(processos.get(position));
+            itemView.bind(processes.get(position));
         }catch (Exception e){
             e.printStackTrace();
         }finally {

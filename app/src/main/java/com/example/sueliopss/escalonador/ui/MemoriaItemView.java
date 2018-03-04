@@ -1,4 +1,4 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,34 +9,26 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.androidannotations.annotations.EViewGroup;
-import org.androidannotations.annotations.ViewById;
+import com.example.sueliopss.escalonador.R;
+import com.example.sueliopss.escalonador.data.model.MemoryBlock;
 
 /**
  * Created by sueliopss on 04/05/16.
  */
-@EViewGroup(R.layout.memoria_item_view)
 public class MemoriaItemView extends RelativeLayout{
 
-    @ViewById(R.id.imageProcessador)
     ImageView imageMemoria;
 
-    @ViewById(R.id.idMemoria)
     TextView idMemoria;
 
-    @ViewById(R.id.memoriaBloco)
     TextView memoriaBloco;
 
-    @ViewById(R.id.nomeProcesso)
     TextView nomeProcesso;
 
-    @ViewById(R.id.memoriaProcesso)
     TextView memoriaProcesso;
 
-    @ViewById(R.id.proximoBloco)
     TextView proximoBloco;
 
-    @ViewById
     RelativeLayout relativeItemProcessador;
 
     int position;
@@ -46,17 +38,17 @@ public class MemoriaItemView extends RelativeLayout{
         super(context);
     }
 
-    public void bind(BlocoMemoria bloco){
+    public void bind(MemoryBlock bloco){
 
         idMemoria.setText("ID " + (bloco.id + 1));
-        memoriaBloco.setText("MB " + bloco.tamanho + "B");
-        if(bloco.proximoBloco == null){
+        memoriaBloco.setText("MB " + bloco.amount + "B");
+        if(bloco.nextBlock == null){
             proximoBloco.setText("PROX-" + null);
         }else{
-            proximoBloco.setText("PROX-" + (bloco.proximoBloco + 1));
+            proximoBloco.setText("PROX-" + (bloco.nextBlock + 1));
         }
 
-        if (bloco.is_ocupado){
+        if (bloco.isBusy){
             pintarShape(Color.RED);
             nomeProcesso.setText(bloco.processo.nomeProcesso);
             memoriaProcesso.setText("MP " + bloco.processo.memoria + "B");

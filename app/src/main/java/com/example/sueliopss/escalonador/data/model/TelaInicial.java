@@ -1,4 +1,4 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.data.model;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,13 +11,11 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
+import com.example.sueliopss.escalonador.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@EActivity(R.layout.activity_tela_inicial)
 public class TelaInicial extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     private String algoritimo;
@@ -37,7 +35,6 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     int algortimoId;
     int memoria;
 
-    @AfterViews
     public void afterViews(){
         iniciarComponentes();
         iniciar.setOnClickListener(this);
@@ -219,15 +216,15 @@ public class TelaInicial extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void irParaRoundRActivity(){
-        RoundRActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).numQuantum(numQuantum).algoritmo(algortimoId).qtdMemoria(memoria).start();
+//        RoundRActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).numQuantum(numQuantum).algoritmo(algortimoId).qtdMemoria(memory).start();
     }
 
     private void irParaLTG() {
-        LTGActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memoria).algoritmo(algortimoId).qtdMemoria(memoria).start();
+//        LTGActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memory).algoritmo(algortimoId).qtdMemoria(memory).start();
     }
 
     private void irParaScheduling() {
-        IntervalBaseActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memoria).start();
+//        IntervalBaseActivity_.intent(this).numProcessos(numProcessos).numQtdProcessadores(numQtdProcessadores).algoritmo(algortimoId).qtdMemoria(memory).start();
     }
 
 }

@@ -1,27 +1,24 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.RootContext;
+import com.example.sueliopss.escalonador.data.model.MemoryBlock;
 
 import java.util.LinkedList;
 
 /**
  * Created by sueliopss on 04/05/16.
  */
-@EBean
 public class MemoriaAdapter extends BaseAdapter{
 
-    @RootContext
     Context context;
 
-    LinkedList<BlocoMemoria> memoria = new LinkedList<>();
+    LinkedList<MemoryBlock> memoria = new LinkedList<>();
 
-    public void setBlocos( LinkedList<BlocoMemoria> memoria){
+    public void setBlocos( LinkedList<MemoryBlock> memoria){
         this.memoria = memoria;
     }
 
@@ -45,7 +42,7 @@ public class MemoriaAdapter extends BaseAdapter{
         MemoriaItemView itemView = null;
 
         if(convertView == null){
-            itemView = MemoriaItemView_.build(context);
+//            itemView = MemoriaItemView_.build(context);
         }else{
             itemView = (MemoriaItemView) convertView;
         }

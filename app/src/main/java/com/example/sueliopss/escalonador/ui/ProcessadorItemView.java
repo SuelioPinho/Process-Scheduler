@@ -1,38 +1,26 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
-import android.media.Image;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EViewGroup;
-import org.androidannotations.annotations.ViewById;
+import com.example.sueliopss.escalonador.data.model.Processor;
 
-@EViewGroup(R.layout.processador_item_view)
 public class ProcessadorItemView extends RelativeLayout{
 
-    @ViewById
     ImageView imageProcessador;
 
-    @ViewById(R.id.imagePcso)
     ImageView imageProcesso;
 
-    @ViewById(R.id.nomeProcesso)
     TextView nomeProcesso;
 
-    @ViewById(R.id.tempoProcesso)
     TextView tempoProcesso;
 
-    @ViewById
     RelativeLayout relativeItemProcessador;
 
     int position;
@@ -42,17 +30,17 @@ public class ProcessadorItemView extends RelativeLayout{
         super(context);
     }
 
-    public void bind(Processador processador){
+    public void bind(Processor processor){
 
-        if(processador.is_processando){
+        if(processor.is_processando){
 
-            pintarShape(processador.processo.color);
+            pintarShape(processor.processo.color);
             relativeItemProcessador.setBackground(shape);
 
             imageProcesso.setVisibility(VISIBLE);
-            imageProcesso.setColorFilter(processador.processo.color);
-            nomeProcesso.setText(processador.processo.nomeProcesso);
-            tempoProcesso.setText("T" + processador.processo.tempoProcesso + "/" + processador.processo.tempoTotal);
+            imageProcesso.setColorFilter(processor.processo.color);
+            nomeProcesso.setText(processor.processo.nomeProcesso);
+            tempoProcesso.setText("T" + processor.processo.tempoProcesso + "/" + processor.processo.tempoTotal);
 
         } else {
             pintarShape(Color.TRANSPARENT);

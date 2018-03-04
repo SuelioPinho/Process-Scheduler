@@ -19,16 +19,16 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/nomeProcesso"/>
+        android:id="@+id/processName"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="13dp"
         android:text="TP "
         android:textSize="12dp"
-        android:layout_below="@+id/nomeProcesso"
+        android:layout_below="@+id/processName"
         android:layout_alignStart="@+id/deadLine"
-        android:id="@+id/tempoProcesso"
+        android:id="@+id/processTime"
         />
 
     <TextView
@@ -36,8 +36,8 @@
         android:layout_height="13dp"
         android:text="DL "
         android:textSize="12dp"
-        android:layout_below="@+id/nomeProcesso"
-        android:layout_alignStart="@+id/nomeProcesso"
+        android:layout_below="@+id/processName"
+        android:layout_alignStart="@+id/processName"
         android:layout_marginTop="12dp"
         android:id="@+id/deadLine"
         />
@@ -47,8 +47,8 @@
         android:text="M"
         android:textSize="12dp"
         android:layout_below="@+id/deadLine"
-        android:layout_alignStart="@+id/nomeProcesso"
-        android:id="@+id/memoria"
+        android:layout_alignStart="@+id/processName"
+        android:id="@+id/memory"
         />
 
 </RelativeLayout>

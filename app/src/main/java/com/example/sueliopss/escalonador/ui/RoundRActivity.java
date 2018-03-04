@@ -1,4 +1,4 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.app.AlertDialog;
 import android.content.res.ColorStateList;
@@ -19,90 +19,65 @@ import android.widget.ListAdapter;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.UiThread;
-import org.androidannotations.annotations.ViewById;
+import com.example.sueliopss.escalonador.R;
+import com.example.sueliopss.escalonador.data.model.Process;
+import com.example.sueliopss.escalonador.data.model.Processor;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
-@EActivity(R.layout.activity_round_r)
 public class RoundRActivity extends AppCompatActivity {
 
-    @ViewById(R.id.gridProcessadores)
     GridView gridProcessadores;
 
-    @ViewById(R.id.gridAptos1)
     GridView gridAptos1;
 
-    @ViewById(R.id.gridAptos2)
     GridView gridAptos2;
 
-    @ViewById(R.id.gridAptos3)
     GridView gridAptos3;
 
-    @ViewById(R.id.gridAptos4)
     GridView gridAptos4;
 
-    @ViewById
     GridView gridCancelados;
 
-    @ViewById(R.id.scrollview_content_main)
     ScrollView scrollView;
 
-    @Bean
     ProcessadorAdapter processadorAdapter;
 
-    @Bean
     ProcessoAdapter processoAdapter1;
 
-    @Bean
     ProcessoAdapter processoAdapter2;
 
-    @Bean
     ProcessoAdapter processoAdapter3;
 
-    @Bean
     ProcessoAdapter processoAdapter4;
 
-    @Bean
     ProcessoAdapter finalizadoAdapter;
 
-    @ViewById(R.id.iniciar)
     FloatingActionButton iniciar;
 
-    @Extra
     int numProcessos;
 
-    @Extra
     int numQtdProcessadores;
 
-    @Extra
     int numQuantum;
 
-    @Extra
     int algoritmo;
 
-    @Extra
     int qtdMemoria;
 
     EditText quantumET;
 
     Button buttonContinuar;
 
-    LinkedList<Processador> processadores;
+    LinkedList<Processor> processadores;
 
-    LinkedList<LinkedList<Processo>> processosList = new LinkedList<>();
+    LinkedList<LinkedList<Process>> processosList = new LinkedList<>();
 
-    LinkedList<Processo> finalizados;
+    LinkedList<Process> finalizados;
 
     Semaphore semaphore;
 
@@ -118,16 +93,15 @@ public class RoundRActivity extends AppCompatActivity {
 
 
         processadores = new LinkedList<>();
-        processosList.add(new LinkedList<Processo>());
-        processosList.add(new LinkedList<Processo>());
-        processosList.add(new LinkedList<Processo>());
-        processosList.add(new LinkedList<Processo>());
+        processosList.add(new LinkedList<Process>());
+        processosList.add(new LinkedList<Process>());
+        processosList.add(new LinkedList<Process>());
+        processosList.add(new LinkedList<Process>());
 
         finalizados = new LinkedList<>();
 
     }
 
-    @AfterViews
     public void afterViews() {
 
         scrollView.setOnTouchListener(new View.OnTouchListener() {
@@ -145,7 +119,6 @@ public class RoundRActivity extends AppCompatActivity {
 
     }
 
-    @Click(R.id.iniciar)
     synchronized void iniciarEscalonamento(){
 
         iniciar.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
@@ -161,14 +134,14 @@ public class RoundRActivity extends AppCompatActivity {
                 try {
                     semaphore.acquire();
 
-                    for (Processador processador : processadores) {
-                        if (!processador.is_processando) {
+                    for (Processor processor : processadores) {
+                        if (!processor.is_processando) {
                             for (int i = 0; i < 4; i++) {
 
                                 if (!processosList.get(count).isEmpty()) {
-                                    processador.processo = processosList.get(count).pop();
-                                    processador.processo.color = getResources().getColor(R.color.verdeProcesso);
-                                    processador.is_processando = true;
+                                    processor.process = processosList.get(count).pop();
+                                    processor.process.color = getResources().getColor(R.color.verdeProcesso);
+                                    processor.is_processando = true;
                                     reloadDataGridViewProcessos(count);
                                     if (count == 3) {
                                         count = 0;
@@ -208,30 +181,30 @@ public class RoundRActivity extends AppCompatActivity {
             public void run() {
 
                 for (int j = 0; j < processadores.size(); j++) {
-                    Processador processador = processadores.get(j);
-                    if (processador.is_processando) {
+                    Processor processor = processadores.get(j);
+                    if (processor.is_processando) {
 
-                        processadores.get(j).processo.quantum--;
-                        processadores.get(j).processo.tempoProcesso--;
+                        processadores.get(j).process.quantum--;
+                        processadores.get(j).process.processTime--;
 
-                        if (processador.processo.tempoProcesso == 0) {
+                        if (processor.process.processTime == 0) {
 
-                            processador.processo.color = Color.GRAY;
-                            finalizados.add(processador.processo);
+                            processor.process.color = Color.GRAY;
+                            finalizados.add(processor.process);
 
-                            processadores.get(j).processo = null;
+                            processadores.get(j).process = null;
                             processadores.get(j).is_processando = false;
                             reloadDataGridViewFinalizado(finalizados);
                             semaphore.release();
 
-                        } else if (processador.processo.quantum == 0) {
+                        } else if (processor.process.quantum == 0) {
 
-                            processador.processo.color = getResources().getColor(R.color.roxoProcesso);
-                            processador.processo.quantum = numQuantum * (4 - processador.processo.prioridade);
-                            processosList.get(processador.processo.prioridade).add(processador.processo);
-                            reloadDataGridViewProcessos(processador.processo.prioridade);
+                            processor.process.color = getResources().getColor(R.color.roxoProcesso);
+                            processor.process.quantum = numQuantum * (4 - processor.process.priority);
+                            processosList.get(processor.process.priority).add(processor.process);
+                            reloadDataGridViewProcessos(processor.process.priority);
 
-                            processadores.get(j).processo = null;
+                            processadores.get(j).process = null;
 
                             processadores.get(j).is_processando = false;
 
@@ -248,8 +221,6 @@ public class RoundRActivity extends AppCompatActivity {
 
     }
 
-    @Click(R.id.adicionar)
-    @UiThread
     public void adicionarProcesso(){
 
         synchronized (this){
@@ -259,9 +230,9 @@ public class RoundRActivity extends AppCompatActivity {
 
             int ultimoProcesso = numProcessos;
 
-            Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, tempoProcesso, Color.BLUE, countAdd, numQuantum);
+            Process process = new Process("P"+ ultimoProcesso++, tempoProcesso, tempoProcesso, Color.BLUE, countAdd, numQuantum);
 
-            processosList.get(countAdd).add(processo);
+            processosList.get(countAdd).add(process);
 
             numProcessos = ultimoProcesso;
 
@@ -282,8 +253,8 @@ public class RoundRActivity extends AppCompatActivity {
         for (int i = 0; i < processadores.size(); i++){
 
             if(!processosList.get(count).isEmpty()){
-                processadores.get(i).processo = processosList.get(count).pop();
-                processadores.get(i).processo.color = getResources().getColor(R.color.verdeProcesso);
+                processadores.get(i).process = processosList.get(count).pop();
+                processadores.get(i).process.color = getResources().getColor(R.color.verdeProcesso);
                 processadores.get(i).is_processando = true;
                 if (count == 3){
                     count = 0;
@@ -342,7 +313,7 @@ public class RoundRActivity extends AppCompatActivity {
     public void contruirGridViewProcessadores(int numProcessadores){
 
         for (int i = 0; i < numProcessadores; i++){
-            processadores.add(new Processador());
+            processadores.add(new Processor());
         }
 
         processadorAdapter.setProcessadores(processadores);
@@ -361,7 +332,7 @@ public class RoundRActivity extends AppCompatActivity {
         for (int i = 0; i < numProcesso; i++) {
             tempoProcesso = gerador.nextInt(20) + 4;
 
-            processosList.get(count).add(new Processo("P" + (i + 1), tempoProcesso, tempoProcesso, getResources().getColor(R.color.amareloProcesso), count, quant*(4 - count)));
+            processosList.get(count).add(new Process("P" + (i + 1), tempoProcesso, tempoProcesso, getResources().getColor(R.color.amareloProcesso), count, quant*(4 - count)));
 
             if (count == 3){
                 count = 0;
@@ -390,10 +361,10 @@ public class RoundRActivity extends AppCompatActivity {
     }
 
     public void setarProcessos(){
-        processoAdapter1.setProcessos(processosList.get(0));
-        processoAdapter2.setProcessos(processosList.get(1));
-        processoAdapter3.setProcessos(processosList.get(2));
-        processoAdapter4.setProcessos(processosList.get(3));
+        processoAdapter1.setProcesses(processosList.get(0));
+        processoAdapter2.setProcesses(processosList.get(1));
+        processoAdapter3.setProcesses(processosList.get(2));
+        processoAdapter4.setProcesses(processosList.get(3));
     }
 
     public void setarAdapter(){
@@ -407,7 +378,7 @@ public class RoundRActivity extends AppCompatActivity {
 
         gridCancelados.setNumColumns(finalizados.size());
         gridViewSetting(gridCancelados, finalizados.size());
-        finalizadoAdapter.setProcessos(finalizados);
+        finalizadoAdapter.setProcesses(finalizados);
         gridCancelados.setAdapter(finalizadoAdapter);
     }
 
@@ -450,7 +421,6 @@ public class RoundRActivity extends AppCompatActivity {
         gridView.setLayoutParams(params);
     }
 
-    @UiThread
     public void reloadDataGridViewProcessos(int numFilaProcesso){
 
         synchronized (this){
@@ -461,7 +431,7 @@ public class RoundRActivity extends AppCompatActivity {
 
                     gridViewSetting(gridAptos1, processosList.get(0).size());
 
-                    processoAdapter1.setProcessos(processosList.get(0));
+                    processoAdapter1.setProcesses(processosList.get(0));
 
                     gridAptos1.setAdapter(processoAdapter1);
 
@@ -471,7 +441,7 @@ public class RoundRActivity extends AppCompatActivity {
 
                     gridViewSetting(gridAptos2, processosList.get(1).size());
 
-                    processoAdapter2.setProcessos(processosList.get(1));
+                    processoAdapter2.setProcesses(processosList.get(1));
 
                     gridAptos2.setAdapter(processoAdapter2);
 
@@ -481,7 +451,7 @@ public class RoundRActivity extends AppCompatActivity {
 
                     gridViewSetting(gridAptos3, processosList.get(2).size());
 
-                    processoAdapter3.setProcessos(processosList.get(2));
+                    processoAdapter3.setProcesses(processosList.get(2));
 
                     gridAptos3.setAdapter(processoAdapter3);
 
@@ -491,7 +461,7 @@ public class RoundRActivity extends AppCompatActivity {
 
                     gridViewSetting(gridAptos4, processosList.get(3).size());
 
-                    processoAdapter4.setProcessos(processosList.get(3));
+                    processoAdapter4.setProcesses(processosList.get(3));
 
                     gridAptos4.setAdapter(processoAdapter4);
 
@@ -500,8 +470,7 @@ public class RoundRActivity extends AppCompatActivity {
         }
     }
 
-    @UiThread
-    public void reloadDataGridViewProcessador(LinkedList<Processador> processadores){
+    public void reloadDataGridViewProcessador(LinkedList<Processor> processadores){
 
         synchronized (getApplicationContext()){
             processadorAdapter.setProcessadores(processadores);
@@ -509,15 +478,13 @@ public class RoundRActivity extends AppCompatActivity {
         }
     }
 
-    @UiThread
-    public void reloadDataGridViewFinalizado(LinkedList<Processo> processos){
+    public void reloadDataGridViewFinalizado(LinkedList<Process> processes){
 
         synchronized (getApplicationContext()) {
             contruirGridViewFinalizados();
         }
     }
 
-    @Click(R.id.algoritmo)
     public void abrirDialog(){
         createDialog().show();
 

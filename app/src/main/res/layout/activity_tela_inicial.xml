@@ -5,7 +5,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.sueliopss.escalonador.TelaInicial">
+    tools:context="com.example.sueliopss.escalonador.data.model.TelaInicial">
 
     <TextView
         android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                             android:id="@+id/imageView4"
                             android:layout_toStartOf="@+id/editTextProcessos"
                             android:layout_alignBottom="@+id/editTextProcessos"
-                            android:background="@mipmap/processo"
+                            android:background="@mipmap/process"
                             android:layout_gravity="center_vertical"/>
 
                         <EditText
@@ -218,7 +218,7 @@
                             android:id="@+id/imageViewMemoria2"
                             android:layout_toStartOf="@+id/memmoria"
                             android:layout_alignBottom="@+id/memmoria"
-                            android:background="@mipmap/memoria" />
+                            android:background="@mipmap/memory" />
 
                         <EditText
                             android:layout_width="400dp"

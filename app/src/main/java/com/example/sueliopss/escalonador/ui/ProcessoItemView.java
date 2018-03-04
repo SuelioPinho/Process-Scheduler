@@ -1,43 +1,27 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.androidannotations.annotations.EViewGroup;
-import org.androidannotations.annotations.ViewById;
+import com.example.sueliopss.escalonador.data.model.Process;
 
-import static android.graphics.Color.*;
-
-
-@EViewGroup(R.layout.processo_item_view)
 public class ProcessoItemView extends RelativeLayout{
 
-    @ViewById(R.id.imageProcesso)
     ImageView imageProcesso;
 
-    @ViewById(R.id.nomeProcesso)
     TextView nomeProcesso;
 
-    @ViewById
     TextView tempoProcesso;
 
-    @ViewById
     TextView deadLine;
 
-    @ViewById
     TextView memoria;
 
-    @ViewById
     RelativeLayout relativeItemProcesso;
 
     int position;
@@ -48,18 +32,18 @@ public class ProcessoItemView extends RelativeLayout{
         super(context);
     }
 
-    public void bind(Processo processo){
+    public void bind(Process process){
 
-        pintarShape(processo.color);
+        pintarShape(process.color);
         relativeItemProcesso.setBackground(shape);
 
-        nomeProcesso.setText(processo.nomeProcesso);
-        tempoProcesso.setText("T" + processo.tempoProcesso + "/" + processo.tempoTotal);
-        memoria.setText("M" + processo.memoria + "B");
-        if(processo.deadLine == -256){
+        nomeProcesso.setText(process.processName);
+        tempoProcesso.setText("T" + process.processTime + "/" + process.tempoTotal);
+        memoria.setText("M" + process.memory + "B");
+        if(process.deadLine == -256){
             deadLine.setText("");
         }else{
-            deadLine.setText("D "+ processo.deadLine);
+            deadLine.setText("D "+ process.deadLine);
         }
 
     }

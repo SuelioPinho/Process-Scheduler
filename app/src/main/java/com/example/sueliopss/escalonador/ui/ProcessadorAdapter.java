@@ -1,25 +1,22 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.RootContext;
+import com.example.sueliopss.escalonador.data.model.Processor;
 
 import java.util.List;
 
-@EBean
 public class ProcessadorAdapter extends BaseAdapter {
-    @RootContext
     Context context;
-    private List<Processador> processadores;
+    private List<Processor> processadores;
     public ProcessadorAdapter(Context context){
         this.context = context;
     }
 
-    public void setProcessadores(List<Processador> processadores) {
+    public void setProcessadores(List<Processor> processadores) {
         this.processadores = processadores;
     }
 
@@ -44,7 +41,7 @@ public class ProcessadorAdapter extends BaseAdapter {
         ProcessadorItemView itemView = null;
 
         if(convertView == null){
-            itemView = ProcessadorItemView_.build(context);
+//            itemView = ProcessadorItemView_.build(context);
         }else{
             itemView = (ProcessadorItemView) convertView;
         }

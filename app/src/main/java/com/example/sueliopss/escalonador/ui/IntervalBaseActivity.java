@@ -1,11 +1,10 @@
-package com.example.sueliopss.escalonador;
+package com.example.sueliopss.escalonador.ui;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +14,9 @@ import android.widget.ListAdapter;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.UiThread;
-import org.androidannotations.annotations.ViewById;
+import com.example.sueliopss.escalonador.R;
+import com.example.sueliopss.escalonador.data.model.Process;
+import com.example.sueliopss.escalonador.data.model.Processor;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -30,566 +25,556 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
-@EActivity(R.layout.activity_interval_base)
 public class IntervalBaseActivity extends AppCompatActivity{
 
-    @ViewById
     LinearLayout linear1;
-    @ViewById
+
     LinearLayout linear2;
-    @ViewById
+
     LinearLayout linear3;
-    @ViewById
+
     LinearLayout linear4;
-    @ViewById
+
     LinearLayout linear5;
-    @ViewById
+
     LinearLayout linear6;
-    @ViewById
+
     LinearLayout linear7;
-    @ViewById
+
     LinearLayout linear8;
-    @ViewById
+
     LinearLayout linear9;
-    @ViewById
+
     LinearLayout linear10;
-    @ViewById
+
     LinearLayout linear11;
-    @ViewById
+
     LinearLayout linear12;
-    @ViewById
+
     LinearLayout linear13;
-    @ViewById
+
     LinearLayout linear14;
-    @ViewById
+
     LinearLayout linear15;
-    @ViewById
+
     LinearLayout linear16;
-    @ViewById
+
     LinearLayout linear17;
-    @ViewById
+
     LinearLayout linear18;
-    @ViewById
+
     LinearLayout linear19;
-    @ViewById
+
     LinearLayout linear20;
-    @ViewById
+
     LinearLayout linear21;
-    @ViewById
+
     LinearLayout linear22;
-    @ViewById
+
     LinearLayout linear23;
-    @ViewById
+
     LinearLayout linear24;
-    @ViewById
+
     LinearLayout linear25;
-    @ViewById
+
     LinearLayout linear26;
-    @ViewById
+
     LinearLayout linear27;
-    @ViewById
+
     LinearLayout linear28;
-    @ViewById
+
     LinearLayout linear29;
-    @ViewById
+
     LinearLayout linear30;
-    @ViewById
+
     LinearLayout linear31;
-    @ViewById
+
     LinearLayout linear32;
-    @ViewById
+
     LinearLayout linear33;
-    @ViewById
+
     LinearLayout linear34;
-    @ViewById
+
     LinearLayout linear35;
-    @ViewById
+
     LinearLayout linear36;
-    @ViewById
+
     LinearLayout linear37;
-    @ViewById
+
     LinearLayout linear38;
-    @ViewById
+
     LinearLayout linear39;
-    @ViewById
+
     LinearLayout linear40;
-    @ViewById
+
     LinearLayout linear41;
-    @ViewById
+
     LinearLayout linear42;
-    @ViewById
+
     LinearLayout linear43;
-    @ViewById
+
     LinearLayout linear44;
-    @ViewById
+
     LinearLayout linear45;
-    @ViewById
+
     LinearLayout linear46;
-    @ViewById
+
     LinearLayout linear47;
-    @ViewById
+
     LinearLayout linear48;
-    @ViewById
+
     LinearLayout linear49;
-    @ViewById
+
     LinearLayout linear50;
-    @ViewById
+
     LinearLayout linear51;
-    @ViewById
+
     LinearLayout linear52;
-    @ViewById
+
     LinearLayout linear53;
-    @ViewById
+
     LinearLayout linear54;
-    @ViewById
+
     LinearLayout linear55;
-    @ViewById
+
     LinearLayout linear56;
-    @ViewById
+
     LinearLayout linear57;
-    @ViewById
+
     LinearLayout linear58;
-    @ViewById
+
     LinearLayout linear59;
-    @ViewById
+
     LinearLayout linear60;
-    @ViewById
+
     LinearLayout linear61;
-    @ViewById
+
     LinearLayout linear62;
-    @ViewById
+
     LinearLayout linear63;
-    @ViewById
+
     LinearLayout linear64;
-    @ViewById
+
     LinearLayout linearRem;
 
-    @ViewById
+
     TextView processador1;
-    @ViewById
+
     TextView processador2;
-    @ViewById
+
     TextView processador3;
-    @ViewById
+
     TextView processador4;
-    @ViewById
+
     TextView processador5;
-    @ViewById
+
     TextView processador6;
-    @ViewById
+
     TextView processador7;
-    @ViewById
+
     TextView processador8;
-    @ViewById
+
     TextView processador9;
-    @ViewById
+
     TextView processador10;
-    @ViewById
+
     TextView processador11;
-    @ViewById
+
     TextView processador12;
-    @ViewById
+
     TextView processador13;
-    @ViewById
+
     TextView processador14;
-    @ViewById
+
     TextView processador15;
-    @ViewById
+
     TextView processador16;
-    @ViewById
+
     TextView processador17;
-    @ViewById
+
     TextView processador18;
-    @ViewById
+
     TextView processador19;
-    @ViewById
+
     TextView processador20;
-    @ViewById
+
     TextView processador21;
-    @ViewById
+
     TextView processador22;
-    @ViewById
+
     TextView processador23;
-    @ViewById
+
     TextView processador24;
-    @ViewById
+
     TextView processador25;
-    @ViewById
+
     TextView processador26;
-    @ViewById
+
     TextView processador27;
-    @ViewById
+
     TextView processador28;
-    @ViewById
+
     TextView processador29;
-    @ViewById
+
     TextView processador30;
-    @ViewById
+
     TextView processador31;
-    @ViewById
+
     TextView processador32;
-    @ViewById
+
     TextView processador33;
-    @ViewById
+
     TextView processador34;
-    @ViewById
+
     TextView processador35;
-    @ViewById
+
     TextView processador36;
-    @ViewById
+
     TextView processador37;
-    @ViewById
+
     TextView processador38;
-    @ViewById
+
     TextView processador39;
-    @ViewById
+
     TextView processador40;
-    @ViewById
+
     TextView processador41;
-    @ViewById
+
     TextView processador42;
-    @ViewById
+
     TextView processador43;
-    @ViewById
+
     TextView processador44;
-    @ViewById
+
     TextView processador45;
-    @ViewById
+
     TextView processador46;
-    @ViewById
+
     TextView processador47;
-    @ViewById
+
     TextView processador48;
-    @ViewById
+
     TextView processador49;
-    @ViewById
+
     TextView processador50;
-    @ViewById
+
     TextView processador51;
-    @ViewById
+
     TextView processador52;
-    @ViewById
+
     TextView processador53;
-    @ViewById
+
     TextView processador54;
-    @ViewById
+
     TextView processador55;
-    @ViewById
+
     TextView processador56;
-    @ViewById
+
     TextView processador57;
-    @ViewById
+
     TextView processador58;
-    @ViewById
+
     TextView processador59;
-    @ViewById
+
     TextView processador60;
-    @ViewById
+
     TextView processador61;
-    @ViewById
+
     TextView processador62;
-    @ViewById
+
     TextView processador63;
-    @ViewById
+
     TextView processador64;
 
-    @ViewById(R.id.gridProcessadores)
     GridView gridProcessadores;
-    @ViewById
+
     GridView gridAptos1;
-    @ViewById
+
     GridView gridAptos2;
-    @ViewById
+
     GridView gridAptos3;
-    @ViewById
+
     GridView gridAptos4;
-    @ViewById
+
     GridView gridAptos5;
-    @ViewById
+
     GridView gridAptos6;
-    @ViewById
+
     GridView gridAptos7;
-    @ViewById
+
     GridView gridAptos8;
-    @ViewById
+
     GridView gridAptos9;
-    @ViewById
+
     GridView gridAptos10;
-    @ViewById
+
     GridView gridAptos11;
-    @ViewById
+
     GridView gridAptos12;
-    @ViewById
+
     GridView gridAptos13;
-    @ViewById
+
     GridView gridAptos14;
-    @ViewById
+
     GridView gridAptos15;
-    @ViewById
+
     GridView gridAptos16;
-    @ViewById
+
     GridView gridAptos17;
-    @ViewById
+
     GridView gridAptos18;
-    @ViewById
+
     GridView gridAptos19;
-    @ViewById
+
     GridView gridAptos20;
-    @ViewById
+
     GridView gridAptos21;
-    @ViewById
+
     GridView gridAptos22;
-    @ViewById
+
     GridView gridAptos23;
-    @ViewById
+
     GridView gridAptos24;
-    @ViewById
+
     GridView gridAptos25;
-    @ViewById
+
     GridView gridAptos26;
-    @ViewById
+
     GridView gridAptos27;
-    @ViewById
+
     GridView gridAptos28;
-    @ViewById
+
     GridView gridAptos29;
-    @ViewById
+
     GridView gridAptos30;
-    @ViewById
+
     GridView gridAptos31;
-    @ViewById
+
     GridView gridAptos32;
-    @ViewById
+
     GridView gridAptos33;
-    @ViewById
+
     GridView gridAptos34;
-    @ViewById
+
     GridView gridAptos35;
-    @ViewById
+
     GridView gridAptos36;
-    @ViewById
+
     GridView gridAptos37;
-    @ViewById
+
     GridView gridAptos38;
-    @ViewById
+
     GridView gridAptos39;
-    @ViewById
+
     GridView gridAptos40;
-    @ViewById
+
     GridView gridAptos41;
-    @ViewById
+
     GridView gridAptos42;
-    @ViewById
+
     GridView gridAptos43;
-    @ViewById
+
     GridView gridAptos44;
-    @ViewById
+
     GridView gridAptos45;
-    @ViewById
+
     GridView gridAptos46;
-    @ViewById
+
     GridView gridAptos47;
-    @ViewById
+
     GridView gridAptos48;
-    @ViewById
+
     GridView gridAptos49;
-    @ViewById
+
     GridView gridAptos50;
-    @ViewById
+
     GridView gridAptos51;
-    @ViewById
+
     GridView gridAptos52;
-    @ViewById
+
     GridView gridAptos53;
-    @ViewById
+
     GridView gridAptos54;
-    @ViewById
+
     GridView gridAptos55;
-    @ViewById
+
     GridView gridAptos56;
-    @ViewById
+
     GridView gridAptos57;
-    @ViewById
+
     GridView gridAptos58;
-    @ViewById
+
     GridView gridAptos59;
-    @ViewById
+
     GridView gridAptos60;
-    @ViewById
+
     GridView gridAptos61;
-    @ViewById
+
     GridView gridAptos62;
-    @ViewById
+
     GridView gridAptos63;
-    @ViewById
+
     GridView gridAptos64;
-    @ViewById
+
     GridView gridAptosRem;
-    @ViewById
+
     GridView gridCancelados;
 
-    @Bean
     ProcessadorAdapter processadorAdapter;
-    @Bean
+
     ProcessoAdapter processoAdapter1;
-    @Bean
+
     ProcessoAdapter processoAdapter2;
-    @Bean
+
     ProcessoAdapter processoAdapter3;
-    @Bean
+
     ProcessoAdapter processoAdapter4;
-    @Bean
+
     ProcessoAdapter processoAdapter5;
-    @Bean
+
     ProcessoAdapter processoAdapter6;
-    @Bean
+
     ProcessoAdapter processoAdapter7;
-    @Bean
+
     ProcessoAdapter processoAdapter8;
-    @Bean
+
     ProcessoAdapter processoAdapter9;
-    @Bean
+
     ProcessoAdapter processoAdapter10;
-    @Bean
+
     ProcessoAdapter processoAdapter11;
-    @Bean
+
     ProcessoAdapter processoAdapter12;
-    @Bean
+
     ProcessoAdapter processoAdapter13;
-    @Bean
+
     ProcessoAdapter processoAdapter14;
-    @Bean
+
     ProcessoAdapter processoAdapter15;
-    @Bean
+
     ProcessoAdapter processoAdapter16;
-    @Bean
+
     ProcessoAdapter processoAdapter17;
-    @Bean
+
     ProcessoAdapter processoAdapter18;
-    @Bean
+
     ProcessoAdapter processoAdapter19;
-    @Bean
+
     ProcessoAdapter processoAdapter20;
-    @Bean
+
     ProcessoAdapter processoAdapter21;
-    @Bean
+
     ProcessoAdapter processoAdapter22;
-    @Bean
+
     ProcessoAdapter processoAdapter23;
-    @Bean
+
     ProcessoAdapter processoAdapter24;
-    @Bean
+
     ProcessoAdapter processoAdapter25;
-    @Bean
+
     ProcessoAdapter processoAdapter26;
-    @Bean
+
     ProcessoAdapter processoAdapter27;
-    @Bean
+
     ProcessoAdapter processoAdapter28;
-    @Bean
+
     ProcessoAdapter processoAdapter29;
-    @Bean
+
     ProcessoAdapter processoAdapter30;
-    @Bean
+
     ProcessoAdapter processoAdapter31;
-    @Bean
+
     ProcessoAdapter processoAdapter32;
-    @Bean
+
     ProcessoAdapter processoAdapter33;
-    @Bean
+
     ProcessoAdapter processoAdapter34;
-    @Bean
+
     ProcessoAdapter processoAdapter35;
-    @Bean
+
     ProcessoAdapter processoAdapter36;
-    @Bean
+
     ProcessoAdapter processoAdapter37;
-    @Bean
+
     ProcessoAdapter processoAdapter38;
-    @Bean
+
     ProcessoAdapter processoAdapter39;
-    @Bean
+
     ProcessoAdapter processoAdapter40;
-    @Bean
+
     ProcessoAdapter processoAdapter41;
-    @Bean
+
     ProcessoAdapter processoAdapter42;
-    @Bean
+
     ProcessoAdapter processoAdapter43;
-    @Bean
+
     ProcessoAdapter processoAdapter44;
-    @Bean
+
     ProcessoAdapter processoAdapter45;
-    @Bean
+
     ProcessoAdapter processoAdapter46;
-    @Bean
+
     ProcessoAdapter processoAdapter47;
-    @Bean
+
     ProcessoAdapter processoAdapter48;
-    @Bean
+
     ProcessoAdapter processoAdapter49;
-    @Bean
+
     ProcessoAdapter processoAdapter50;
-    @Bean
+
     ProcessoAdapter processoAdapter51;
-    @Bean
+
     ProcessoAdapter processoAdapter52;
-    @Bean
+
     ProcessoAdapter processoAdapter53;
-    @Bean
+
     ProcessoAdapter processoAdapter54;
-    @Bean
+
     ProcessoAdapter processoAdapter55;
-    @Bean
+
     ProcessoAdapter processoAdapter56;
-    @Bean
+
     ProcessoAdapter processoAdapter57;
-    @Bean
+
     ProcessoAdapter processoAdapter58;
-    @Bean
+
     ProcessoAdapter processoAdapter59;
-    @Bean
+
     ProcessoAdapter processoAdapter60;
-    @Bean
+
     ProcessoAdapter processoAdapter61;
-    @Bean
+
     ProcessoAdapter processoAdapter62;
-    @Bean
+
     ProcessoAdapter processoAdapter63;
-    @Bean
+
     ProcessoAdapter processoAdapter64;
-    @Bean
+
     ProcessoAdapter processoAdapterRem;
-    @Bean
+
     ProcessoAdapter finalizadoAdapter;
-    @Bean
+
     ProcessoAdapter remanecenteAdapter;
 
-    @ViewById(R.id.scrollview_content_main)
     ScrollView scrollView;
 
-    @Extra
     int numProcessos;
 
-    @Extra
     int numQtdProcessadores;
 
-    @Extra
     int algoritmo;
 
-    @Extra
     int qtdMemoria;
 
-    @ViewById(R.id.iniciar)
     FloatingActionButton iniciar;
 
-    LinkedList<Processador> processadores;
+    LinkedList<Processor> processadores;
 
-    LinkedList<LinkedList<Processo>> processosList = new LinkedList<>();
+    LinkedList<LinkedList<Process>> processosList = new LinkedList<>();
 
-    LinkedList<Processo> finalizados;
+    LinkedList<Process> finalizados;
 
-    LinkedList<Processo> remanecentes;
+    LinkedList<Process> remanecentes;
 
     Semaphore semaphore;
 
@@ -601,14 +586,12 @@ public class IntervalBaseActivity extends AppCompatActivity{
         remanecentes = new LinkedList<>();
     }
 
-    @AfterViews
     public void afterViews(){
         criarListas();
         ativarGridView();
         prepararEscalonamento();
     }
 
-    @Click(R.id.iniciar)
     synchronized void iniciarEscalonamento() {
 
         iniciar.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
@@ -626,12 +609,12 @@ public class IntervalBaseActivity extends AppCompatActivity{
                     semaphore.acquire();
 
                     for (int i = 0; i < processadores.size(); i++) {
-                        Processador processador = processadores.get(i);
-                        if (!processador.is_processando) {
+                        Processor processor = processadores.get(i);
+                        if (!processor.is_processando) {
                             if (!processosList.get(i).isEmpty()) {
                                 if (processosList.get(i).get(0).deadLine == 0) {
-                                    processador.processo = processosList.get(i).pop();
-                                    processador.is_processando = true;
+                                    processor.process = processosList.get(i).pop();
+                                    processor.is_processando = true;
                                     reloadDataGridViewProcessos(i);
                                 }
                             }
@@ -660,13 +643,13 @@ public class IntervalBaseActivity extends AppCompatActivity{
             public void run() {
 
                 for (int j = 0; j < processadores.size(); j++) {
-                    Processador processador = processadores.get(j);
-                    if (processador.is_processando) {
-                        processadores.get(j).processo.tempoProcesso--;
-                        if (processador.processo.tempoProcesso == 0) {
-                            processador.processo.color = Color.GRAY;
-                            finalizados.add(processador.processo);
-                            processadores.get(j).processo = null;
+                    Processor processor = processadores.get(j);
+                    if (processor.is_processando) {
+                        processadores.get(j).process.processTime--;
+                        if (processor.process.processTime == 0) {
+                            processor.process.color = Color.GRAY;
+                            finalizados.add(processor.process);
+                            processadores.get(j).process = null;
                             processadores.get(j).is_processando = false;
                             reloadDataGridViewFinalizado();
                             semaphore.release();
@@ -683,7 +666,6 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     }
 
-    @Click(R.id.adicionar)
     synchronized void adicionarProcesso(){
 
       Random gerador = new Random();
@@ -696,10 +678,10 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
       int ultimoProcesso = numProcessos;
 
-      Processo processo = new Processo("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE, memoria);
+      Process process = new Process("P"+ ultimoProcesso++, tempoProcesso, deadLine, tempoProcesso, Color.BLUE, memoria);
 
       synchronized (this){
-        remanecentes.add(processo);
+        remanecentes.add(process);
 
         for(int i = 0; i < numQtdProcessadores; i++){
 
@@ -772,21 +754,21 @@ public class IntervalBaseActivity extends AppCompatActivity{
         }, 0, 1000);
     }
 
-    public LinkedList<Processo> gerarFilaExecucao(LinkedList<Processo> iniciais){
+    public LinkedList<Process> gerarFilaExecucao(LinkedList<Process> iniciais){
 
-        Processo processo;
-        LinkedList<Processo> processos;
+        Process process;
+        LinkedList<Process> processes;
         try{
 
             Collections.sort(iniciais);
-            processo = iniciais.get(0);
-            LinkedList<Processo> auxRem = new LinkedList<>();
-            processos = new LinkedList<>();
-            processos.add(iniciais.pop());
+            process = iniciais.get(0);
+            LinkedList<Process> auxRem = new LinkedList<>();
+            processes = new LinkedList<>();
+            processes.add(iniciais.pop());
             while(!iniciais.isEmpty()){
-                if((processo.deadLine + processo.tempoProcesso < iniciais.get(0).deadLine) || (processo.deadLine + processo.tempoProcesso == iniciais.get(0).deadLine)){
-                    processo = iniciais.get(0);
-                    processos.add(iniciais.pop());
+                if((process.deadLine + process.processTime < iniciais.get(0).deadLine) || (process.deadLine + process.processTime == iniciais.get(0).deadLine)){
+                    process = iniciais.get(0);
+                    processes.add(iniciais.pop());
                 }else{
                     auxRem.add(iniciais.pop());
                 }
@@ -800,7 +782,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
         }
 
 
-        return processos;
+        return processes;
     }
 
     private void gridViewSetting(GridView gridview, int size) {
@@ -844,7 +826,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
     public void contruirGridViewProcessadores(){
 
         for (int i = 0; i < numQtdProcessadores; i++){
-            processadores.add(new Processador());
+            processadores.add(new Processor());
         }
 
         processadorAdapter.setProcessadores(processadores);
@@ -858,7 +840,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
         int count = 0;
         Random gerador = new Random();
 
-        LinkedList<Processo> iniciais = new LinkedList<>();
+        LinkedList<Process> iniciais = new LinkedList<>();
 
         int tempoProcesso;
         int deadLine;
@@ -868,7 +850,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
             tempoProcesso = gerador.nextInt(8) + 2;
             deadLine = gerador.nextInt(20) + 2;
             memoria = gerador.nextInt(20) + 10;
-            iniciais.add(new Processo("P" + (i + 1), tempoProcesso, deadLine, tempoProcesso, getResources().getColor(R.color.amareloProcesso), memoria));
+            iniciais.add(new Process("P" + (i + 1), tempoProcesso, deadLine, tempoProcesso, getResources().getColor(R.color.amareloProcesso), memoria));
 
             if (count == numQtdProcessadores - 1){
                 count = 0;
@@ -902,7 +884,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
         gridViewSetting(gridCancelados, finalizados.size());
 
-        finalizadoAdapter.setProcessos(finalizados);
+        finalizadoAdapter.setProcesses(finalizados);
 
         gridCancelados.setAdapter(finalizadoAdapter);
 
@@ -914,7 +896,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
       gridViewSetting(gridAptosRem, remanecentes.size());
 
-      remanecenteAdapter.setProcessos(remanecentes);
+      remanecenteAdapter.setProcesses(remanecentes);
 
       gridAptosRem.setAdapter(remanecenteAdapter);
 
@@ -980,7 +962,6 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     }
 
-    @UiThread
     public void reloadDataGridViewProcessos(int numFilaProcesso){
 
         synchronized (this){
@@ -991,7 +972,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos1, processosList.get(0).size());
 
-                    processoAdapter1.setProcessos(processosList.get(0));
+                    processoAdapter1.setProcesses(processosList.get(0));
 
                     gridAptos1.setAdapter(processoAdapter1);
 
@@ -1001,7 +982,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos2, processosList.get(1).size());
 
-                    processoAdapter2.setProcessos(processosList.get(1));
+                    processoAdapter2.setProcesses(processosList.get(1));
 
                     gridAptos2.setAdapter(processoAdapter2);
 
@@ -1011,7 +992,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos3, processosList.get(2).size());
 
-                    processoAdapter3.setProcessos(processosList.get(2));
+                    processoAdapter3.setProcesses(processosList.get(2));
 
                     gridAptos3.setAdapter(processoAdapter3);
 
@@ -1021,7 +1002,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos4, processosList.get(3).size());
 
-                    processoAdapter4.setProcessos(processosList.get(3));
+                    processoAdapter4.setProcesses(processosList.get(3));
 
                     gridAptos4.setAdapter(processoAdapter4);
 
@@ -1031,7 +1012,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos5, processosList.get(4).size());
 
-                    processoAdapter5.setProcessos(processosList.get(4));
+                    processoAdapter5.setProcesses(processosList.get(4));
 
                     gridAptos5.setAdapter(processoAdapter5);
 
@@ -1041,7 +1022,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos6, processosList.get(5).size());
 
-                    processoAdapter6.setProcessos(processosList.get(5));
+                    processoAdapter6.setProcesses(processosList.get(5));
 
                     gridAptos6.setAdapter(processoAdapter6);
 
@@ -1051,7 +1032,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos7, processosList.get(6).size());
 
-                    processoAdapter7.setProcessos(processosList.get(6));
+                    processoAdapter7.setProcesses(processosList.get(6));
 
                     gridAptos7.setAdapter(processoAdapter7);
 
@@ -1061,7 +1042,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos8, processosList.get(7).size());
 
-                    processoAdapter8.setProcessos(processosList.get(7));
+                    processoAdapter8.setProcesses(processosList.get(7));
 
                     gridAptos8.setAdapter(processoAdapter8);
 
@@ -1071,7 +1052,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos9, processosList.get(8).size());
 
-                    processoAdapter9.setProcessos(processosList.get(8));
+                    processoAdapter9.setProcesses(processosList.get(8));
 
                     gridAptos9.setAdapter(processoAdapter9);
 
@@ -1081,7 +1062,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos10, processosList.get(9).size());
 
-                    processoAdapter10.setProcessos(processosList.get(9));
+                    processoAdapter10.setProcesses(processosList.get(9));
 
                     gridAptos10.setAdapter(processoAdapter10);
 
@@ -1091,7 +1072,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos11, processosList.get(10).size());
 
-                    processoAdapter11.setProcessos(processosList.get(10));
+                    processoAdapter11.setProcesses(processosList.get(10));
 
                     gridAptos11.setAdapter(processoAdapter11);
 
@@ -1101,7 +1082,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos12, processosList.get(11).size());
 
-                    processoAdapter12.setProcessos(processosList.get(11));
+                    processoAdapter12.setProcesses(processosList.get(11));
 
                     gridAptos12.setAdapter(processoAdapter12);
 
@@ -1111,7 +1092,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos13, processosList.get(12).size());
 
-                    processoAdapter13.setProcessos(processosList.get(12));
+                    processoAdapter13.setProcesses(processosList.get(12));
 
                     gridAptos13.setAdapter(processoAdapter13);
 
@@ -1121,7 +1102,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos14, processosList.get(13).size());
 
-                    processoAdapter14.setProcessos(processosList.get(13));
+                    processoAdapter14.setProcesses(processosList.get(13));
 
                     gridAptos14.setAdapter(processoAdapter14);
 
@@ -1131,7 +1112,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos14, processosList.get(15).size());
 
-                    processoAdapter14.setProcessos(processosList.get(15));
+                    processoAdapter14.setProcesses(processosList.get(15));
 
                     gridAptos14.setAdapter(processoAdapter15);
 
@@ -1141,7 +1122,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos16, processosList.get(15).size());
 
-                    processoAdapter16.setProcessos(processosList.get(15));
+                    processoAdapter16.setProcesses(processosList.get(15));
 
                     gridAptos16.setAdapter(processoAdapter16);
 
@@ -1151,7 +1132,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos17, processosList.get(16).size());
 
-                    processoAdapter17.setProcessos(processosList.get(16));
+                    processoAdapter17.setProcesses(processosList.get(16));
 
                     gridAptos17.setAdapter(processoAdapter17);
 
@@ -1161,7 +1142,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos18, processosList.get(17).size());
 
-                    processoAdapter18.setProcessos(processosList.get(17));
+                    processoAdapter18.setProcesses(processosList.get(17));
 
                     gridAptos18.setAdapter(processoAdapter18);
 
@@ -1171,7 +1152,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos19, processosList.get(18).size());
 
-                    processoAdapter19.setProcessos(processosList.get(18));
+                    processoAdapter19.setProcesses(processosList.get(18));
 
                     gridAptos19.setAdapter(processoAdapter19);
 
@@ -1181,7 +1162,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos20, processosList.get(19).size());
 
-                    processoAdapter20.setProcessos(processosList.get(19));
+                    processoAdapter20.setProcesses(processosList.get(19));
 
                     gridAptos20.setAdapter(processoAdapter20);
 
@@ -1191,7 +1172,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos21, processosList.get(20).size());
 
-                    processoAdapter21.setProcessos(processosList.get(20));
+                    processoAdapter21.setProcesses(processosList.get(20));
 
                     gridAptos21.setAdapter(processoAdapter21);
 
@@ -1201,7 +1182,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos22, processosList.get(21).size());
 
-                    processoAdapter22.setProcessos(processosList.get(21));
+                    processoAdapter22.setProcesses(processosList.get(21));
 
                     gridAptos22.setAdapter(processoAdapter22);
 
@@ -1211,7 +1192,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos23, processosList.get(22).size());
 
-                    processoAdapter23.setProcessos(processosList.get(22));
+                    processoAdapter23.setProcesses(processosList.get(22));
 
                     gridAptos23.setAdapter(processoAdapter23);
 
@@ -1221,7 +1202,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos24, processosList.get(23).size());
 
-                    processoAdapter24.setProcessos(processosList.get(23));
+                    processoAdapter24.setProcesses(processosList.get(23));
 
                     gridAptos24.setAdapter(processoAdapter24);
 
@@ -1231,7 +1212,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos25, processosList.get(24).size());
 
-                    processoAdapter25.setProcessos(processosList.get(24));
+                    processoAdapter25.setProcesses(processosList.get(24));
 
                     gridAptos25.setAdapter(processoAdapter25);
 
@@ -1241,7 +1222,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos26, processosList.get(25).size());
 
-                    processoAdapter26.setProcessos(processosList.get(25));
+                    processoAdapter26.setProcesses(processosList.get(25));
 
                     gridAptos26.setAdapter(processoAdapter26);
 
@@ -1251,7 +1232,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos27, processosList.get(26).size());
 
-                    processoAdapter27.setProcessos(processosList.get(26));
+                    processoAdapter27.setProcesses(processosList.get(26));
 
                     gridAptos27.setAdapter(processoAdapter27);
 
@@ -1261,7 +1242,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos28, processosList.get(27).size());
 
-                    processoAdapter28.setProcessos(processosList.get(27));
+                    processoAdapter28.setProcesses(processosList.get(27));
 
                     gridAptos28.setAdapter(processoAdapter28);
 
@@ -1271,7 +1252,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos29, processosList.get(28).size());
 
-                    processoAdapter29.setProcessos(processosList.get(28));
+                    processoAdapter29.setProcesses(processosList.get(28));
 
                     gridAptos29.setAdapter(processoAdapter29);
 
@@ -1281,7 +1262,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos30, processosList.get(29).size());
 
-                    processoAdapter30.setProcessos(processosList.get(29));
+                    processoAdapter30.setProcesses(processosList.get(29));
 
                     gridAptos30.setAdapter(processoAdapter30);
 
@@ -1291,7 +1272,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos31, processosList.get(30).size());
 
-                    processoAdapter31.setProcessos(processosList.get(30));
+                    processoAdapter31.setProcesses(processosList.get(30));
 
                     gridAptos31.setAdapter(processoAdapter31);
 
@@ -1301,7 +1282,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos32, processosList.get(31).size());
 
-                    processoAdapter32.setProcessos(processosList.get(31));
+                    processoAdapter32.setProcesses(processosList.get(31));
 
                     gridAptos32.setAdapter(processoAdapter32);
 
@@ -1311,7 +1292,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos33, processosList.get(32).size());
 
-                    processoAdapter33.setProcessos(processosList.get(32));
+                    processoAdapter33.setProcesses(processosList.get(32));
 
                     gridAptos33.setAdapter(processoAdapter33);
 
@@ -1321,7 +1302,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos34, processosList.get(33).size());
 
-                    processoAdapter34.setProcessos(processosList.get(33));
+                    processoAdapter34.setProcesses(processosList.get(33));
 
                     gridAptos34.setAdapter(processoAdapter34);
 
@@ -1331,7 +1312,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos35, processosList.get(34).size());
 
-                    processoAdapter35.setProcessos(processosList.get(34));
+                    processoAdapter35.setProcesses(processosList.get(34));
 
                     gridAptos35.setAdapter(processoAdapter35);
 
@@ -1341,7 +1322,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos36, processosList.get(35).size());
 
-                    processoAdapter36.setProcessos(processosList.get(35));
+                    processoAdapter36.setProcesses(processosList.get(35));
 
                     gridAptos36.setAdapter(processoAdapter36);
 
@@ -1351,7 +1332,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos37, processosList.get(36).size());
 
-                    processoAdapter37.setProcessos(processosList.get(36));
+                    processoAdapter37.setProcesses(processosList.get(36));
 
                     gridAptos37.setAdapter(processoAdapter37);
 
@@ -1361,7 +1342,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos38, processosList.get(37).size());
 
-                    processoAdapter38.setProcessos(processosList.get(37));
+                    processoAdapter38.setProcesses(processosList.get(37));
 
                     gridAptos38.setAdapter(processoAdapter38);
 
@@ -1371,7 +1352,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos39, processosList.get(38).size());
 
-                    processoAdapter39.setProcessos(processosList.get(38));
+                    processoAdapter39.setProcesses(processosList.get(38));
 
                     gridAptos39.setAdapter(processoAdapter39);
 
@@ -1381,7 +1362,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos40, processosList.get(39).size());
 
-                    processoAdapter40.setProcessos(processosList.get(39));
+                    processoAdapter40.setProcesses(processosList.get(39));
 
                     gridAptos40.setAdapter(processoAdapter40);
 
@@ -1392,7 +1373,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos41, processosList.get(40).size());
 
-                    processoAdapter41.setProcessos(processosList.get(40));
+                    processoAdapter41.setProcesses(processosList.get(40));
 
                     gridAptos41.setAdapter(processoAdapter41);
 
@@ -1402,7 +1383,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos42, processosList.get(41).size());
 
-                    processoAdapter42.setProcessos(processosList.get(41));
+                    processoAdapter42.setProcesses(processosList.get(41));
 
                     gridAptos42.setAdapter(processoAdapter42);
 
@@ -1412,7 +1393,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos43, processosList.get(42).size());
 
-                    processoAdapter43.setProcessos(processosList.get(42));
+                    processoAdapter43.setProcesses(processosList.get(42));
 
                     gridAptos43.setAdapter(processoAdapter43);
 
@@ -1422,7 +1403,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos44, processosList.get(43).size());
 
-                    processoAdapter44.setProcessos(processosList.get(43));
+                    processoAdapter44.setProcesses(processosList.get(43));
 
                     gridAptos44.setAdapter(processoAdapter44);
 
@@ -1432,7 +1413,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos45, processosList.get(44).size());
 
-                    processoAdapter45.setProcessos(processosList.get(44));
+                    processoAdapter45.setProcesses(processosList.get(44));
 
                     gridAptos45.setAdapter(processoAdapter45);
 
@@ -1442,7 +1423,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos46, processosList.get(45).size());
 
-                    processoAdapter46.setProcessos(processosList.get(45));
+                    processoAdapter46.setProcesses(processosList.get(45));
 
                     gridAptos46.setAdapter(processoAdapter46);
 
@@ -1452,7 +1433,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos47, processosList.get(46).size());
 
-                    processoAdapter47.setProcessos(processosList.get(46));
+                    processoAdapter47.setProcesses(processosList.get(46));
 
                     gridAptos47.setAdapter(processoAdapter47);
 
@@ -1462,7 +1443,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos48, processosList.get(47).size());
 
-                    processoAdapter48.setProcessos(processosList.get(47));
+                    processoAdapter48.setProcesses(processosList.get(47));
 
                     gridAptos48.setAdapter(processoAdapter48);
 
@@ -1472,7 +1453,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos49, processosList.get(48).size());
 
-                    processoAdapter49.setProcessos(processosList.get(48));
+                    processoAdapter49.setProcesses(processosList.get(48));
 
                     gridAptos49.setAdapter(processoAdapter49);
 
@@ -1482,7 +1463,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos50, processosList.get(49).size());
 
-                    processoAdapter50.setProcessos(processosList.get(49));
+                    processoAdapter50.setProcesses(processosList.get(49));
 
                     gridAptos50.setAdapter(processoAdapter50);
 
@@ -1492,7 +1473,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos51, processosList.get(50).size());
 
-                    processoAdapter51.setProcessos(processosList.get(50));
+                    processoAdapter51.setProcesses(processosList.get(50));
 
                     gridAptos51.setAdapter(processoAdapter51);
 
@@ -1502,7 +1483,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos52, processosList.get(51).size());
 
-                    processoAdapter52.setProcessos(processosList.get(1));
+                    processoAdapter52.setProcesses(processosList.get(1));
 
                     gridAptos52.setAdapter(processoAdapter52);
 
@@ -1512,7 +1493,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos53, processosList.get(52).size());
 
-                    processoAdapter53.setProcessos(processosList.get(52));
+                    processoAdapter53.setProcesses(processosList.get(52));
 
                     gridAptos53.setAdapter(processoAdapter53);
 
@@ -1522,7 +1503,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos54, processosList.get(53).size());
 
-                    processoAdapter54.setProcessos(processosList.get(53));
+                    processoAdapter54.setProcesses(processosList.get(53));
 
                     gridAptos54.setAdapter(processoAdapter54);
 
@@ -1532,7 +1513,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos55, processosList.get(54).size());
 
-                    processoAdapter55.setProcessos(processosList.get(54));
+                    processoAdapter55.setProcesses(processosList.get(54));
 
                     gridAptos55.setAdapter(processoAdapter55);
 
@@ -1542,7 +1523,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos56, processosList.get(55).size());
 
-                    processoAdapter56.setProcessos(processosList.get(55));
+                    processoAdapter56.setProcesses(processosList.get(55));
 
                     gridAptos56.setAdapter(processoAdapter56);
 
@@ -1552,7 +1533,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos57, processosList.get(56).size());
 
-                    processoAdapter57.setProcessos(processosList.get(56));
+                    processoAdapter57.setProcesses(processosList.get(56));
 
                     gridAptos57.setAdapter(processoAdapter57);
 
@@ -1562,7 +1543,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos58, processosList.get(57).size());
 
-                    processoAdapter58.setProcessos(processosList.get(57));
+                    processoAdapter58.setProcesses(processosList.get(57));
 
                     gridAptos58.setAdapter(processoAdapter58);
 
@@ -1572,7 +1553,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos59, processosList.get(58).size());
 
-                    processoAdapter59.setProcessos(processosList.get(58));
+                    processoAdapter59.setProcesses(processosList.get(58));
 
                     gridAptos59.setAdapter(processoAdapter59);
 
@@ -1582,7 +1563,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos60, processosList.get(59).size());
 
-                    processoAdapter60.setProcessos(processosList.get(59));
+                    processoAdapter60.setProcesses(processosList.get(59));
 
                     gridAptos60.setAdapter(processoAdapter60);
 
@@ -1592,7 +1573,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos61, processosList.get(60).size());
 
-                    processoAdapter61.setProcessos(processosList.get(60));
+                    processoAdapter61.setProcesses(processosList.get(60));
 
                     gridAptos61.setAdapter(processoAdapter61);
 
@@ -1602,7 +1583,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos62, processosList.get(61).size());
 
-                    processoAdapter62.setProcessos(processosList.get(61));
+                    processoAdapter62.setProcesses(processosList.get(61));
 
                     gridAptos62.setAdapter(processoAdapter62);
 
@@ -1612,7 +1593,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos63, processosList.get(62).size());
 
-                    processoAdapter63.setProcessos(processosList.get(62));
+                    processoAdapter63.setProcesses(processosList.get(62));
 
                     gridAptos63.setAdapter(processoAdapter63);
 
@@ -1622,7 +1603,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
                     gridViewSetting(gridAptos64, processosList.get(63).size());
 
-                    processoAdapter64.setProcessos(processosList.get(63));
+                    processoAdapter64.setProcesses(processosList.get(63));
 
                     gridAptos64.setAdapter(processoAdapter64);
 
@@ -1640,8 +1621,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     }
 
-    @UiThread
-    public void reloadDataGridViewProcessador(LinkedList<Processador> processadores){
+    public void reloadDataGridViewProcessador(LinkedList<Processor> processadores){
 
         synchronized (getApplicationContext()){
             processadorAdapter.setProcessadores(processadores);
@@ -1650,7 +1630,6 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     }
 
-    @UiThread
     public void reloadDataGridViewFinalizado(){
 
         synchronized (getApplicationContext()) {
@@ -1658,7 +1637,6 @@ public class IntervalBaseActivity extends AppCompatActivity{
         }
     }
 
-    @UiThread
     public void reloadDataGridViewRemanecente(){
       synchronized (this){
         construirGridViewRemanecente();
@@ -1667,7 +1645,7 @@ public class IntervalBaseActivity extends AppCompatActivity{
 
     public void criarListas(){
         for (int i = 0; i < numQtdProcessadores; i++){
-            processosList.add(new LinkedList<Processo>());
+            processosList.add(new LinkedList<Process>());
         }
     }
 
@@ -1963,74 +1941,74 @@ public class IntervalBaseActivity extends AppCompatActivity{
     public void setProcessosAdapter(){
         for (int i = 0; i < numQtdProcessadores; i++){
             switch (i){
-                case 0: processoAdapter1.setProcessos(processosList.get(0)); break;
-                case 1: processoAdapter2.setProcessos(processosList.get(1)); break;
-                case 2: processoAdapter3.setProcessos(processosList.get(2)); break;
-                case 3: processoAdapter4.setProcessos(processosList.get(3)); break;
-                case 4: processoAdapter5.setProcessos(processosList.get(4)); break;
-                case 5: processoAdapter6.setProcessos(processosList.get(5)); break;
-                case 6: processoAdapter7.setProcessos(processosList.get(6)); break;
-                case 7: processoAdapter8.setProcessos(processosList.get(7)); break;
-                case 8: processoAdapter9.setProcessos(processosList.get(8)); break;
-                case 9: processoAdapter10.setProcessos(processosList.get(9)); break;
-                case 10: processoAdapter11.setProcessos(processosList.get(10)); break;
-                case 11: processoAdapter12.setProcessos(processosList.get(11)); break;
-                case 12: processoAdapter13.setProcessos(processosList.get(12)); break;
-                case 13: processoAdapter14.setProcessos(processosList.get(13)); break;
-                case 14: processoAdapter15.setProcessos(processosList.get(14)); break;
-                case 15: processoAdapter16.setProcessos(processosList.get(15)); break;
-                case 16: processoAdapter17.setProcessos(processosList.get(16)); break;
-                case 17: processoAdapter18.setProcessos(processosList.get(17)); break;
-                case 18: processoAdapter19.setProcessos(processosList.get(18)); break;
-                case 19: processoAdapter20.setProcessos(processosList.get(19)); break;
-                case 20: processoAdapter21.setProcessos(processosList.get(20)); break;
-                case 21: processoAdapter22.setProcessos(processosList.get(21)); break;
-                case 22: processoAdapter23.setProcessos(processosList.get(22)); break;
-                case 23: processoAdapter24.setProcessos(processosList.get(23)); break;
-                case 24: processoAdapter25.setProcessos(processosList.get(24)); break;
-                case 25: processoAdapter26.setProcessos(processosList.get(25)); break;
-                case 26: processoAdapter27.setProcessos(processosList.get(26)); break;
-                case 27: processoAdapter28.setProcessos(processosList.get(27)); break;
-                case 28: processoAdapter29.setProcessos(processosList.get(28)); break;
-                case 29: processoAdapter30.setProcessos(processosList.get(29)); break;
-                case 30: processoAdapter31.setProcessos(processosList.get(30)); break;
-                case 31: processoAdapter32.setProcessos(processosList.get(31)); break;
-                case 32: processoAdapter33.setProcessos(processosList.get(32)); break;
-                case 33: processoAdapter34.setProcessos(processosList.get(33)); break;
-                case 34: processoAdapter35.setProcessos(processosList.get(34)); break;
-                case 35: processoAdapter36.setProcessos(processosList.get(35)); break;
-                case 36: processoAdapter37.setProcessos(processosList.get(36)); break;
-                case 37: processoAdapter38.setProcessos(processosList.get(37)); break;
-                case 38: processoAdapter39.setProcessos(processosList.get(38)); break;
-                case 39: processoAdapter40.setProcessos(processosList.get(39)); break;
-                case 40: processoAdapter41.setProcessos(processosList.get(40)); break;
-                case 41: processoAdapter42.setProcessos(processosList.get(41)); break;
-                case 42: processoAdapter43.setProcessos(processosList.get(42)); break;
-                case 43: processoAdapter44.setProcessos(processosList.get(43)); break;
-                case 44: processoAdapter45.setProcessos(processosList.get(44)); break;
-                case 45: processoAdapter46.setProcessos(processosList.get(45)); break;
-                case 46: processoAdapter47.setProcessos(processosList.get(46)); break;
-                case 47: processoAdapter48.setProcessos(processosList.get(47)); break;
-                case 48: processoAdapter49.setProcessos(processosList.get(48)); break;
-                case 49: processoAdapter50.setProcessos(processosList.get(49)); break;
-                case 50: processoAdapter51.setProcessos(processosList.get(50)); break;
-                case 51: processoAdapter52.setProcessos(processosList.get(51)); break;
-                case 52: processoAdapter53.setProcessos(processosList.get(52)); break;
-                case 53: processoAdapter54.setProcessos(processosList.get(53)); break;
-                case 54: processoAdapter55.setProcessos(processosList.get(54)); break;
-                case 55: processoAdapter56.setProcessos(processosList.get(55)); break;
-                case 56: processoAdapter57.setProcessos(processosList.get(56)); break;
-                case 57: processoAdapter58.setProcessos(processosList.get(57)); break;
-                case 58: processoAdapter59.setProcessos(processosList.get(58)); break;
-                case 59: processoAdapter60.setProcessos(processosList.get(59)); break;
-                case 60: processoAdapter61.setProcessos(processosList.get(60)); break;
-                case 61: processoAdapter62.setProcessos(processosList.get(61)); break;
-                case 62: processoAdapter63.setProcessos(processosList.get(62)); break;
-                case 63: processoAdapter64.setProcessos(processosList.get(63)); break;
+                case 0: processoAdapter1.setProcesses(processosList.get(0)); break;
+                case 1: processoAdapter2.setProcesses(processosList.get(1)); break;
+                case 2: processoAdapter3.setProcesses(processosList.get(2)); break;
+                case 3: processoAdapter4.setProcesses(processosList.get(3)); break;
+                case 4: processoAdapter5.setProcesses(processosList.get(4)); break;
+                case 5: processoAdapter6.setProcesses(processosList.get(5)); break;
+                case 6: processoAdapter7.setProcesses(processosList.get(6)); break;
+                case 7: processoAdapter8.setProcesses(processosList.get(7)); break;
+                case 8: processoAdapter9.setProcesses(processosList.get(8)); break;
+                case 9: processoAdapter10.setProcesses(processosList.get(9)); break;
+                case 10: processoAdapter11.setProcesses(processosList.get(10)); break;
+                case 11: processoAdapter12.setProcesses(processosList.get(11)); break;
+                case 12: processoAdapter13.setProcesses(processosList.get(12)); break;
+                case 13: processoAdapter14.setProcesses(processosList.get(13)); break;
+                case 14: processoAdapter15.setProcesses(processosList.get(14)); break;
+                case 15: processoAdapter16.setProcesses(processosList.get(15)); break;
+                case 16: processoAdapter17.setProcesses(processosList.get(16)); break;
+                case 17: processoAdapter18.setProcesses(processosList.get(17)); break;
+                case 18: processoAdapter19.setProcesses(processosList.get(18)); break;
+                case 19: processoAdapter20.setProcesses(processosList.get(19)); break;
+                case 20: processoAdapter21.setProcesses(processosList.get(20)); break;
+                case 21: processoAdapter22.setProcesses(processosList.get(21)); break;
+                case 22: processoAdapter23.setProcesses(processosList.get(22)); break;
+                case 23: processoAdapter24.setProcesses(processosList.get(23)); break;
+                case 24: processoAdapter25.setProcesses(processosList.get(24)); break;
+                case 25: processoAdapter26.setProcesses(processosList.get(25)); break;
+                case 26: processoAdapter27.setProcesses(processosList.get(26)); break;
+                case 27: processoAdapter28.setProcesses(processosList.get(27)); break;
+                case 28: processoAdapter29.setProcesses(processosList.get(28)); break;
+                case 29: processoAdapter30.setProcesses(processosList.get(29)); break;
+                case 30: processoAdapter31.setProcesses(processosList.get(30)); break;
+                case 31: processoAdapter32.setProcesses(processosList.get(31)); break;
+                case 32: processoAdapter33.setProcesses(processosList.get(32)); break;
+                case 33: processoAdapter34.setProcesses(processosList.get(33)); break;
+                case 34: processoAdapter35.setProcesses(processosList.get(34)); break;
+                case 35: processoAdapter36.setProcesses(processosList.get(35)); break;
+                case 36: processoAdapter37.setProcesses(processosList.get(36)); break;
+                case 37: processoAdapter38.setProcesses(processosList.get(37)); break;
+                case 38: processoAdapter39.setProcesses(processosList.get(38)); break;
+                case 39: processoAdapter40.setProcesses(processosList.get(39)); break;
+                case 40: processoAdapter41.setProcesses(processosList.get(40)); break;
+                case 41: processoAdapter42.setProcesses(processosList.get(41)); break;
+                case 42: processoAdapter43.setProcesses(processosList.get(42)); break;
+                case 43: processoAdapter44.setProcesses(processosList.get(43)); break;
+                case 44: processoAdapter45.setProcesses(processosList.get(44)); break;
+                case 45: processoAdapter46.setProcesses(processosList.get(45)); break;
+                case 46: processoAdapter47.setProcesses(processosList.get(46)); break;
+                case 47: processoAdapter48.setProcesses(processosList.get(47)); break;
+                case 48: processoAdapter49.setProcesses(processosList.get(48)); break;
+                case 49: processoAdapter50.setProcesses(processosList.get(49)); break;
+                case 50: processoAdapter51.setProcesses(processosList.get(50)); break;
+                case 51: processoAdapter52.setProcesses(processosList.get(51)); break;
+                case 52: processoAdapter53.setProcesses(processosList.get(52)); break;
+                case 53: processoAdapter54.setProcesses(processosList.get(53)); break;
+                case 54: processoAdapter55.setProcesses(processosList.get(54)); break;
+                case 55: processoAdapter56.setProcesses(processosList.get(55)); break;
+                case 56: processoAdapter57.setProcesses(processosList.get(56)); break;
+                case 57: processoAdapter58.setProcesses(processosList.get(57)); break;
+                case 58: processoAdapter59.setProcesses(processosList.get(58)); break;
+                case 59: processoAdapter60.setProcesses(processosList.get(59)); break;
+                case 60: processoAdapter61.setProcesses(processosList.get(60)); break;
+                case 61: processoAdapter62.setProcesses(processosList.get(61)); break;
+                case 62: processoAdapter63.setProcesses(processosList.get(62)); break;
+                case 63: processoAdapter64.setProcesses(processosList.get(63)); break;
 
             }
 
-            remanecenteAdapter.setProcessos(remanecentes);
+            remanecenteAdapter.setProcesses(remanecentes);
         }
     }
 
