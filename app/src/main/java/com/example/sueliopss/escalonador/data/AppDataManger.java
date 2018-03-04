@@ -1,8 +1,20 @@
 package com.example.sueliopss.escalonador.data;
 
-/**
- * Created by Larissa Rebouças on 04/03/2018.
- */
+import android.content.Context;
 
-public class AppDataManger {
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+/**
+ * Created by Suelio Sousa on 04/03/2018.
+ */
+@Singleton
+public class AppDataManger implements DataManager{
+
+    private Context context;
+
+    @Inject
+    public AppDataManger(Context context) {
+        this.context = context;
+    }
 }
